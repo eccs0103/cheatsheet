@@ -50,6 +50,19 @@ Example of a valid JSON structure:
 ...and can be loaded from the device or imported using a link.
 
 Polls in the legacy formats are still read and converted: `{ "question", "answer": 1, "cases": ["a", "b"] }` (the case at index `answer` is correct) and `{ "question", "answer": 0, "cases": "a" }` (a single case, correct when `answer` is 0).
+
+Sheets can also be written in the **Editor** (library → Add → *Write in editor*, or edit mode → mark one sheet → *Edit selection*) using a plain text format: polls are separated by blank lines, the first line is the question, and every next line is an answer marked `1.` (correct) or `0.` (wrong):
+```
+What is the capital of Armenia?
+1. Yerevan
+0. Gyumri
+
+Which of these numbers are prime?
+1. 2
+1. 3
+0. 4
+```
+Ready-made sheets for manual testing live in `resources/examples/` and are served at `/examples/…`, e.g. `http://localhost:5173/examples/capitals.json` for *Import from cloud*.
 - - -
 ## Development
 ```

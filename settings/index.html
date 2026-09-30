@@ -20,68 +20,11 @@
 	<link rel="stylesheet" href="../styles/themes/material.css">
 	<link rel="stylesheet" href="./view/style.css">
 	<script type="module" src="../environment/services/analytics-service.ts"></script>
-	<script type="module" src="./controllers/settings-controller.ts"></script>
+	<script type="module" src="./controllers/settings-controller.tsx"></script>
 </head>
 
 <body>
-	<header class="layer rounded in-top">
-		<a id="return" href="../library/" class="with-padding flex alt-center with-gap" title="Return">
-			<span class="icon with-padding small-padding">Return</span>
-		</a>
-	</header>
-	<main class="with-padding flex column with-block-gap">
-		<section class="layer rounded with-padding flex column">
-			<h2>View</h2>
-			<section class="option">
-				<h4 class="title">Theme</h4>
-				<dfn class="definition">Overall appearance and style of the interface.</dfn>
-				<select id="scheme" class="value depth rounded with-padding">
-					<option value="system">System</option>
-					<option value="light">Light</option>
-					<option value="dark">Dark</option>
-				</select>
-			</section>
-		</section>
-		<section class="layer rounded with-padding flex column">
-			<h2>Search</h2>
-			<section class="option">
-				<h4 class="title">Incorrect cases</h4>
-				<dfn class="definition">Controls the display of incorrect cases during searches.</dfn>
-				<input id="incorrect" type="checkbox" hidden>
-				<label for="incorrect" role="checkbox" class="value toggle depth">
-					<span class="knob layer"></span>
-				</label>
-			</section>
-			<section class="option">
-				<h4 class="title">Case sensitive</h4>
-				<dfn class="definition">Management of character case sensitivity in search queries.</dfn>
-				<input id="sensitive" type="checkbox" hidden>
-				<label for="sensitive" role="checkbox" class="value toggle depth">
-					<span class="knob layer"></span>
-				</label>
-			</section>
-			<section class="option">
-				<h4 class="title">Skip words</h4>
-				<dfn class="definition">Allows skipping any words during searches.</dfn>
-				<input id="skipping" type="checkbox" hidden>
-				<label for="skipping" role="checkbox" class="value toggle depth">
-					<span class="knob layer"></span>
-				</label>
-			</section>
-		</section>
-		<section class="layer rounded with-padding flex column">
-			<h2>Advanced</h2>
-			<section class="option">
-				<h4 class="title">Reset settings</h4>
-				<dfn class="definition">Reverting all configurations to their default states.</dfn>
-				<button id="reset" type="button" class="value rounded warn-background flex alt-center with-gap" title="Reset settings">
-					<span class="with-padding flex">
-						<span class="icon with-padding small-padding">Reset</span>
-					</span>
-				</button>
-			</section>
-		</section>
-	</main>
+	<div id="root" class="contents"></div>
 </body>
 
 </html>

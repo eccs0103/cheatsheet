@@ -1,0 +1,12 @@
+{
+	"title": "",
+	"polls": [
+		{
+			"question": "This sheet has an empty title, so it shows as \"Untitled\". What is 3 × 3?",
+			"cases": [
+				{ "text": "6", "correctness": false },
+				{ "text": "9", "correctness": true }
+			]
+		}
+	]
+}

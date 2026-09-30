@@ -1,0 +1,87 @@
+{
+	"title": "World capitals",
+	"polls": [
+		{
+			"question": "What is the capital of Armenia?",
+			"cases": [
+				{ "text": "Yerevan", "correctness": true },
+				{ "text": "Gyumri", "correctness": false },
+				{ "text": "Vanadzor", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of France?",
+			"cases": [
+				{ "text": "Lyon", "correctness": false },
+				{ "text": "Paris", "correctness": true },
+				{ "text": "Marseille", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Japan?",
+			"cases": [
+				{ "text": "Osaka", "correctness": false },
+				{ "text": "Kyoto", "correctness": false },
+				{ "text": "Tokyo", "correctness": true }
+			]
+		},
+		{
+			"question": "Which countries have more than one capital city?",
+			"cases": [
+				{ "text": "South Africa", "correctness": true },
+				{ "text": "Bolivia", "correctness": true },
+				{ "text": "Germany", "correctness": false },
+				{ "text": "Malaysia", "correctness": true }
+			]
+		},
+		{
+			"question": "What is the capital of Australia?",
+			"cases": [
+				{ "text": "Sydney", "correctness": false },
+				{ "text": "Canberra", "correctness": true },
+				{ "text": "Melbourne", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Canada?",
+			"cases": [
+				{ "text": "Toronto", "correctness": false },
+				{ "text": "Ottawa", "correctness": true },
+				{ "text": "Vancouver", "correctness": false }
+			]
+		},
+		{
+			"question": "Which of these capitals lie on the Danube river?",
+			"cases": [
+				{ "text": "Vienna", "correctness": true },
+				{ "text": "Budapest", "correctness": true },
+				{ "text": "Prague", "correctness": false },
+				{ "text": "Belgrade", "correctness": true },
+				{ "text": "Bratislava", "correctness": true }
+			]
+		},
+		{
+			"question": "What is the capital of Brazil?",
+			"cases": [
+				{ "text": "Rio de Janeiro", "correctness": false },
+				{ "text": "Brasília", "correctness": true },
+				{ "text": "São Paulo", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Turkey?",
+			"cases": [
+				{ "text": "Istanbul", "correctness": false },
+				{ "text": "Ankara", "correctness": true }
+			]
+		},
+		{
+			"question": "What is the capital of Georgia (the country)?",
+			"cases": [
+				{ "text": "Batumi", "correctness": false },
+				{ "text": "Tbilisi", "correctness": true },
+				{ "text": "Atlanta", "correctness": false }
+			]
+		}
+	]
+}

@@ -159,6 +159,14 @@ form#link > input {
 	min-width: 0;
 }
 
+a#write span.icon {
+	--url: url(../../assets/icons/file-pen.svg);
+}
+
+button#edit span.icon {
+	--url: url(../../assets/icons/pencil.svg);
+}
+
 button#download span.icon {
 	--url: url(../../assets/icons/download.svg);
 }

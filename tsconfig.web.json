@@ -1,14 +1,20 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"lib": [ "DOM", "DOM.Iterable", "ES2025", "ESNext.Array" ]
+		"lib": [ "DOM", "DOM.Iterable", "ES2025", "ESNext.Array" ],
+		"jsx": "react-jsx"
 	},
 	"include": [
 		"environment/models/**/*.ts",
 		"environment/controllers/**/*.ts",
 		"environment/services/**/*.ts",
 		"library/**/*.ts",
+		"library/**/*.tsx",
 		"finder/**/*.ts",
-		"settings/**/*.ts"
+		"finder/**/*.tsx",
+		"settings/**/*.ts",
+		"settings/**/*.tsx",
+		"editor/**/*.ts",
+		"editor/**/*.tsx"
 	]
 }

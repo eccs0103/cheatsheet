@@ -38,5 +38,9 @@ export class Note extends Model {
 	get link(): string {
 		return `../finder/?sheet=${encodeURIComponent(this.id)}`;
 	}
+
+	get editor(): string {
+		return `../editor/?sheet=${encodeURIComponent(this.id)}`;
+	}
 }
 //#endregion

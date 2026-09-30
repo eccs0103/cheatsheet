@@ -2,11 +2,12 @@
 
 import "adaptive-extender/web";
 import { Controller } from "adaptive-extender/web";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { AnalyticsController } from "../../environment/controllers/analytics-controller.js";
 import { SettingsService } from "../../settings/services/settings-service.js";
 import { LibraryService } from "../../library/services/library-service.js";
-import { Query } from "../services/query.js";
-import { FinderView } from "../view/finder-view.js";
+import { FinderApp } from "../view/finder-app.js";
 
 const settings = SettingsService.instance;
 const library = LibraryService.instance;
@@ -25,16 +26,9 @@ class FinderController extends Controller {
 		if (note === null) throw new ReferenceError("The chosen sheet no longer exists");
 		const { sheet } = note;
 
-		const h3Title = body.getElement(HTMLHeadingElement, "h3#title");
-		const main = body.getElement(HTMLElement, "main");
-		const inputSearch = body.getElement(HTMLInputElement, "input#search");
-
-		h3Title.textContent = sheet.name;
 		document.title = `${sheet.name} - Cheatsheet`;
-		const view = new FinderView(main, sheet.polls, content.incorrect);
-		const filter = (): void => view.filter(new Query(inputSearch.value, content.sensitive, content.skipping));
-		filter();
-		inputSearch.addEventListener("input", filter);
+		const divRoot = body.getElement(HTMLDivElement, "div#root");
+		createRoot(divRoot).render(<StrictMode><FinderApp sheet={sheet} settings={content} /></StrictMode>);
 	}
 
 	async catch(error: Error): Promise<void> {

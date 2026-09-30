@@ -45,5 +45,12 @@ export class Library extends Model {
 		if (note === undefined) return null;
 		return note;
 	}
+
+	replace(id: string, sheet: Sheet): Note {
+		const note = this.find(id);
+		if (note === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+		note.sheet = sheet;
+		return note;
+	}
 }
 //#endregion

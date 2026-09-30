@@ -1,6 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
+import { createElement, type ReactNode } from "react";
 
 //#region Segment
 export class Segment {
@@ -12,12 +13,10 @@ export class Segment {
 		this.#marked = marked;
 	}
 
-	toNode(): Node {
+	toElement(key: number): ReactNode {
 		const text = this.#text;
-		if (!this.#marked) return document.createTextNode(text);
-		const markSegment = document.createElement("mark");
-		markSegment.textContent = text;
-		return markSegment;
+		if (!this.#marked) return text;
+		return createElement("mark", { key }, text);
 	}
 }
 //#endregion

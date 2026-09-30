@@ -1,0 +1,21 @@
+What is the capital of Armenia?
+1. Yerevan
+0. Gyumri
+0. Vanadzor
+
+Which of these numbers are prime?
+1. 2
+1. 3
+0. 4
+1. 5
+0. 9
+
+Who painted the Mona Lisa?
+0. Michelangelo
+1. Leonardo da Vinci
+0. Raphael
+
+What does HTML stand for?
+1. HyperText Markup Language
+0. HighText Machine Language
+0. Hyperlink and Text Management Language

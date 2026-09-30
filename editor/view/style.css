@@ -1,0 +1,100 @@
+body {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	justify-items: center;
+}
+
+header {
+	min-inline-size: 100vmin;
+	max-inline-size: 100vmax;
+	inline-size: 100%;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	place-items: center;
+}
+
+a#return {
+	grid-column: 1;
+	color: inherit;
+
+	& > span.icon {
+		--url: url(../../assets/icons/arrow-left.svg);
+	}
+}
+
+input#title {
+	grid-column: 2;
+	inline-size: 100%;
+	font-size: larger;
+}
+
+main {
+	min-inline-size: 100vmin;
+	max-inline-size: 100vmin;
+	max-block-size: 100%;
+	overflow: hidden auto;
+	counter-reset: polls-counter;
+}
+
+textarea#text {
+	min-block-size: calc(8 * var(--size-standart));
+	resize: vertical;
+	font-weight: normal;
+	line-height: 1.5;
+}
+
+article.poll {
+	display: grid;
+	grid-template:
+		'index-area	question-area	' auto
+		'index-area	cases-area		' auto
+		/ auto 1fr
+	;
+	counter-increment: polls-counter;
+
+	&::before {
+		grid-area: index-area;
+		content: counter(polls-counter) ".";
+	}
+
+	& > span.question {
+		grid-area: question-area;
+	}
+
+	& > ul.cases {
+		grid-area: cases-area;
+		list-style: none;
+	}
+}
+
+li.case {
+	display: grid;
+	grid-template:
+		'index-area	case-area	' auto
+		/ auto 1fr
+	;
+
+	&::before {
+		grid-area: index-area;
+		font-family: monospace;
+		content: "•";
+	}
+}
+
+footer {
+	min-inline-size: 100vmin;
+	max-inline-size: 100vmax;
+	inline-size: 100%;
+	display: flex;
+	justify-content: end;
+}
+
+button#download > span.icon {
+	--url: url(../../assets/icons/download.svg);
+}
+
+button#save > span.icon {
+	--url: url(../../assets/icons/floppy-disk.svg);
+}

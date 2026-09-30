@@ -1,0 +1,15 @@
+{
+	"title": "Invalid sheet",
+	"polls": [
+		{
+			"question": "This poll is fine",
+			"cases": [
+				{ "text": "Yes", "correctness": true }
+			]
+		},
+		{
+			"question": "This poll is broken: cases is a number and there is no answer",
+			"cases": 42
+		}
+	]
+}

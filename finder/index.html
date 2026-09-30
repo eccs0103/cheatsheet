@@ -20,22 +20,11 @@
 	<link rel="stylesheet" href="../styles/themes/material.css">
 	<link rel="stylesheet" href="./view/style.css">
 	<script type="module" src="../environment/services/analytics-service.ts"></script>
-	<script type="module" src="./controllers/finder-controller.ts"></script>
+	<script type="module" src="./controllers/finder-controller.tsx"></script>
 </head>
 
 <body>
-	<header class="layer rounded in-top">
-		<a id="return" href="../library/" class="with-padding flex alt-center with-gap" title="Return">
-			<span class="icon with-padding small-padding">Return</span>
-		</a>
-		<h3 id="title"></h3>
-	</header>
-	<main class="with-padding flex column with-block-gap"></main>
-	<footer class="layer rounded in-bottom">
-		<label class="with-padding flex">
-			<input id="search" type="text" placeholder="Input for search" autofocus>
-		</label>
-	</footer>
+	<div id="root" class="contents"></div>
 </body>
 
 </html>
