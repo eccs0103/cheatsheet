@@ -17,7 +17,7 @@ export class LibraryView {
 		const labelRow = DOMBuilder.newRow(parent);
 		DOMBuilder.newCheckbox(labelRow, note.id);
 		const aSheet = DOMBuilder.newLink(labelRow, note.link);
-		DOMBuilder.newIcon(aSheet, "sheet");
+		DOMBuilder.newIcon(DOMBuilder.newPicture(aSheet));
 		DOMBuilder.newTitle(aSheet, sheet.name);
 		DOMBuilder.newTime(aSheet, note.date);
 	}

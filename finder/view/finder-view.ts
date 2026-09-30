@@ -9,12 +9,12 @@ import { DOMBuilder } from "./dom-builder.js";
 class PollCard {
 	#poll: Poll;
 	#articleCard: HTMLElement;
-	#bQuestion: HTMLElement;
+	#spanQuestion: HTMLElement;
 
 	constructor(parent: Element, poll: Poll, incorrect: boolean) {
 		this.#poll = poll;
 		const articleCard = this.#articleCard = DOMBuilder.newCard(parent);
-		this.#bQuestion = DOMBuilder.newQuestion(articleCard, poll.question);
+		this.#spanQuestion = DOMBuilder.newQuestion(articleCard, poll.question);
 		const ulCases = DOMBuilder.newCases(articleCard);
 		for (const { text, correctness } of poll.visible(incorrect)) {
 			DOMBuilder.newCase(ulCases, text, correctness);
@@ -24,7 +24,7 @@ class PollCard {
 	filter(query: Query): void {
 		const { question } = this.#poll;
 		this.#articleCard.hidden = !query.matches(question);
-		this.#bQuestion.replaceChildren(...query.split(question).map(segment => segment.toNode()));
+		this.#spanQuestion.replaceChildren(...query.split(question).map(segment => segment.toNode()));
 	}
 }
 //#endregion

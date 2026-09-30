@@ -14,7 +14,8 @@
 	<meta name="language" content="English">
 	<meta name="revisit-after" content="0 days">
 	<title>Library - Cheatsheet</title>
-	<link rel="shortcut icon" href="../assets/icons/file-lines.svg">
+	<link rel="shortcut icon" href="../assets/icons/bars.svg" media="(prefers-color-scheme: light)">
+	<link rel="shortcut icon" href="../assets/icons/bars-inverted.svg" media="(prefers-color-scheme: dark)">
 	<link rel="stylesheet" href="../styles/global.css">
 	<link rel="stylesheet" href="../styles/themes/material.css">
 	<link rel="stylesheet" href="./view/style.css">
@@ -23,57 +24,69 @@
 </head>
 
 <body>
-	<header class="layer rounded in-top with-padding flex alt-center with-gap">
-		<h3 class="title">Cheatsheet</h3>
+	<header class="layer rounded in-top">
 		<input id="select-all" type="checkbox" hidden>
-		<label for="select-all" role="checkbox" class="flex alt-center" title="Select all">
-			<span class="icon">Select all</span>
+		<label for="select-all" class="with-padding flex alt-center with-gap" title="Mark all">
+			<span class="icon with-padding small-padding">Mark all</span>
 		</label>
 		<input id="editing" type="checkbox" hidden>
-		<label for="editing" role="checkbox" class="flex alt-center" title="Edit">
-			<span class="icon">Edit</span>
+		<label for="editing" class="with-padding flex alt-center with-gap" title="Edit">
+			<span class="icon with-padding small-padding">Edit</span>
 		</label>
-		<a href="../settings/" class="flex alt-center" title="Settings">
-			<span class="icon" id="settings">Settings</span>
+		<a id="settings" href="../settings/" class="with-padding flex alt-center with-gap" title="Settings">
+			<span class="icon with-padding small-padding">Settings</span>
 		</a>
 	</header>
-	<main class="with-padding flex column with-gap">
-		<ul id="notes" class="flex column with-gap"></ul>
-		<p id="empty" class="with-padding">No sheets yet. Add one with the plus button.</p>
+	<main class="with-padding flex column with-block-gap">
+		<ul id="notes" class="flex column with-block-gap"></ul>
+		<div class="float-section">
+			<button id="open-add" type="button" class="layer with-padding large-padding flex alt-center with-gap" title="Add">
+				<span class="with-padding flex">
+					<span class="icon with-padding small-padding">Add</span>
+				</span>
+			</button>
+			<button id="open-actions" type="button" class="layer with-padding large-padding flex alt-center with-gap" title="Actions">
+				<span class="with-padding flex">
+					<span class="icon with-padding small-padding">Actions</span>
+				</span>
+			</button>
+		</div>
 	</main>
-	<footer class="with-padding large-padding flex column with-gap">
-		<button id="open-actions" type="button" class="layer rounded with-padding flex alt-center" title="Actions">
-			<span class="icon">Actions</span>
-		</button>
-		<button id="open-add" type="button" class="layer rounded with-padding flex alt-center" title="Add sheet">
-			<span class="icon">Add sheet</span>
-		</button>
-	</footer>
-	<dialog id="add" class="layer rounded with-padding flex column with-gap">
+	<dialog id="add" class="layer rounded with-padding flex column">
 		<h3 class="highlight">Add sheet</h3>
 		<input id="files" type="file" accept=".json,application/json" multiple hidden>
 		<label for="files" role="button" class="flex alt-center with-gap">
-			<span class="icon" id="device">Upload from device</span>
+			<span class="with-padding flex">
+				<span id="device" class="icon with-padding small-padding">Upload</span>
+			</span>
 			<span>Upload from device</span>
 		</label>
 		<form id="link" class="flex alt-center with-gap">
-			<span class="icon" id="cloud">Import from link</span>
-			<input name="url" type="url" required placeholder="Link to a sheet" class="depth rounded with-padding">
+			<span class="with-padding flex">
+				<span id="cloud" class="icon with-padding small-padding">Cloud</span>
+			</span>
+			<input name="url" type="url" placeholder="Import from cloud" class="depth rounded with-padding">
 			<button type="submit" class="highlight">Import</button>
 		</form>
 	</dialog>
-	<dialog id="actions" class="layer rounded with-padding flex column with-gap">
+	<dialog id="actions" class="layer rounded with-padding flex column">
 		<h3 class="highlight">Actions</h3>
 		<button id="download" type="button" class="flex alt-center with-gap">
-			<span class="icon">Download selection</span>
+			<span class="with-padding flex">
+				<span class="icon with-padding small-padding">Download</span>
+			</span>
 			<span>Download selection</span>
 		</button>
 		<button id="share" type="button" class="flex alt-center with-gap">
-			<span class="icon">Share selection</span>
+			<span class="with-padding flex">
+				<span class="icon with-padding small-padding">Share</span>
+			</span>
 			<span>Share selection</span>
 		</button>
-		<button id="delete" type="button" class="warn flex alt-center with-gap">
-			<span class="icon">Delete selection</span>
+		<button id="delete" type="button" class="alert flex alt-center with-gap">
+			<span class="with-padding flex">
+				<span class="icon with-padding small-padding">Delete</span>
+			</span>
 			<span>Delete selection</span>
 		</button>
 	</dialog>

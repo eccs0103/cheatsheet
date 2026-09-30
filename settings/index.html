@@ -14,7 +14,8 @@
 	<meta name="language" content="English">
 	<meta name="revisit-after" content="0 days">
 	<title>Settings - Cheatsheet</title>
-	<link rel="shortcut icon" href="../assets/icons/file-lines.svg">
+	<link rel="shortcut icon" href="../assets/icons/gear.svg" media="(prefers-color-scheme: light)">
+	<link rel="shortcut icon" href="../assets/icons/gear-inverted.svg" media="(prefers-color-scheme: dark)">
 	<link rel="stylesheet" href="../styles/global.css">
 	<link rel="stylesheet" href="../styles/themes/material.css">
 	<link rel="stylesheet" href="./view/style.css">
@@ -23,18 +24,17 @@
 </head>
 
 <body>
-	<header class="layer rounded in-top with-padding flex alt-center with-gap">
-		<a href="../library/" class="flex alt-center" title="Return">
-			<span class="icon" id="return">Return</span>
+	<header class="layer rounded in-top">
+		<a id="return" href="../library/" class="with-padding flex alt-center with-gap" title="Return">
+			<span class="icon with-padding small-padding">Return</span>
 		</a>
-		<h3>Settings</h3>
 	</header>
-	<main class="with-padding flex column with-gap">
+	<main class="with-padding flex column with-block-gap">
 		<section class="layer rounded with-padding flex column">
 			<h2>View</h2>
 			<section class="option">
 				<h4 class="title">Theme</h4>
-				<span class="definition">Overall appearance of the interface.</span>
+				<dfn class="definition">Overall appearance and style of the interface.</dfn>
 				<select id="scheme" class="value depth rounded with-padding">
 					<option value="system">System</option>
 					<option value="light">Light</option>
@@ -46,7 +46,7 @@
 			<h2>Search</h2>
 			<section class="option">
 				<h4 class="title">Incorrect cases</h4>
-				<span class="definition">Shows the incorrect cases next to the correct ones.</span>
+				<dfn class="definition">Controls the display of incorrect cases during searches.</dfn>
 				<input id="incorrect" type="checkbox" hidden>
 				<label for="incorrect" role="checkbox" class="value toggle depth">
 					<span class="knob layer"></span>
@@ -54,7 +54,7 @@
 			</section>
 			<section class="option">
 				<h4 class="title">Case sensitive</h4>
-				<span class="definition">Distinguishes uppercase and lowercase letters in search queries.</span>
+				<dfn class="definition">Management of character case sensitivity in search queries.</dfn>
 				<input id="sensitive" type="checkbox" hidden>
 				<label for="sensitive" role="checkbox" class="value toggle depth">
 					<span class="knob layer"></span>
@@ -62,7 +62,7 @@
 			</section>
 			<section class="option">
 				<h4 class="title">Skip words</h4>
-				<span class="definition">Lets any words stand between the words of a search query.</span>
+				<dfn class="definition">Allows skipping any words during searches.</dfn>
 				<input id="skipping" type="checkbox" hidden>
 				<label for="skipping" role="checkbox" class="value toggle depth">
 					<span class="knob layer"></span>
@@ -73,9 +73,11 @@
 			<h2>Advanced</h2>
 			<section class="option">
 				<h4 class="title">Reset settings</h4>
-				<span class="definition">Reverts every option to its default.</span>
-				<button id="reset" type="button" class="value rounded warn-background with-padding flex alt-center" title="Reset settings">
-					<span class="icon">Reset settings</span>
+				<dfn class="definition">Reverting all configurations to their default states.</dfn>
+				<button id="reset" type="button" class="value rounded warn-background flex alt-center with-gap" title="Reset settings">
+					<span class="with-padding flex">
+						<span class="icon with-padding small-padding">Reset</span>
+					</span>
 				</button>
 			</section>
 		</section>

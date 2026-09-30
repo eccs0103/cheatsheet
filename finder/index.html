@@ -14,7 +14,8 @@
 	<meta name="language" content="English">
 	<meta name="revisit-after" content="0 days">
 	<title>Finder - Cheatsheet</title>
-	<link rel="shortcut icon" href="../assets/icons/file-lines.svg">
+	<link rel="shortcut icon" href="../assets/icons/magnifying-glass.svg" media="(prefers-color-scheme: light)">
+	<link rel="shortcut icon" href="../assets/icons/magnifying-glass-inverted.svg" media="(prefers-color-scheme: dark)">
 	<link rel="stylesheet" href="../styles/global.css">
 	<link rel="stylesheet" href="../styles/themes/material.css">
 	<link rel="stylesheet" href="./view/style.css">
@@ -23,16 +24,17 @@
 </head>
 
 <body>
-	<header class="layer rounded in-top with-padding flex alt-center with-gap">
-		<a href="../library/" class="flex alt-center" title="Return">
-			<span class="icon" id="return">Return</span>
+	<header class="layer rounded in-top">
+		<a id="return" href="../library/" class="with-padding flex alt-center with-gap" title="Return">
+			<span class="icon with-padding small-padding">Return</span>
 		</a>
 		<h3 id="title"></h3>
 	</header>
-	<main class="with-padding flex column with-gap"></main>
-	<footer class="layer rounded in-bottom with-padding flex alt-center with-gap">
-		<span class="icon" id="search-icon">Search</span>
-		<input id="search" type="search" placeholder="Search questions" autofocus class="with-padding">
+	<main class="with-padding flex column with-block-gap"></main>
+	<footer class="layer rounded in-bottom">
+		<label class="with-padding flex">
+			<input id="search" type="text" placeholder="Input for search" autofocus>
+		</label>
 	</footer>
 </body>
 
