@@ -18,11 +18,11 @@ export class LibraryService {
 
 		const key = LibraryService.#key;
 		try {
-			this.#cell = localStorage.openBufferedCell(key, Library, new Library());
+			this.#cell = localStorage.openBufferedCell(key, Library, new Library([]));
 		} catch (reason) {
 			if (!(reason instanceof SyntaxError)) throw reason;
 			localStorage.removeItem(key);
-			this.#cell = localStorage.openBufferedCell(key, Library, new Library());
+			this.#cell = localStorage.openBufferedCell(key, Library, new Library([]));
 		}
 	}
 

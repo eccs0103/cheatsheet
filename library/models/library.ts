@@ -12,7 +12,19 @@ export interface LibraryScheme {
 
 export class Library extends Model {
 	@Field(Array.Of(Note), { name: "notes" })
-	notes: Note[] = [];
+	notes: Note[];
+
+	constructor();
+	constructor(notes: Note[]);
+	constructor(notes?: Note[]) {
+		if (notes === undefined) {
+			super();
+			return;
+		}
+
+		super();
+		this.notes = notes;
+	}
 
 	get newest(): Note[] {
 		return this.notes.toReversed();
@@ -29,7 +41,7 @@ export class Library extends Model {
 	}
 
 	find(id: string): Note | null {
-		const note = this.notes.find(note => note.id === id);
+		const note = this.notes.find(entry => entry.id === id);
 		if (note === undefined) return null;
 		return note;
 	}

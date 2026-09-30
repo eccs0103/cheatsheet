@@ -10,7 +10,6 @@
 	},
 	"scripts": {
 		"typecheck": "tsc -p tsconfig.node.json && tsc -p tsconfig.web.json && tsc -p tsconfig.cloudflare.json",
-		"test": "node --experimental-strip-types --test finder/**/*.test.ts",
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "npm run build && vite preview",
@@ -25,7 +24,7 @@
 		"wrangler": "^4.111.0"
 	},
 	"dependencies": {
-		"adaptive-extender": "^1.0.6"
+		"adaptive-extender": "^1.0.8"
 	},
 	"overrides": {
 		"undici": ">=7.28.0",

@@ -31,9 +31,7 @@ export class Poll extends Model {
 	}
 
 	visible(incorrect: boolean): Case[] {
-		const { cases } = this;
-		if (incorrect) return cases;
-		return cases.filter(item => item.correctness);
+		return this.cases.filter(item => item.visible(incorrect));
 	}
 }
 //#endregion

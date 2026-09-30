@@ -10,8 +10,5 @@
 		"library/**/*.ts",
 		"finder/**/*.ts",
 		"settings/**/*.ts"
-	],
-	"exclude": [
-		"finder/**/*.test.ts"
 	]
 }

@@ -55,7 +55,6 @@ Polls in the legacy formats are still read and converted: `{ "question", "answer
 ```
 npm install
 npm run dev        # Vite dev server (the root redirect only works in preview and production)
-npm test           # unit tests
 npm run typecheck
 npm run build
 npm run preview    # production build served through the Cloudflare worker

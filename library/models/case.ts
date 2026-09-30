@@ -28,5 +28,10 @@ export class Case extends Model {
 		this.text = text;
 		this.correctness = correctness;
 	}
+
+	visible(incorrect: boolean): boolean {
+		if (incorrect) return true;
+		return this.correctness;
+	}
 }
 //#endregion

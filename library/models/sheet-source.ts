@@ -26,6 +26,20 @@ export class ListedPoll extends Model {
 	@Field(Array.Of(String), { name: "cases" })
 	cases: string[];
 
+	constructor();
+	constructor(question: string, answer: number, cases: string[]);
+	constructor(question?: string, answer?: number, cases?: string[]) {
+		if (question === undefined || answer === undefined || cases === undefined) {
+			super();
+			return;
+		}
+
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.cases = cases;
+	}
+
 	toPoll(): Poll {
 		const { answer } = this;
 		return new Poll(this.question, this.cases.map((text, index) => new Case(text, index === answer)));
@@ -51,6 +65,20 @@ export class SinglePoll extends Model {
 
 	@Field(String, { name: "cases" })
 	cases: string;
+
+	constructor();
+	constructor(question: string, answer: number, cases: string);
+	constructor(question?: string, answer?: number, cases?: string) {
+		if (question === undefined || answer === undefined || cases === undefined) {
+			super();
+			return;
+		}
+
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.cases = cases;
+	}
 
 	toPoll(): Poll {
 		return new Poll(this.question, [new Case(this.cases, this.answer === 0)]);
@@ -82,6 +110,19 @@ export class SheetSource extends Model {
 
 	@Field(Array.Of(Any), { name: "polls" })
 	polls: unknown[];
+
+	constructor();
+	constructor(title: string, polls: unknown[]);
+	constructor(title?: string, polls?: unknown[]) {
+		if (title === undefined || polls === undefined) {
+			super();
+			return;
+		}
+
+		super();
+		this.title = title;
+		this.polls = polls;
+	}
 
 	static parse(text: string): Sheet {
 		return SheetSource.import(JSON.parse(text), "sheet").toSheet();

@@ -1,22 +1,10 @@
 "use strict";
 
-import "adaptive-extender/core";
+import "adaptive-extender/web";
+import { Segment } from "../models/segment.js";
 
-//#region Segment
-export class Segment {
-	text: string;
-	marked: boolean;
-
-	constructor(text: string, marked: boolean) {
-		this.text = text;
-		this.marked = marked;
-	}
-}
-//#endregion
 //#region Query
 export class Query {
-	/** ponytail: hand-rolled escape, switch to `RegExp.escape` once Node 24 is the minimum. */
-	static #special: RegExp = /[\\^$.*+?()[\]{}|\/-]/g;
 	#pattern: RegExp | null;
 
 	constructor(text: string, sensitive: boolean, skipping: boolean) {
@@ -30,7 +18,7 @@ export class Query {
 		if (skipping) separator = "\\s+(?:\\S+\\s+)*?";
 		let flags = "g";
 		if (!sensitive) flags += "i";
-		this.#pattern = new RegExp(words.map(word => word.replace(Query.#special, "\\$&")).join(separator), flags);
+		this.#pattern = new RegExp(words.map(RegExp.escape).join(separator), flags);
 	}
 
 	matches(text: string): boolean {

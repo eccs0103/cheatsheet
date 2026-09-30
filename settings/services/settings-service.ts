@@ -2,7 +2,7 @@
 
 import "adaptive-extender/web";
 import { type BufferedCell } from "adaptive-extender/web";
-import { Settings } from "../models/settings.js";
+import { Scheme, Settings } from "../models/settings.js";
 
 //#region Settings service
 export class SettingsService {
@@ -16,11 +16,11 @@ export class SettingsService {
 
 		const key = SettingsService.#key;
 		try {
-			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings());
+			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings(Scheme.system, false, false, false));
 		} catch (reason) {
 			if (!(reason instanceof SyntaxError)) throw reason;
 			localStorage.removeItem(key);
-			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings());
+			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings(Scheme.system, false, false, false));
 		}
 	}
 

@@ -3,38 +3,28 @@
 import "adaptive-extender/web";
 import { type Poll } from "../../library/models/poll.js";
 import { type Query } from "../services/query.js";
+import { DOMBuilder } from "./dom-builder.js";
 
 //#region Poll card
 class PollCard {
 	#poll: Poll;
-	#articlePoll: HTMLElement;
+	#articleCard: HTMLElement;
 	#bQuestion: HTMLElement;
 
 	constructor(parent: Element, poll: Poll, incorrect: boolean) {
 		this.#poll = poll;
-		const articlePoll = this.#articlePoll = parent.appendChild(document.createElement("article"));
-		articlePoll.classList.add("poll", "layer", "rounded", "with-padding", "flex", "column", "with-gap");
-		const bQuestion = this.#bQuestion = articlePoll.appendChild(document.createElement("b"));
-		bQuestion.textContent = poll.question;
-		const ulCases = articlePoll.appendChild(document.createElement("ul"));
-		ulCases.classList.add("flex", "column", "small-gap", "with-gap");
+		const articleCard = this.#articleCard = DOMBuilder.newCard(parent);
+		this.#bQuestion = DOMBuilder.newQuestion(articleCard, poll.question);
+		const ulCases = DOMBuilder.newCases(articleCard);
 		for (const { text, correctness } of poll.visible(incorrect)) {
-			const liCase = ulCases.appendChild(document.createElement("li"));
-			liCase.classList.toggle("highlight", correctness);
-			liCase.classList.toggle("alert", !correctness);
-			liCase.textContent = text;
+			DOMBuilder.newCase(ulCases, text, correctness);
 		}
 	}
 
 	filter(query: Query): void {
 		const { question } = this.#poll;
-		this.#articlePoll.hidden = !query.matches(question);
-		this.#bQuestion.replaceChildren(...query.split(question).map(segment => {
-			if (!segment.marked) return document.createTextNode(segment.text);
-			const markSegment = document.createElement("mark");
-			markSegment.textContent = segment.text;
-			return markSegment;
-		}));
+		this.#articleCard.hidden = !query.matches(question);
+		this.#bQuestion.replaceChildren(...query.split(question).map(segment => segment.toNode()));
 	}
 }
 //#endregion
