@@ -1,0 +1,17 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": [ "DOM", "DOM.Iterable", "ES2025", "ESNext.Array" ]
+	},
+	"include": [
+		"environment/models/**/*.ts",
+		"environment/controllers/**/*.ts",
+		"environment/services/**/*.ts",
+		"library/**/*.ts",
+		"finder/**/*.ts",
+		"settings/**/*.ts"
+	],
+	"exclude": [
+		"finder/**/*.test.ts"
+	]
+}

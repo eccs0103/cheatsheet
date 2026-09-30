@@ -1,0 +1,117 @@
+body {
+	min-height: 100dvh;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+
+	& > h3.title {
+		flex-grow: 1;
+	}
+}
+
+label[for="select-all"] > span.icon {
+	--url: url(../../assets/icons/square-check.svg);
+}
+
+label[for="editing"] > span.icon {
+	--url: url(../../assets/icons/pen.svg);
+}
+
+span.icon#settings {
+	--url: url(../../assets/icons/sliders.svg);
+}
+
+ul#notes {
+	list-style: none;
+
+	&:not(:empty) + p#empty {
+		display: none;
+	}
+}
+
+label.note {
+	& > input {
+		display: none;
+	}
+
+	& > a {
+		flex-grow: 1;
+		min-width: 0;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	& span.title {
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	& time {
+		opacity: 0.6;
+		white-space: nowrap;
+	}
+}
+
+span.icon.sheet {
+	--url: url(../../assets/icons/file-lines.svg);
+}
+
+footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+}
+
+button#open-add > span.icon {
+	--url: url(../../assets/icons/plus.svg);
+}
+
+button#open-actions > span.icon {
+	--url: url(../../assets/icons/list.svg);
+}
+
+body:not(:has(input#editing:checked)) {
+	& label[for="select-all"],
+	& button#open-actions {
+		display: none;
+	}
+}
+
+body:has(input#editing:checked) label.note {
+	& > input {
+		display: revert;
+	}
+
+	& > a {
+		pointer-events: none;
+	}
+}
+
+span.icon#device {
+	--url: url(../../assets/icons/laptop.svg);
+}
+
+span.icon#cloud {
+	--url: url(../../assets/icons/cloud-arrow-down.svg);
+}
+
+form#link > input {
+	flex-grow: 1;
+	min-width: 0;
+}
+
+button#download > span.icon {
+	--url: url(../../assets/icons/download.svg);
+}
+
+button#share > span.icon {
+	--url: url(../../assets/icons/share-nodes.svg);
+}
+
+button#delete > span.icon {
+	--url: url(../../assets/icons/trash.svg);
+}

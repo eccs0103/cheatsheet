@@ -1,21 +1,21 @@
 # Cheatsheet
-A program for solving tests.
+A program for solving tests. Live at [cheatsheet.eccs.dev](https://cheatsheet.eccs.dev/).
 - - -
 ## Guide
 To use the program, a sheet is required. The sheet must be a JSON file with the following structure:
 ```ts
 interface Case {
-	text: String;
-	correctness: Boolean;
+	text: string;
+	correctness: boolean;
 }
 
 interface Poll {
-	question: String;
-	cases: Case;
+	question: string;
+	cases: Case[];
 }
 
 interface Sheet {
-	title: String;
+	title: string;
 	polls: Poll[];
 }
 ```
@@ -48,6 +48,19 @@ Example of a valid JSON structure:
 }
 ```
 ...and can be loaded from the device or imported using a link.
+
+Polls in the legacy formats are still read and converted: `{ "question", "answer": 1, "cases": ["a", "b"] }` (the case at index `answer` is correct) and `{ "question", "answer": 0, "cases": "a" }` (a single case, correct when `answer` is 0).
+- - -
+## Development
+```
+npm install
+npm run dev        # Vite dev server (the root redirect only works in preview and production)
+npm test           # unit tests
+npm run typecheck
+npm run build
+npm run preview    # production build served through the Cloudflare worker
+npm run deploy     # build and deploy to cheatsheet.eccs.dev
+```
 - - -
 ## Feed
 ### Update 2.0.0 (24.02.2024) : Adaptive Core 2.6.0

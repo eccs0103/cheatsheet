@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="material">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="3.0.0">
+	<meta name="title" content="Cheatsheet">
+	<meta name="author" content="eccs0103">
+	<meta name="color-scheme" content="system">
+	<meta name="description" content="Program for solving tests.">
+	<meta name="keywords" content="cheatsheet, test, answers">
+	<meta name="robots" content="index, follow">
+	<meta name="language" content="English">
+	<meta name="revisit-after" content="0 days">
+	<title>Settings - Cheatsheet</title>
+	<link rel="shortcut icon" href="../assets/icons/file-lines.svg">
+	<link rel="stylesheet" href="../styles/global.css">
+	<link rel="stylesheet" href="../styles/themes/material.css">
+	<link rel="stylesheet" href="./view/style.css">
+	<script type="module" src="../environment/services/analytics-service.ts"></script>
+	<script type="module" src="./controllers/settings-controller.ts"></script>
+</head>
+
+<body>
+	<header class="layer rounded in-top with-padding flex alt-center with-gap">
+		<a href="../library/" class="flex alt-center" title="Return">
+			<span class="icon" id="return">Return</span>
+		</a>
+		<h3>Settings</h3>
+	</header>
+	<main class="with-padding flex column with-gap">
+		<section class="layer rounded with-padding flex column">
+			<h2>View</h2>
+			<section class="option">
+				<h4 class="title">Theme</h4>
+				<span class="definition">Overall appearance of the interface.</span>
+				<select id="scheme" class="value depth rounded with-padding">
+					<option value="system">System</option>
+					<option value="light">Light</option>
+					<option value="dark">Dark</option>
+				</select>
+			</section>
+		</section>
+		<section class="layer rounded with-padding flex column">
+			<h2>Search</h2>
+			<section class="option">
+				<h4 class="title">Incorrect cases</h4>
+				<span class="definition">Shows the incorrect cases next to the correct ones.</span>
+				<input id="incorrect" type="checkbox" hidden>
+				<label for="incorrect" role="checkbox" class="value toggle depth">
+					<span class="knob layer"></span>
+				</label>
+			</section>
+			<section class="option">
+				<h4 class="title">Case sensitive</h4>
+				<span class="definition">Distinguishes uppercase and lowercase letters in search queries.</span>
+				<input id="sensitive" type="checkbox" hidden>
+				<label for="sensitive" role="checkbox" class="value toggle depth">
+					<span class="knob layer"></span>
+				</label>
+			</section>
+			<section class="option">
+				<h4 class="title">Skip words</h4>
+				<span class="definition">Lets any words stand between the words of a search query.</span>
+				<input id="skipping" type="checkbox" hidden>
+				<label for="skipping" role="checkbox" class="value toggle depth">
+					<span class="knob layer"></span>
+				</label>
+			</section>
+		</section>
+		<section class="layer rounded with-padding flex column">
+			<h2>Advanced</h2>
+			<section class="option">
+				<h4 class="title">Reset settings</h4>
+				<span class="definition">Reverts every option to its default.</span>
+				<button id="reset" type="button" class="value rounded warn-background with-padding flex alt-center" title="Reset settings">
+					<span class="icon">Reset settings</span>
+				</button>
+			</section>
+		</section>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{
+	"private": true,
+	"name": "cheatsheet",
+	"author": "eccs0103",
+	"version": "3.0.0",
+	"type": "module",
+	"packageManager": "npm@11.6.2",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"typecheck": "tsc -p tsconfig.node.json && tsc -p tsconfig.web.json && tsc -p tsconfig.cloudflare.json",
+		"test": "node --experimental-strip-types --test finder/**/*.test.ts",
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "npm run build && vite preview",
+		"deploy": "vite build && wrangler deploy"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.45.0",
+		"@cloudflare/workers-types": "^5.20260928.1",
+		"@types/node": "^24.10.1",
+		"typescript": "^7.0.2",
+		"vite": "^7.3.0",
+		"wrangler": "^4.111.0"
+	},
+	"dependencies": {
+		"adaptive-extender": "^1.0.6"
+	},
+	"overrides": {
+		"undici": ">=7.28.0",
+		"esbuild": "^0.28.1",
+		"sharp": "^0.35.3"
+	},
+	"allowScripts": {
+		"esbuild": true
+	}
+}

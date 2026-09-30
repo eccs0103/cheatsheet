@@ -1,0 +1,17 @@
+body {
+	min-height: 100dvh;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+span.icon#return {
+	--url: url(../../assets/icons/arrow-left.svg);
+}
+
+button#reset > span.icon {
+	--url: url(../../assets/icons/rotate-left.svg);
+}
