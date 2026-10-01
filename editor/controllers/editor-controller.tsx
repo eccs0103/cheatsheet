@@ -7,7 +7,7 @@ import { createRoot } from "react-dom/client";
 import { AnalyticsController } from "../../environment/controllers/analytics-controller.js";
 import { SettingsService } from "../../settings/services/settings-service.js";
 import { LibraryService } from "../../library/services/library-service.js";
-import { SheetDraft } from "../models/sheet-draft.js";
+import { Sheet } from "../../library/models/sheet.js";
 import { EditorApp } from "../view/editor-app.js";
 
 const settings = SettingsService.instance;
@@ -21,17 +21,18 @@ class EditorController extends Controller {
 		settings.content.apply();
 
 		const id = new URLSearchParams(location.search).get("sheet");
-		const initial = EditorController.#draft(id);
+		const initial = EditorController.#sheet(id);
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
 		createRoot(divRoot).render(<StrictMode><EditorApp library={library} id={id} initial={initial} /></StrictMode>);
 	}
 
-	static #draft(id: string | null): SheetDraft {
-		if (id === null) return new SheetDraft(String.empty, String.empty);
+	static #sheet(id: string | null): Sheet {
+		if (id === null) return new Sheet(String.empty, []);
 		const note = library.find(id);
 		if (note === null) throw new ReferenceError("The chosen sheet no longer exists");
-		document.title = `${note.sheet.name} - Editor - Cheatsheet`;
-		return SheetDraft.from(note.sheet);
+		const { sheet } = note;
+		document.title = `${sheet.name} - Editor - Cheatsheet`;
+		return sheet.clone();
 	}
 
 	async catch(error: Error): Promise<void> {

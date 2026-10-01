@@ -1,8 +1,0 @@
-{
-	"title": "Legacy single format",
-	"polls": [
-		{ "question": "Who wrote \"War and Peace\"?", "answer": 0, "cases": "Leo Tolstoy" },
-		{ "question": "What is the boiling point of water at sea level in °C?", "answer": 0, "cases": "100" },
-		{ "question": "This single case is stored as wrong (answer is not 0)", "answer": 1, "cases": "Hidden unless Incorrect cases is on" }
-	]
-}

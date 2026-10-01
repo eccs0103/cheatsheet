@@ -4,8 +4,7 @@ import "adaptive-extender/web";
 import { type BufferedCell } from "adaptive-extender/web";
 import { Library } from "../models/library.js";
 import { type Note } from "../models/note.js";
-import { type Sheet } from "../models/sheet.js";
-import { SheetSource } from "../models/sheet-source.js";
+import { Sheet } from "../models/sheet.js";
 
 //#region Library service
 export class LibraryService {
@@ -45,7 +44,7 @@ export class LibraryService {
 	}
 
 	async add(text: string): Promise<Note> {
-		return await this.insert(SheetSource.parse(text));
+		return await this.insert(Sheet.import(JSON.parse(text), "sheet"));
 	}
 
 	async insert(sheet: Sheet): Promise<Note> {

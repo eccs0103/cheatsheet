@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type FormEvent, type ReactElement, useState } from "react";
+import { type ChangeEvent, type ReactElement, type SubmitEvent, useState } from "react";
 import { type LibraryService } from "../services/library-service.js";
 import { ModalDialog } from "./modal-dialog.js";
 
@@ -33,7 +33,7 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 		}
 	};
 
-	const handleLink = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+	const handleLink = async (event: SubmitEvent<HTMLFormElement>): Promise<void> => {
 		event.preventDefault();
 		try {
 			const response = await fetch(new URL(url));
@@ -51,14 +51,14 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 	return (
 		<ModalDialog id="add" open={open} onClose={onClose}>
 			<h3 className="highlight">Add sheet</h3>
-			<input id="files" type="file" accept=".json,application/json" multiple hidden onChange={handleFiles} />
+			<input id="files" type="file" accept=".json,application/json" multiple hidden onChange={(event) => void handleFiles(event)} />
 			<label htmlFor="files" role="button" className="flex alt-center with-gap">
 				<span className="with-padding flex">
 					<span id="device" className="icon with-padding small-padding">Upload</span>
 				</span>
 				<span>Upload from device</span>
 			</label>
-			<form id="link" className="flex alt-center with-gap" onSubmit={handleLink}>
+			<form id="link" className="flex alt-center with-gap" onSubmit={(event) => void handleLink(event)}>
 				<span className="with-padding flex">
 					<span id="cloud" className="icon with-padding small-padding">Cloud</span>
 				</span>

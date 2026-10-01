@@ -29,9 +29,17 @@ export class Case extends Model {
 		this.correctness = correctness;
 	}
 
+	get complete(): boolean {
+		return !String.isWhitespace(this.text);
+	}
+
 	visible(incorrect: boolean): boolean {
 		if (incorrect) return true;
 		return this.correctness;
+	}
+
+	toggle(): void {
+		this.correctness = !this.correctness;
 	}
 }
 //#endregion

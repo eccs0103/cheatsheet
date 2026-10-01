@@ -42,5 +42,9 @@ export class Note extends Model {
 	get editor(): string {
 		return `../editor/?sheet=${encodeURIComponent(this.id)}`;
 	}
+
+	revise(sheet: Sheet): void {
+		this.sheet = sheet;
+	}
 }
 //#endregion

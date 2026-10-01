@@ -1,9 +1,0 @@
-{
-	"title": "Legacy listed format",
-	"polls": [
-		{ "question": "2 + 2 = ?", "answer": 1, "cases": ["3", "4", "5"] },
-		{ "question": "Which planet is known as the Red Planet?", "answer": 2, "cases": ["Venus", "Jupiter", "Mars", "Saturn"] },
-		{ "question": "What is the chemical symbol of gold?", "answer": 0, "cases": ["Au", "Ag", "Gd"] },
-		{ "question": "How many continents are there?", "answer": 3, "cases": ["4", "5", "6", "7"] }
-	]
-}

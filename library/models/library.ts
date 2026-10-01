@@ -49,7 +49,7 @@ export class Library extends Model {
 	replace(id: string, sheet: Sheet): Note {
 		const note = this.find(id);
 		if (note === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
-		note.sheet = sheet;
+		note.revise(sheet);
 		return note;
 	}
 }

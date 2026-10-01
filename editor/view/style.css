@@ -2,7 +2,7 @@ body {
 	position: fixed;
 	inset: 0;
 	display: grid;
-	grid-template-rows: auto 1fr auto;
+	grid-template-rows: auto 1fr;
 	justify-items: center;
 }
 
@@ -11,12 +11,16 @@ header {
 	max-inline-size: 100vmax;
 	inline-size: 100%;
 	display: grid;
-	grid-template-columns: auto 1fr;
+	grid-template-columns: auto 1fr auto;
 	place-items: center;
+
+	& > label {
+		inline-size: 100%;
+		display: grid;
+	}
 }
 
 a#return {
-	grid-column: 1;
 	color: inherit;
 
 	& > span.icon {
@@ -25,9 +29,11 @@ a#return {
 }
 
 input#title {
-	grid-column: 2;
-	inline-size: 100%;
-	font-size: larger;
+	block-size: var(--size-standart);
+}
+
+button#save > span.icon {
+	--url: url(../../assets/icons/floppy-disk.svg);
 }
 
 main {
@@ -35,66 +41,77 @@ main {
 	max-inline-size: 100vmin;
 	max-block-size: 100%;
 	overflow: hidden auto;
-	counter-reset: polls-counter;
 }
 
-textarea#text {
-	min-block-size: calc(8 * var(--size-standart));
-	resize: vertical;
-	font-weight: normal;
-	line-height: 1.5;
-}
-
-article.poll {
+div#polls {
+	counter-reset: poll;
 	display: grid;
-	grid-template:
-		'index-area	question-area	' auto
-		'index-area	cases-area		' auto
-		/ auto 1fr
+	grid-template-columns: 1fr max-content;
+	align-items: start;
+	gap: var(--size-gap);
+
+	& > button.remove > span.icon {
+		--url: url(../../assets/icons/trash.svg);
+	}
+}
+
+div.poll {
+	display: grid;
+	grid:
+		'index	question' max-content
+		'index	cases' 1fr
+		/ max-content 1fr
 	;
-	counter-increment: polls-counter;
+	gap: calc(var(--size-gap) / 2);
 
 	&::before {
-		grid-area: index-area;
-		content: counter(polls-counter) ".";
+		grid-area: index;
+		counter-increment: poll;
+		content: counter(poll) ". ";
 	}
 
-	& > span.question {
-		grid-area: question-area;
+	& > input.question {
+		grid-area: question;
 	}
 
-	& > ul.cases {
-		grid-area: cases-area;
-		list-style: none;
+	& > div.cases {
+		grid-area: cases;
+		display: grid;
+		grid-template-columns: 1fr max-content;
+		align-items: center;
+		gap: calc(var(--size-gap) / 2);
+
+		& > button.remove > span.icon {
+			--url: url(../../assets/icons/xmark.svg);
+		}
 	}
 }
 
-li.case {
+div.case {
 	display: grid;
-	grid-template:
-		'index-area	case-area	' auto
-		/ auto 1fr
-	;
+	grid: 'mark case' max-content / max-content 1fr;
+	align-items: center;
+	gap: calc(var(--size-gap) / 2);
 
-	&::before {
-		grid-area: index-area;
-		font-family: monospace;
-		content: "•";
+	& > label.check > span.icon {
+		--url: url(../../assets/icons/square.svg);
+	}
+
+	& > input:checked + label.check {
+		background-color: revert;
+
+		& > span.icon {
+			--url: url(../../assets/icons/square-check.svg);
+		}
 	}
 }
 
-footer {
-	min-inline-size: 100vmin;
-	max-inline-size: 100vmax;
-	inline-size: 100%;
-	display: flex;
-	justify-content: end;
-}
+form.insert {
+	& > input {
+		min-inline-size: 0;
+	}
 
-button#download > span.icon {
-	--url: url(../../assets/icons/download.svg);
-}
-
-button#save > span.icon {
-	--url: url(../../assets/icons/floppy-disk.svg);
+	& > button.add > span.icon {
+		--url: url(../../assets/icons/plus.svg);
+	}
 }

@@ -44,9 +44,14 @@ export function ActionsDialog({ library, selected, open, onClose, onChange }: Ac
 
 	const handleDelete = async (): Promise<void> => {
 		if (!window.confirm(`Delete ${selected.length} sheet(s)?`)) return;
-		await library.remove(new Set(selected.map(note => note.id)));
-		onChange();
-		onClose();
+		try {
+			await library.remove(new Set(selected.map(note => note.id)));
+			onClose();
+		} catch (reason) {
+			window.alert(Error.from(reason).message);
+		} finally {
+			onChange();
+		}
 	};
 
 	return (
@@ -64,13 +69,13 @@ export function ActionsDialog({ library, selected, open, onClose, onChange }: Ac
 				</span>
 				<span>Download selection</span>
 			</button>
-			<button id="share" type="button" className="flex alt-center with-gap" disabled={selected.length === 0} onClick={handleShare}>
+			<button id="share" type="button" className="flex alt-center with-gap" disabled={selected.length === 0} onClick={() => void handleShare()}>
 				<span className="with-padding flex">
 					<span className="icon with-padding small-padding">Share</span>
 				</span>
 				<span>Share selection</span>
 			</button>
-			<button id="delete" type="button" className="alert flex alt-center with-gap" disabled={selected.length === 0} onClick={handleDelete}>
+			<button id="delete" type="button" className="alert flex alt-center with-gap" disabled={selected.length === 0} onClick={() => void handleDelete()}>
 				<span className="with-padding flex">
 					<span className="icon with-padding small-padding">Delete</span>
 				</span>

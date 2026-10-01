@@ -34,8 +34,28 @@ export class Sheet extends Model {
 
 	get name(): string {
 		const title = this.title.trim();
-		if (title.length === 0) return "Untitled";
+		if (String.isEmpty(title)) return "Untitled";
 		return title;
+	}
+
+	get complete(): boolean {
+		const { polls } = this;
+		if (polls.length === 0) return false;
+		return polls.every(poll => poll.complete);
+	}
+
+	append(question: string): Poll {
+		const poll = new Poll(question, []);
+		this.polls.push(poll);
+		return poll;
+	}
+
+	remove(poll: Poll): void {
+		this.polls = this.polls.filter(entry => entry !== poll);
+	}
+
+	clone(): Sheet {
+		return Sheet.import(Sheet.export(this), "sheet");
 	}
 
 	toFile(): File {

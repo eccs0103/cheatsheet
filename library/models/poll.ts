@@ -30,8 +30,25 @@ export class Poll extends Model {
 		this.cases = cases;
 	}
 
+	get complete(): boolean {
+		const { cases } = this;
+		if (String.isWhitespace(this.question)) return false;
+		if (cases.length === 0) return false;
+		return cases.every(item => item.complete);
+	}
+
 	visible(incorrect: boolean): Case[] {
 		return this.cases.filter(item => item.visible(incorrect));
+	}
+
+	append(text: string): Case {
+		const item = new Case(text, false);
+		this.cases.push(item);
+		return item;
+	}
+
+	remove(item: Case): void {
+		this.cases = this.cases.filter(entry => entry !== item);
 	}
 }
 //#endregion
