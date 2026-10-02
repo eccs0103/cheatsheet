@@ -4,14 +4,14 @@ import "adaptive-extender/core";
 import { Model, Field } from "adaptive-extender/core";
 import { Sheet, type SheetScheme } from "./sheet.js";
 
-//#region Note
-export interface NoteScheme {
+//#region Entry
+export interface EntryScheme {
 	id: string;
 	date: string;
 	sheet: SheetScheme;
 }
 
-export class Note extends Model {
+export class Entry extends Model {
 	@Field(String, { name: "id" })
 	id: string;
 
@@ -36,7 +36,7 @@ export class Note extends Model {
 	}
 
 	get link(): string {
-		return `../finder/?sheet=${encodeURIComponent(this.id)}`;
+		return `../search/?sheet=${encodeURIComponent(this.id)}`;
 	}
 
 	get editor(): string {

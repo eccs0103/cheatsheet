@@ -11,7 +11,7 @@ export default defineConfig(async (env) => {
 	const root: URL = new URL(import.meta.url);
 	const inputs: URL[] = [
 		new URL("./library/index.html", root),
-		new URL("./finder/index.html", root),
+		new URL("./search/index.html", root),
 		new URL("./settings/index.html", root),
 		new URL("./editor/index.html", root),
 	];

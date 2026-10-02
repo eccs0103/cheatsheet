@@ -2,22 +2,22 @@
 
 import "adaptive-extender/web";
 import { type ReactElement } from "react";
-import { type Note } from "../models/note.js";
+import { type Entry } from "../models/entry.js";
 
-//#region Note row
-export interface NoteRowProps {
-	note: Note;
+//#region Entry row
+export interface EntryRowProps {
+	entry: Entry;
 	marked: boolean;
 	onMark(id: string): void;
 }
 
-export function NoteRow({ note, marked, onMark }: NoteRowProps): ReactElement {
-	const { id, sheet, date } = note;
+export function EntryRow({ entry, marked, onMark }: EntryRowProps): ReactElement {
+	const { id, sheet, date } = entry;
 	return (
 		<li>
-			<label className="note layer rounded">
+			<label className="entry layer rounded">
 				<input type="checkbox" hidden checked={marked} onChange={() => onMark(id)} />
-				<a className="sheet" role="button" href={note.link}>
+				<a className="sheet" role="button" href={entry.link}>
 					<span className="sheet-icon with-padding">
 						<span className="icon with-padding small-padding"></span>
 					</span>

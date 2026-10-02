@@ -2,33 +2,29 @@
 
 import "adaptive-extender/web";
 import { type ReactElement } from "react";
-import { type Poll } from "../../library/models/poll.js";
-import { type Query } from "../services/query.js";
+import { type Question } from "../../library/models/question.js";
 
-//#region Poll card
-export interface PollCardProps {
+//#region Question card
+export interface QuestionCardProps {
 	number: number;
-	poll: Poll;
-	query: Query;
+	question: Question;
 	incorrect: boolean;
-	hidden: boolean;
 }
 
-export function PollCard({ number, poll, query, incorrect, hidden }: PollCardProps): ReactElement {
-	const { question } = poll;
+export function QuestionCard({ number, question, incorrect }: QuestionCardProps): ReactElement {
 	return (
-		<article className="poll layer rounded with-padding" hidden={hidden}>
+		<>
 			<span className="number description">{number}</span>
-			<span className="question">{query.split(question).map((segment, index) => segment.toElement(index))}</span>
-			<ul className="cases flex column with-block-gap small-gap">
-				{poll.visible(incorrect).map((item, index) => (
-					<li key={index} className={item.correctness ? "case correct highlight flex alt-center" : "case incorrect description flex alt-center"}>
-						<span className="icon with-padding small-padding">{item.correctness ? "Correct" : "Incorrect"}</span>
-						<span className="text">{item.text}</span>
+			<span className="text">{question.text}</span>
+			<ul className="answers flex column with-block-gap small-gap">
+				{question.visible(incorrect).map((answer, index) => (
+					<li key={index} className={answer.correct ? "answer correct highlight flex alt-center" : "answer incorrect description flex alt-center"}>
+						<span className="icon with-padding small-padding">{answer.correct ? "Correct" : "Incorrect"}</span>
+						<span className="text">{answer.text}</span>
 					</li>
 				))}
 			</ul>
-		</article>
+		</>
 	);
 }
 //#endregion

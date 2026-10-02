@@ -2,41 +2,41 @@
 
 import "adaptive-extender/web";
 import { type ChangeEvent, type ReactElement } from "react";
-import { type Case } from "../../library/models/case.js";
+import { type Answer } from "../../library/models/answer.js";
 
-//#region Case editor
-export interface CaseEditorProps {
+//#region Answer editor
+export interface AnswerEditorProps {
 	id: string;
-	item: Case;
+	answer: Answer;
 	onChange(): void;
-	onRemove(item: Case): void;
+	onRemove(answer: Answer): void;
 }
 
-export function CaseEditor({ id, item, onChange, onRemove }: CaseEditorProps): ReactElement {
+export function AnswerEditor({ id, answer, onChange, onRemove }: AnswerEditorProps): ReactElement {
 	const toggle = (): void => {
-		item.toggle();
+		answer.toggle();
 		onChange();
 	};
 
 	const rewrite = (event: ChangeEvent<HTMLInputElement>): void => {
-		item.text = event.currentTarget.value;
+		answer.text = event.currentTarget.value;
 		onChange();
 	};
 
 	const remove = (): void => {
-		if (!window.confirm("The case cannot be restored. Are you sure?")) return;
-		onRemove(item);
+		if (!window.confirm("The answer cannot be restored. Are you sure?")) return;
+		onRemove(answer);
 	};
 
 	return (
-		<div className="case flex alt-center with-inline-gap small-gap">
-			<input id={id} type="checkbox" hidden checked={item.correctness} onChange={toggle} />
-			<label htmlFor={id} role="checkbox" aria-checked={item.correctness} className="check flex alt-center" title="Mark as correct">
+		<div className="answer flex alt-center with-inline-gap small-gap">
+			<input id={id} type="checkbox" hidden checked={answer.correct} onChange={toggle} />
+			<label htmlFor={id} role="checkbox" aria-checked={answer.correct} className="check flex alt-center" title="Mark as correct">
 				<span className="icon with-padding small-padding">Mark</span>
 			</label>
-			<input type="text" required placeholder="Case" className="depth rounded with-padding" value={item.text} onChange={rewrite} />
-			<button type="button" className="remove flex alt-center" title="Delete case" onClick={remove}>
-				<span className="icon with-padding small-padding">Delete case</span>
+			<input type="text" required placeholder="Answer" className="depth rounded with-padding" value={answer.text} onChange={rewrite} />
+			<button type="button" className="remove flex alt-center" title="Delete answer" onClick={remove}>
+				<span className="icon with-padding small-padding">Delete answer</span>
 			</button>
 		</div>
 	);

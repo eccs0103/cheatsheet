@@ -2,9 +2,9 @@
 
 import "adaptive-extender/web";
 import { type ReactElement, useState } from "react";
-import { type Note } from "../models/note.js";
+import { type Entry } from "../models/entry.js";
 import { type LibraryService } from "../services/library-service.js";
-import { NoteRow } from "./note-row.js";
+import { EntryRow } from "./entry-row.js";
 import { AddDialog } from "./add-dialog.js";
 import { ActionsBar } from "./actions-bar.js";
 
@@ -14,17 +14,17 @@ export interface LibraryAppProps {
 }
 
 export function LibraryApp({ library }: LibraryAppProps): ReactElement {
-	const [notes, setNotes] = useState<Note[]>(() => library.notes);
+	const [entries, setEntries] = useState<Entry[]>(() => library.entries);
 	const [editing, setEditing] = useState<boolean>(false);
 	const [selection, setSelection] = useState<ReadonlySet<string>>(() => new Set());
 	const [adding, setAdding] = useState<boolean>(false);
 
-	const selected = notes.filter(note => selection.has(note.id));
-	const complete = notes.length > 0 && selected.length === notes.length;
+	const selected = entries.filter(entry => selection.has(entry.id));
+	const complete = entries.length > 0 && selected.length === entries.length;
 
 	const reload = (): void => {
-		const fresh = library.notes;
-		setNotes(fresh);
+		const fresh = library.entries;
+		setEntries(fresh);
 		setSelection(new Set());
 		if (fresh.length > 0) return;
 		setEditing(false);
@@ -40,7 +40,7 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 			setSelection(new Set());
 			return;
 		}
-		setSelection(new Set(notes.map(note => note.id)));
+		setSelection(new Set(entries.map(entry => entry.id)));
 	};
 
 	const mark = (id: string): void => {
@@ -60,7 +60,7 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 					<span>Library</span>
 					<span className="description"> · {selected.length} selected</span>
 				</h3>
-				<input id="editing" type="checkbox" hidden checked={editing} disabled={notes.length === 0} onChange={toggle} />
+				<input id="editing" type="checkbox" hidden checked={editing} disabled={entries.length === 0} onChange={toggle} />
 				<label htmlFor="editing" className="with-padding flex alt-center with-gap" title="Edit">
 					<span className="icon with-padding small-padding">Edit</span>
 				</label>
@@ -69,9 +69,9 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 				</a>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				<p className="description" hidden={notes.length > 0}>No sheets yet. Add one to get started.</p>
-				<ul id="notes" className="flex column with-block-gap">
-					{notes.map(note => <NoteRow key={note.id} note={note} marked={selection.has(note.id)} onMark={mark} />)}
+				<p className="description" hidden={entries.length > 0}>No sheets yet. Add one to get started.</p>
+				<ul id="entries" className="flex column with-block-gap">
+					{entries.map(entry => <EntryRow key={entry.id} entry={entry} marked={selection.has(entry.id)} onMark={mark} />)}
 				</ul>
 			</main>
 			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />

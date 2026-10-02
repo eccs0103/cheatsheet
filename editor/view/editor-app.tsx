@@ -2,11 +2,12 @@
 
 import "adaptive-extender/web";
 import { type ChangeEvent, type ReactElement, useReducer, useState } from "react";
-import { type Poll } from "../../library/models/poll.js";
+import { type Question } from "../../library/models/question.js";
 import { type Sheet } from "../../library/models/sheet.js";
 import { type LibraryService } from "../../library/services/library-service.js";
-import { PollEditor } from "./poll-editor.js";
+import { QuestionEditor } from "./question-editor.js";
 import { InsertRow } from "./insert-row.js";
+import { Keys } from "./keys.js";
 
 //#region Editor app
 export interface EditorAppProps {
@@ -17,6 +18,7 @@ export interface EditorAppProps {
 
 export function EditorApp({ library, id, initial }: EditorAppProps): ReactElement {
 	const [sheet] = useState<Sheet>(initial);
+	const [keys] = useState<Keys>(() => new Keys());
 	const [appended, setAppended] = useState<boolean>(false);
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
 
@@ -25,14 +27,14 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		refresh();
 	};
 
-	const append = (question: string): void => {
-		sheet.append(question);
+	const append = (text: string): void => {
+		sheet.append(text);
 		setAppended(true);
 		refresh();
 	};
 
-	const discard = (poll: Poll): void => {
-		sheet.remove(poll);
+	const discard = (question: Question): void => {
+		sheet.remove(question);
 		refresh();
 	};
 
@@ -67,8 +69,8 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 				</button>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				<p className="description" hidden={sheet.polls.length > 0}>No questions yet. Type the first one below.</p>
-				{sheet.polls.map((poll, index) => <PollEditor key={index} index={index} poll={poll} focused={appended} onChange={refresh} onRemove={discard} />)}
+				<p className="description" hidden={sheet.questions.length > 0}>No questions yet. Type the first one below.</p>
+				{sheet.questions.map((question, index) => <QuestionEditor key={keys.of(question)} number={index + 1} question={question} keys={keys} focused={appended} onChange={refresh} onRemove={discard} />)}
 			</main>
 			<footer className="layer rounded in-bottom with-padding">
 				<InsertRow placeholder="Input the question" title="Add question" small={false} focused={false} onInsert={append} />

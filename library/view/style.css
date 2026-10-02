@@ -57,7 +57,7 @@ a#settings {
 	}
 }
 
-ul#notes {
+ul#entries {
 	list-style: none;
 
 	&:not(:has(> li)) {
@@ -65,11 +65,11 @@ ul#notes {
 	}
 }
 
-label.note {
+label.entry {
 	display: block;
 }
 
-label.note > a.sheet {
+label.entry > a.sheet {
 	display: grid;
 	grid-template:
 		'sheet-icon-area	sheet-title-area' auto
@@ -106,7 +106,7 @@ label.note > a.sheet {
 	}
 }
 
-header:has(input#editing:checked) ~ main label.note {
+header:has(input#editing:checked) ~ main label.entry {
 	cursor: pointer;
 
 	& > a.sheet {
@@ -156,7 +156,7 @@ button#delete span.icon {
 	--url: url(../../assets/icons/trash.svg);
 }
 
-dialog#add {
+dialog:is(#add, #share) {
 	position: absolute;
 	min-width: 0;
 	width: clamp(calc(10 * var(--size-standart)), 40vw, calc(20 * var(--size-standart)));
@@ -175,7 +175,7 @@ dialog#add {
 }
 
 @media screen and (orientation: portrait) {
-	dialog#add {
+	dialog:is(#add, #share) {
 		inset: auto 0 0 0;
 		width: 100%;
 		border-bottom-left-radius: 0;
@@ -184,7 +184,7 @@ dialog#add {
 }
 
 @media screen and (orientation: landscape) {
-	dialog#add {
+	dialog:is(#add, #share) {
 		inset: 0 0 0 auto;
 		height: 100%;
 		border-top-right-radius: 0;
@@ -192,7 +192,7 @@ dialog#add {
 	}
 }
 
-button#close-add > span.icon {
+button:is(#close-add, #close-share) > span.icon {
 	--url: url(../../assets/icons/xmark.svg);
 }
 
@@ -219,4 +219,8 @@ a#write {
 	& span.icon {
 		--url: url(../../assets/icons/file-pen.svg);
 	}
+}
+
+button#share-plain span.icon {
+	--url: url(../../assets/icons/share-nodes.svg);
 }

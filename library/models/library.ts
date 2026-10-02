@@ -2,55 +2,55 @@
 
 import "adaptive-extender/core";
 import { Model, Field } from "adaptive-extender/core";
-import { Note, type NoteScheme } from "./note.js";
+import { Entry, type EntryScheme } from "./entry.js";
 import { type Sheet } from "./sheet.js";
 
 //#region Library
 export interface LibraryScheme {
-	notes: NoteScheme[];
+	notes: EntryScheme[];
 }
 
 export class Library extends Model {
-	@Field(Array.Of(Note), { name: "notes" })
-	notes: Note[];
+	@Field(Array.Of(Entry), { name: "notes" })
+	entries: Entry[];
 
 	constructor();
-	constructor(notes: Note[]);
-	constructor(notes?: Note[]) {
-		if (notes === undefined) {
+	constructor(entries: Entry[]);
+	constructor(entries?: Entry[]) {
+		if (entries === undefined) {
 			super();
 			return;
 		}
 
 		super();
-		this.notes = notes;
+		this.entries = entries;
 	}
 
-	get newest(): Note[] {
-		return this.notes.toReversed();
+	get newest(): Entry[] {
+		return this.entries.toReversed();
 	}
 
-	add(sheet: Sheet): Note {
-		const note = new Note(crypto.randomUUID(), new Date(), sheet);
-		this.notes.push(note);
-		return note;
+	add(sheet: Sheet): Entry {
+		const entry = new Entry(crypto.randomUUID(), new Date(), sheet);
+		this.entries.push(entry);
+		return entry;
 	}
 
 	remove(ids: ReadonlySet<string>): void {
-		this.notes = this.notes.filter(note => !ids.has(note.id));
+		this.entries = this.entries.filter(entry => !ids.has(entry.id));
 	}
 
-	find(id: string): Note | null {
-		const note = this.notes.find(entry => entry.id === id);
-		if (note === undefined) return null;
-		return note;
+	find(id: string): Entry | null {
+		const entry = this.entries.find(item => item.id === id);
+		if (entry === undefined) return null;
+		return entry;
 	}
 
-	replace(id: string, sheet: Sheet): Note {
-		const note = this.find(id);
-		if (note === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
-		note.revise(sheet);
-		return note;
+	replace(id: string, sheet: Sheet): Entry {
+		const entry = this.find(id);
+		if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+		entry.revise(sheet);
+		return entry;
 	}
 }
 //#endregion

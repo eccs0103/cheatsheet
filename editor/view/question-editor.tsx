@@ -2,51 +2,53 @@
 
 import "adaptive-extender/web";
 import { type ChangeEvent, type ReactElement } from "react";
-import { type Case } from "../../library/models/case.js";
-import { type Poll } from "../../library/models/poll.js";
-import { CaseEditor } from "./case-editor.js";
+import { type Answer } from "../../library/models/answer.js";
+import { type Question } from "../../library/models/question.js";
+import { AnswerEditor } from "./answer-editor.js";
 import { InsertRow } from "./insert-row.js";
+import { type Keys } from "./keys.js";
 
-//#region Poll editor
-export interface PollEditorProps {
-	index: number;
-	poll: Poll;
+//#region Question editor
+export interface QuestionEditorProps {
+	number: number;
+	question: Question;
+	keys: Keys;
 	focused: boolean;
 	onChange(): void;
-	onRemove(poll: Poll): void;
+	onRemove(question: Question): void;
 }
 
-export function PollEditor({ index, poll, focused, onChange, onRemove }: PollEditorProps): ReactElement {
+export function QuestionEditor({ number, question, keys, focused, onChange, onRemove }: QuestionEditorProps): ReactElement {
 	const rephrase = (event: ChangeEvent<HTMLInputElement>): void => {
-		poll.question = event.currentTarget.value;
+		question.text = event.currentTarget.value;
 		onChange();
 	};
 
 	const append = (text: string): void => {
-		poll.append(text);
+		question.append(text);
 		onChange();
 	};
 
-	const drop = (item: Case): void => {
-		poll.remove(item);
+	const drop = (answer: Answer): void => {
+		question.remove(answer);
 		onChange();
 	};
 
 	const discard = (): void => {
-		if (!window.confirm("The poll cannot be restored. Are you sure?")) return;
-		onRemove(poll);
+		if (!window.confirm("The question cannot be restored. Are you sure?")) return;
+		onRemove(question);
 	};
 
 	return (
-		<article className="poll layer rounded with-padding">
-			<span className="number description">{index + 1}</span>
-			<input type="text" required placeholder="Question" className="question depth rounded with-padding" value={poll.question} onChange={rephrase} />
-			<button type="button" className="remove alert flex alt-center" title="Delete poll" onClick={discard}>
-				<span className="icon with-padding small-padding">Delete poll</span>
+		<article className="question layer rounded with-padding">
+			<span className="number description">{number}</span>
+			<input type="text" required placeholder="Question" className="text depth rounded with-padding" value={question.text} onChange={rephrase} />
+			<button type="button" className="remove alert flex alt-center" title="Delete question" onClick={discard}>
+				<span className="icon with-padding small-padding">Delete question</span>
 			</button>
-			<div className="cases flex column with-block-gap small-gap">
-				{poll.cases.map((item, position) => <CaseEditor key={position} id={`mark-${index}-${position}`} item={item} onChange={onChange} onRemove={drop} />)}
-				<InsertRow placeholder="Input the case" title="Add case" small={true} focused={focused} onInsert={append} />
+			<div className="answers flex column with-block-gap small-gap">
+				{question.answers.map(answer => <AnswerEditor key={keys.of(answer)} id={`mark-${keys.of(answer)}`} answer={answer} onChange={onChange} onRemove={drop} />)}
+				<InsertRow placeholder="Input the answer" title="Add answer" small={true} focused={focused} onInsert={append} />
 			</div>
 		</article>
 	);

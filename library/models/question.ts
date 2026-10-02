@@ -2,53 +2,53 @@
 
 import "adaptive-extender/core";
 import { Model, Field } from "adaptive-extender/core";
-import { Case, type CaseScheme } from "./case.js";
+import { Answer, type AnswerScheme } from "./answer.js";
 
-//#region Poll
-export interface PollScheme {
+//#region Question
+export interface QuestionScheme {
 	question: string;
-	cases: CaseScheme[];
+	cases: AnswerScheme[];
 }
 
-export class Poll extends Model {
+export class Question extends Model {
 	@Field(String, { name: "question" })
-	question: string;
+	text: string;
 
-	@Field(Array.Of(Case), { name: "cases" })
-	cases: Case[];
+	@Field(Array.Of(Answer), { name: "cases" })
+	answers: Answer[];
 
 	constructor();
-	constructor(question: string, cases: Case[]);
-	constructor(question?: string, cases?: Case[]) {
-		if (question === undefined || cases === undefined) {
+	constructor(text: string, answers: Answer[]);
+	constructor(text?: string, answers?: Answer[]) {
+		if (text === undefined || answers === undefined) {
 			super();
 			return;
 		}
 
 		super();
-		this.question = question;
-		this.cases = cases;
+		this.text = text;
+		this.answers = answers;
 	}
 
 	get complete(): boolean {
-		const { cases } = this;
-		if (String.isWhitespace(this.question)) return false;
-		if (cases.length === 0) return false;
-		return cases.every(item => item.complete);
+		const { answers } = this;
+		if (String.isWhitespace(this.text)) return false;
+		if (answers.length === 0) return false;
+		return answers.every(answer => answer.complete);
 	}
 
-	visible(incorrect: boolean): Case[] {
-		return this.cases.filter(item => item.visible(incorrect));
+	visible(incorrect: boolean): Answer[] {
+		return this.answers.filter(answer => answer.visible(incorrect));
 	}
 
-	append(text: string): Case {
-		const item = new Case(text, false);
-		this.cases.push(item);
-		return item;
+	append(text: string): Answer {
+		const answer = new Answer(text, false);
+		this.answers.push(answer);
+		return answer;
 	}
 
-	remove(item: Case): void {
-		this.cases = this.cases.filter(entry => entry !== item);
+	remove(answer: Answer): void {
+		this.answers = this.answers.filter(item => item !== answer);
 	}
 }
 //#endregion

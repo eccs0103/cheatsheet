@@ -16,11 +16,11 @@ button#save > span.icon {
 	--url: url(../../assets/icons/floppy-disk.svg);
 }
 
-article.poll {
+article.question {
 	display: grid;
 	grid-template:
-		'number-area	question-area	remove-area	' auto
-		'.				cases-area		cases-area	' auto
+		'number-area	text-area		remove-area	' auto
+		'.				answers-area	answers-area' auto
 		/ minmax(var(--size-standart), auto) 1fr auto
 	;
 	align-items: center;
@@ -32,8 +32,8 @@ article.poll {
 		font-variant-numeric: tabular-nums;
 	}
 
-	& > input.question {
-		grid-area: question-area;
+	& > input.text {
+		grid-area: text-area;
 		min-inline-size: 0;
 		font-weight: 600;
 	}
@@ -46,12 +46,12 @@ article.poll {
 		}
 	}
 
-	& > div.cases {
-		grid-area: cases-area;
+	& > div.answers {
+		grid-area: answers-area;
 	}
 }
 
-div.case {
+div.answer {
 	& > input[type="text"] {
 		flex-grow: 1;
 		min-inline-size: 0;

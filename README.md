@@ -4,19 +4,19 @@ A program for solving tests. Live at [cheatsheet.eccs.dev](https://cheatsheet.ec
 ## Guide
 To use the program, a sheet is required. The sheet must be a JSON file with the following structure:
 ```ts
-interface Case {
+interface Answer {
 	text: string;
 	correctness: boolean;
 }
 
-interface Poll {
+interface Question {
 	question: string;
-	cases: Case[];
+	cases: Answer[];
 }
 
 interface Sheet {
 	title: string;
-	polls: Poll[];
+	polls: Question[];
 }
 ```
 Example of a valid JSON structure:
@@ -47,13 +47,23 @@ Example of a valid JSON structure:
 	]
 }
 ```
-...and can be loaded from the device or imported using a link.
+...and can be added in the **Library** (Add sheet → *From device* or *From a link*). Several files can be added at once; a broken file is reported and skipped while the others are still added. A sheet saved as `.txt` with the same JSON content is accepted too.
 
 Only this format is supported; the legacy formats of earlier versions are no longer read.
 
-Sheets can also be created and edited in the **Editor** (library → Add → *Write in editor*, or edit mode → mark one sheet → *Edit selection*): add and remove questions and answers, and mark each answer as correct or wrong.
+Sheets can also be created and edited in the **Editor** (Add sheet → *From scratch*, or edit mode → mark one sheet → *Edit*): add and remove questions and answers, and mark each answer as correct or wrong.
 
-Ready-made sheets for manual testing live in `resources/examples/` and are served at `/examples/…`, e.g. `http://localhost:5173/examples/capitals.json` for *Import from cloud*.
+Selected sheets can be downloaded or shared. Browsers that refuse to share `.json` files (Chrome and Edge on desktop) are offered to share them as `.txt` instead.
+
+Opening a sheet leads to the **Search** page. It searches the questions as you type, and the settings tune how:
+- **Word matching**: *Any order* (every typed word appears somewhere, the default), *Words in order*, or *Exact phrase*.
+- **Typo tolerance**: words of five or more letters still match with one typo (on by default).
+- **Case sensitive** and **Accent sensitive**: off by default, so `ё` finds `е` and `sao` finds `São`.
+- **Incorrect answers**: show the incorrect answers next to the correct ones (off by default).
+
+Press <kbd>Esc</kbd> to clear the search.
+
+Ready-made sheets for manual testing live in `resources/examples/` and are served at `/examples/…`, e.g. `http://localhost:5173/examples/capitals.json` for *From a link*.
 - - -
 ## Development
 ```

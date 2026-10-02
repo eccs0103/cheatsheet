@@ -3,30 +3,30 @@
 import "adaptive-extender/core";
 import { Model, Field } from "adaptive-extender/core";
 
-//#region Case
-export interface CaseScheme {
+//#region Answer
+export interface AnswerScheme {
 	text: string;
 	correctness: boolean;
 }
 
-export class Case extends Model {
+export class Answer extends Model {
 	@Field(String, { name: "text" })
 	text: string;
 
 	@Field(Boolean, { name: "correctness" })
-	correctness: boolean;
+	correct: boolean;
 
 	constructor();
-	constructor(text: string, correctness: boolean);
-	constructor(text?: string, correctness?: boolean) {
-		if (text === undefined || correctness === undefined) {
+	constructor(text: string, correct: boolean);
+	constructor(text?: string, correct?: boolean) {
+		if (text === undefined || correct === undefined) {
 			super();
 			return;
 		}
 
 		super();
 		this.text = text;
-		this.correctness = correctness;
+		this.correct = correct;
 	}
 
 	get complete(): boolean {
@@ -35,11 +35,11 @@ export class Case extends Model {
 
 	visible(incorrect: boolean): boolean {
 		if (incorrect) return true;
-		return this.correctness;
+		return this.correct;
 	}
 
 	toggle(): void {
-		this.correctness = !this.correctness;
+		this.correct = !this.correct;
 	}
 }
 //#endregion

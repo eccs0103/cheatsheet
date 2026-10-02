@@ -3,7 +3,7 @@
 import "adaptive-extender/web";
 import { Enum } from "adaptive-extender/web";
 import { type ReactElement, useReducer } from "react";
-import { Scheme } from "../models/settings.js";
+import { Matching, Scheme } from "../models/settings.js";
 import { type SettingsService } from "../services/settings-service.js";
 import { OptionToggle } from "./option-toggle.js";
 
@@ -28,6 +28,11 @@ export function SettingsApp({ settings }: SettingsAppProps): ReactElement {
 	const rescheme = (value: string): void => {
 		content.scheme = Enum.Of(Scheme).import(value, "scheme");
 		content.apply();
+		void update();
+	};
+
+	const rematch = (value: string): void => {
+		content.matching = Enum.Of(Matching).import(value, "matching");
 		void update();
 	};
 
@@ -61,9 +66,19 @@ export function SettingsApp({ settings }: SettingsAppProps): ReactElement {
 				</section>
 				<section className="layer rounded with-padding large-padding flex column">
 					<h2>Search</h2>
-					<OptionToggle id="incorrect" title="Incorrect cases" definition="Controls the display of incorrect cases during searches." checked={content.incorrect} onToggle={(checked) => { content.incorrect = checked; void update(); }} />
-					<OptionToggle id="sensitive" title="Case sensitive" definition="Management of character case sensitivity in search queries." checked={content.sensitive} onToggle={(checked) => { content.sensitive = checked; void update(); }} />
-					<OptionToggle id="skipping" title="Skip words" definition="Allows skipping any words during searches." checked={content.skipping} onToggle={(checked) => { content.skipping = checked; void update(); }} />
+					<section className="option">
+						<h4 className="title">Word matching</h4>
+						<span className="definition description">How the typed words must appear in a question.</span>
+						<select id="matching" className="value depth rounded with-padding" value={content.matching} onChange={(event) => rematch(event.currentTarget.value)}>
+							<option value={Matching.any}>Any order</option>
+							<option value={Matching.order}>Words in order</option>
+							<option value={Matching.phrase}>Exact phrase</option>
+						</select>
+					</section>
+					<OptionToggle id="tolerant" title="Typo tolerance" definition="Words of five or more letters still match with one typo." checked={content.tolerant} onToggle={(checked) => { content.tolerant = checked; void update(); }} />
+					<OptionToggle id="sensitive" title="Case sensitive" definition="Distinguishes uppercase and lowercase letters." checked={content.sensitive} onToggle={(checked) => { content.sensitive = checked; void update(); }} />
+					<OptionToggle id="accents" title="Accent sensitive" definition="Distinguishes letters with accents, such as é and e." checked={content.accents} onToggle={(checked) => { content.accents = checked; void update(); }} />
+					<OptionToggle id="incorrect" title="Incorrect answers" definition="Shows the incorrect answers next to the correct ones." checked={content.incorrect} onToggle={(checked) => { content.incorrect = checked; void update(); }} />
 				</section>
 				<section className="layer rounded with-padding large-padding flex column">
 					<h2>Advanced</h2>

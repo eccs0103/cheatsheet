@@ -10,12 +10,21 @@ export enum Scheme {
 	dark = "dark",
 }
 //#endregion
+//#region Matching
+export enum Matching {
+	any = "any",
+	order = "order",
+	phrase = "phrase",
+}
+//#endregion
 //#region Settings
 export interface SettingsScheme {
 	scheme: Scheme;
 	incorrect: boolean;
 	sensitive: boolean;
-	skipping: boolean;
+	matching: Matching;
+	accents: boolean;
+	tolerant: boolean;
 }
 
 export class Settings extends Model {
@@ -28,13 +37,19 @@ export class Settings extends Model {
 	@Field(Boolean, { name: "sensitive" })
 	sensitive: boolean;
 
-	@Field(Boolean, { name: "skipping" })
-	skipping: boolean;
+	@Field(Enum.Of(Matching), { name: "matching" })
+	matching: Matching;
+
+	@Field(Boolean, { name: "accents" })
+	accents: boolean;
+
+	@Field(Boolean, { name: "tolerant" })
+	tolerant: boolean;
 
 	constructor();
-	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, skipping: boolean);
-	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, skipping?: boolean) {
-		if (scheme === undefined || incorrect === undefined || sensitive === undefined || skipping === undefined) {
+	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, matching: Matching, accents: boolean, tolerant: boolean);
+	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, matching?: Matching, accents?: boolean, tolerant?: boolean) {
+		if (scheme === undefined || incorrect === undefined || sensitive === undefined || matching === undefined || accents === undefined || tolerant === undefined) {
 			super();
 			return;
 		}
@@ -43,7 +58,13 @@ export class Settings extends Model {
 		this.scheme = scheme;
 		this.incorrect = incorrect;
 		this.sensitive = sensitive;
-		this.skipping = skipping;
+		this.matching = matching;
+		this.accents = accents;
+		this.tolerant = tolerant;
+	}
+
+	static get default(): Settings {
+		return new Settings(Scheme.system, false, false, Matching.any, false, true);
 	}
 
 	apply(): void {

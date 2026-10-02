@@ -28,9 +28,9 @@ class EditorController extends Controller {
 
 	static #sheet(id: string | null): Sheet {
 		if (id === null) return new Sheet(String.empty, []);
-		const note = library.find(id);
-		if (note === null) throw new ReferenceError("The chosen sheet no longer exists");
-		const { sheet } = note;
+		const entry = library.find(id);
+		if (entry === null) throw new ReferenceError("The chosen sheet no longer exists");
+		const { sheet } = entry;
 		const { name } = sheet;
 		if (name !== null) document.title = `${name} - Editor - Cheatsheet`;
 		return sheet.clone();

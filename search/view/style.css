@@ -7,11 +7,11 @@ span#count {
 	font-variant-numeric: tabular-nums;
 }
 
-article.poll {
+article.question {
 	display: grid;
 	grid-template:
-		'number-area	question-area	' auto
-		'.				cases-area		' auto
+		'number-area	text-area		' auto
+		'.				answers-area	' auto
 		/ minmax(var(--size-standart), auto) 1fr
 	;
 	row-gap: var(--size-gap);
@@ -22,18 +22,18 @@ article.poll {
 		font-variant-numeric: tabular-nums;
 	}
 
-	& > span.question {
-		grid-area: question-area;
+	& > span.text {
+		grid-area: text-area;
 		font-weight: 600;
 	}
 
-	& > ul.cases {
-		grid-area: cases-area;
+	& > ul.answers {
+		grid-area: answers-area;
 		list-style: none;
 	}
 }
 
-li.case {
+li.answer {
 	column-gap: var(--size-small-gap);
 
 	& > span.icon {
@@ -59,10 +59,8 @@ li.case {
 	}
 }
 
-span.question mark {
-	color: inherit;
+::highlight(search) {
 	background-color: hsl(from var(--color-highlight) h s l / 0.3);
-	border-radius: var(--size-small-separator);
 }
 
 footer > label {

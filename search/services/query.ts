@@ -1,44 +1,65 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { Segment } from "../models/segment.js";
+import { Matching } from "../../settings/models/settings.js";
+import { type Token } from "../models/token.js";
+import { type Folding } from "./folding.js";
 
 //#region Query
 export class Query {
-	#pattern: RegExp | null;
+	#words: string[];
+	#matching: Matching;
+	#tolerant: boolean;
 
-	constructor(text: string, sensitive: boolean, skipping: boolean) {
-		const words = text.split(/\s+/).filter(word => word.length > 0);
-		if (words.length === 0) {
-			this.#pattern = null;
-			return;
-		}
-
-		let separator = "\\s+";
-		if (skipping) separator = "\\s+(?:\\S+\\s+)*?";
-		let flags = "g";
-		if (!sensitive) flags += "i";
-		this.#pattern = new RegExp(words.map(RegExp.escape).join(separator), flags);
+	constructor(text: string, folding: Folding, matching: Matching, tolerant: boolean) {
+		this.#words = folding.words(text);
+		this.#matching = matching;
+		this.#tolerant = tolerant;
 	}
 
-	matches(text: string): boolean {
-		const pattern = this.#pattern;
-		if (pattern === null) return true;
-		return text.search(pattern) >= 0;
+	// ponytail: linear scan over every token per keystroke; add an inverted index if sheets reach ~10k questions
+	test(tokens: readonly Token[]): Token[] | null {
+		const words = this.#words;
+		if (words.length === 0) return [];
+		const matching = this.#matching;
+		switch (matching) {
+		case Matching.any: return this.#any(words, tokens);
+		case Matching.order: return this.#order(words, tokens);
+		case Matching.phrase: return this.#phrase(words, tokens);
+		default: throw new TypeError(`Invalid '${matching}' matching`);
+		}
 	}
 
-	split(text: string): Segment[] {
-		const pattern = this.#pattern;
-		if (pattern === null) return [new Segment(text, false)];
-		const segments: Segment[] = [];
-		let index = 0;
-		for (const match of text.matchAll(pattern)) {
-			if (match.index > index) segments.push(new Segment(text.slice(index, match.index), false));
-			segments.push(new Segment(match[0], true));
-			index = match.index + match[0].length;
+	#any(words: readonly string[], tokens: readonly Token[]): Token[] | null {
+		const tolerant = this.#tolerant;
+		const result: Set<Token> = new Set();
+		for (const word of words) {
+			const found = tokens.filter(token => token.matches(word, tolerant));
+			if (found.length === 0) return null;
+			for (const token of found) result.add(token);
 		}
-		if (index < text.length) segments.push(new Segment(text.slice(index), false));
-		return segments;
+		return Array.from(result);
+	}
+
+	#order(words: readonly string[], tokens: readonly Token[]): Token[] | null {
+		const tolerant = this.#tolerant;
+		const result: Token[] = [];
+		let position = 0;
+		for (const word of words) {
+			const index = tokens.findIndex((token, place) => place >= position && token.matches(word, tolerant));
+			if (index < 0) return null;
+			result.push(tokens[index]);
+			position = index + 1;
+		}
+		return result;
+	}
+
+	#phrase(words: readonly string[], tokens: readonly Token[]): Token[] | null {
+		const tolerant = this.#tolerant;
+		for (let start = 0; start + words.length <= tokens.length; start++) {
+			if (words.every((word, offset) => tokens[start + offset].matches(word, tolerant))) return tokens.slice(start, start + words.length);
+		}
+		return null;
 	}
 }
 //#endregion
