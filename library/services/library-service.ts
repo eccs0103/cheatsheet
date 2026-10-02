@@ -47,30 +47,52 @@ export class LibraryService {
 		const cell = this.#cell;
 		const { content } = cell;
 		const errors: Error[] = [];
+		const ids: Set<string> = new Set();
 		for (const file of files) {
 			try {
-				content.add(Sheet.import(JSON.parse(await file.text()), "sheet"));
+				ids.add(content.add(Sheet.import(JSON.parse(await file.text()), "sheet")).id);
 			} catch (reason) {
 				errors.push(new Error(`${file.name}: ${Error.from(reason).message}`, { cause: reason }));
 			}
 		}
-		await cell.save();
+		try {
+			await cell.save();
+		} catch (reason) {
+			content.remove(ids);
+			throw LibraryService.#explain(reason);
+		}
 		if (errors.length === 0) return;
 		throw new AggregateError(errors, `Unable to add ${errors.length} of ${files.length} sheet(s):\n${errors.map(error => error.message).join("\n")}`);
 	}
 
-	async insert(sheet: Sheet): Promise<Entry> {
+	async insert(sheet: Sheet): Promise<void> {
 		const cell = this.#cell;
-		const entry = cell.content.add(sheet);
-		await cell.save();
-		return entry;
+		const { content } = cell;
+		const entry = content.add(sheet);
+		try {
+			await cell.save();
+		} catch (reason) {
+			content.remove(new Set([entry.id]));
+			throw LibraryService.#explain(reason);
+		}
 	}
 
-	async replace(id: string, sheet: Sheet): Promise<Entry> {
+	async replace(id: string, sheet: Sheet): Promise<void> {
 		const cell = this.#cell;
-		const entry = cell.content.replace(id, sheet);
-		await cell.save();
-		return entry;
+		const { content } = cell;
+		const previous = content.replace(id, sheet);
+		try {
+			await cell.save();
+		} catch (reason) {
+			content.replace(id, previous);
+			throw LibraryService.#explain(reason);
+		}
+	}
+
+	static #explain(reason: unknown): Error {
+		const error = Error.from(reason);
+		if (error.name !== "QuotaExceededError") return error;
+		return new Error("Not enough browser storage for these sheets. Delete some sheets and try again.", { cause: reason });
 	}
 
 	async remove(ids: ReadonlySet<string>): Promise<void> {

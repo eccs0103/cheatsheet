@@ -1,9 +1,8 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type MouseEvent, type ReactElement, type SubmitEvent, useState } from "react";
+import { type ChangeEvent, type MouseEvent, type ReactElement, type RefObject, type SubmitEvent, useEffect, useRef, useState } from "react";
 import { type LibraryService } from "../services/library-service.js";
-import { useModal } from "./use-modal.js";
 
 //#region Add dialog
 export interface AddDialogProps {
@@ -15,7 +14,18 @@ export interface AddDialogProps {
 
 export function AddDialog({ library, open, onClose, onChange }: AddDialogProps): ReactElement {
 	const [url, setUrl] = useState<string>(String.empty);
-	const refDialog = useModal(open);
+	const refDialog: RefObject<HTMLDialogElement | null> = useRef(null);
+
+	useEffect(() => {
+		const dialog = refDialog.current;
+		if (dialog === null) return;
+		if (dialog.open === open) return;
+		if (open) {
+			dialog.showModal();
+			return;
+		}
+		dialog.close();
+	}, [open]);
 
 	const dismiss = (event: MouseEvent<HTMLDialogElement>): void => {
 		if (event.target !== event.currentTarget) return;
@@ -64,8 +74,8 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 			<div className="flex column with-inline-padding large-padding">
 				<section className="option">
 					<h4 className="title">From device</h4>
-					<span className="definition description">Choose one or more .json or .txt sheet files.</span>
-					<input id="files" type="file" accept=".json,.txt,application/json,text/plain" multiple hidden onChange={(event) => void upload(event)} />
+					<span className="definition description">Choose one or more .json sheet files.</span>
+					<input id="files" type="file" accept=".json,application/json" multiple hidden onChange={(event) => void upload(event)} />
 					<label htmlFor="files" role="button" className="value rounded depth with-padding flex alt-center with-gap">
 						<span id="device" className="icon in-line">Upload</span>
 						<span>Upload</span>
@@ -73,7 +83,7 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 				</section>
 				<section className="option">
 					<h4 className="title">From a link</h4>
-					<span className="definition description">Paste the address of a sheet file.</span>
+					<span className="definition description">Paste the address of a .json sheet.</span>
 					<form id="link" className="grid-line flex alt-center with-gap" onSubmit={(event) => void pull(event)}>
 						<input name="url" type="url" placeholder="https://" className="depth rounded with-padding" value={url} onChange={(event) => setUrl(event.currentTarget.value)} />
 						<button type="submit" className="rounded depth with-padding flex alt-center with-gap" disabled={String.isWhitespace(url)}>

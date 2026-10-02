@@ -1,0 +1,331 @@
+{
+	"title": "Accents and typos",
+	"polls": [
+		{
+			"question": "In which year did Tchaikovsky finish the ballet «Лебединое озеро» (Swan Lake)?",
+			"cases": [
+				{ "text": "1876", "correctness": true },
+				{ "text": "1869", "correctness": false },
+				{ "text": "1892", "correctness": false }
+			]
+		},
+		{
+			"question": "Which ballet by Tchaikovsky premiered in Saint Petersburg in December 1892?",
+			"cases": [
+				{ "text": "The Nutcracker", "correctness": true },
+				{ "text": "Swan Lake", "correctness": false },
+				{ "text": "The Sleeping Beauty", "correctness": false }
+			]
+		},
+		{
+			"question": "The Mississippi River flows into which body of water?",
+			"cases": [
+				{ "text": "The Gulf of Mexico", "correctness": true },
+				{ "text": "The Atlantic Ocean", "correctness": false },
+				{ "text": "Hudson Bay", "correctness": false }
+			]
+		},
+		{
+			"question": "Which city is the capital of Massachusetts?",
+			"cases": [
+				{ "text": "Boston", "correctness": true },
+				{ "text": "Worcester", "correctness": false },
+				{ "text": "Springfield", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Kyrgyzstan?",
+			"cases": [
+				{ "text": "Bishkek", "correctness": true },
+				{ "text": "Almaty", "correctness": false },
+				{ "text": "Tashkent", "correctness": false }
+			]
+		},
+		{
+			"question": "Which artist painted Guernica in 1937?",
+			"cases": [
+				{ "text": "Pablo Picasso", "correctness": true },
+				{ "text": "Salvador Dalí", "correctness": false },
+				{ "text": "Joan Miró", "correctness": false }
+			]
+		},
+		{
+			"question": "Which instrument keeps the rhythm in a jazz trio?",
+			"cases": [
+				{ "text": "Drums", "correctness": true },
+				{ "text": "Double bass", "correctness": true },
+				{ "text": "Trumpet", "correctness": false }
+			]
+		},
+		{
+			"question": "Humuhumunukunukuāpuaʻa is the state fish of which U.S. state?",
+			"cases": [
+				{ "text": "Hawaii", "correctness": true },
+				{ "text": "Florida", "correctness": false },
+				{ "text": "California", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the Kurfürstendamm in Berlin best known for?",
+			"cases": [
+				{ "text": "Shopping", "correctness": true },
+				{ "text": "Its harbour", "correctness": false },
+				{ "text": "Its zoo", "correctness": false }
+			]
+		},
+		{
+			"question": "Warum heißt die Straße am Brandenburger Tor «Straße des 17. Juni»?",
+			"cases": [
+				{ "text": "Wegen des Volksaufstands von 1953", "correctness": true },
+				{ "text": "Wegen der Gründung der Bundesrepublik", "correctness": false }
+			]
+		},
+		{
+			"question": "Wie heißt die größte Stadt Österreichs?",
+			"cases": [
+				{ "text": "Wien", "correctness": true },
+				{ "text": "Graz", "correctness": false },
+				{ "text": "Salzburg", "correctness": false }
+			]
+		},
+		{
+			"question": "Who planned the city of Brasília?",
+			"cases": [
+				{ "text": "Lúcio Costa", "correctness": true },
+				{ "text": "Oscar Niemeyer", "correctness": true },
+				{ "text": "Le Corbusier", "correctness": false }
+			]
+		},
+		{
+			"question": "Which strait divides İstanbul between Europe and Asia?",
+			"cases": [
+				{ "text": "The Bosporus", "correctness": true },
+				{ "text": "The Dardanelles", "correctness": false },
+				{ "text": "The Strait of Gibraltar", "correctness": false }
+			]
+		},
+		{
+			"question": "İzmir hangi denizin kıyısındadır?",
+			"cases": [
+				{ "text": "Ege Denizi", "correctness": true },
+				{ "text": "Karadeniz", "correctness": false },
+				{ "text": "Akdeniz", "correctness": false }
+			]
+		},
+		{
+			"question": "In which city is the Café Sacher? (the é here is written as e plus a combining accent)",
+			"cases": [
+				{ "text": "Vienna", "correctness": true },
+				{ "text": "Prague", "correctness": false },
+				{ "text": "Budapest", "correctness": false }
+			]
+		},
+		{
+			"question": "Where is the Café de Flore?",
+			"cases": [
+				{ "text": "Paris, boulevard Saint-Germain", "correctness": true },
+				{ "text": "Lyon", "correctness": false },
+				{ "text": "Marseille", "correctness": false }
+			]
+		},
+		{
+			"question": "Qui a peint « Les Nymphéas » ?",
+			"cases": [
+				{ "text": "Claude Monet", "correctness": true },
+				{ "text": "Édouard Manet", "correctness": false },
+				{ "text": "Pierre-Auguste Renoir", "correctness": false }
+			]
+		},
+		{
+			"question": "En quelle année la cathédrale Notre-Dame de Paris a-t-elle brûlé ?",
+			"cases": [
+				{ "text": "2019", "correctness": true },
+				{ "text": "2015", "correctness": false },
+				{ "text": "2021", "correctness": false }
+			]
+		},
+		{
+			"question": "¿En qué año se publicó «Cien años de soledad» de García Márquez?",
+			"cases": [
+				{ "text": "1967", "correctness": true },
+				{ "text": "1955", "correctness": false },
+				{ "text": "1982", "correctness": false }
+			]
+		},
+		{
+			"question": "¿En qué cordillera está el Aneto, la montaña más alta de Aragón?",
+			"cases": [
+				{ "text": "Los Pirineos", "correctness": true },
+				{ "text": "Sierra Nevada", "correctness": false },
+				{ "text": "Los Andes", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Qué significa «mañana» en español?",
+			"cases": [
+				{ "text": "Tomorrow", "correctness": true },
+				{ "text": "Morning", "correctness": true },
+				{ "text": "Yesterday", "correctness": false }
+			]
+		},
+		{
+			"question": "Кто снял мультфильм «Ёжик в тумане»?",
+			"cases": [
+				{ "text": "Юрий Норштейн", "correctness": true },
+				{ "text": "Фёдор Хитрук", "correctness": false },
+				{ "text": "Гарри Бардин", "correctness": false }
+			]
+		},
+		{
+			"question": "Где ставят главную новогоднюю ёлку России?",
+			"cases": [
+				{ "text": "В Кремле", "correctness": true },
+				{ "text": "На Дворцовой площади", "correctness": false },
+				{ "text": "В Сочи", "correctness": false }
+			]
+		},
+		{
+			"question": "Ещё один вопрос: какой город называют северной столицей России?",
+			"cases": [
+				{ "text": "Санкт-Петербург", "correctness": true },
+				{ "text": "Архангельск", "correctness": false },
+				{ "text": "Мурманск", "correctness": false }
+			]
+		},
+		{
+			"question": "Какая река самая длинная в Европе?",
+			"cases": [
+				{ "text": "Волга", "correctness": true },
+				{ "text": "Дунай", "correctness": false },
+				{ "text": "Днепр", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞րն է Արագած լեռան բարձրությունը։",
+			"cases": [
+				{ "text": "4090 մ", "correctness": true },
+				{ "text": "5165 մ", "correctness": false },
+				{ "text": "3597 մ", "correctness": false }
+			]
+		},
+		{
+			"question": "Ե՞րբ է Մեսրոպ Մաշտոցը ստեղծել հայկական այբուբենը։",
+			"cases": [
+				{ "text": "405 թ.", "correctness": true },
+				{ "text": "301 թ.", "correctness": false },
+				{ "text": "451 թ.", "correctness": false }
+			]
+		},
+		{
+			"question": "Ի՞նչ է նշանակում «գեղեցիկ» բառը։",
+			"cases": [
+				{ "text": "Beautiful", "correctness": true },
+				{ "text": "Big", "correctness": false },
+				{ "text": "Old", "correctness": false }
+			]
+		},
+		{
+			"question": "Ποια είναι η πρωτεύουσα της Ελλάδας;",
+			"cases": [
+				{ "text": "Αθήνα", "correctness": true },
+				{ "text": "Θεσσαλονίκη", "correctness": false },
+				{ "text": "Πάτρα", "correctness": false }
+			]
+		},
+		{
+			"question": "Ποιος έγραψε την Οδύσσεια;",
+			"cases": [
+				{ "text": "Όμηρος", "correctness": true },
+				{ "text": "Ησίοδος", "correctness": false },
+				{ "text": "Σοφοκλής", "correctness": false }
+			]
+		},
+		{
+			"question": "W którym mieście znajduje się Pałac Kultury i Nauki?",
+			"cases": [
+				{ "text": "Warszawa", "correctness": true },
+				{ "text": "Kraków", "correctness": false },
+				{ "text": "Gdańsk", "correctness": false }
+			]
+		},
+		{
+			"question": "Ilu mieszkańców ma Łódź?",
+			"cases": [
+				{ "text": "Około 650 000", "correctness": true },
+				{ "text": "Około 2 000 000", "correctness": false },
+				{ "text": "Około 150 000", "correctness": false }
+			]
+		},
+		{
+			"question": "Hồ Gươm nằm ở thành phố nào?",
+			"cases": [
+				{ "text": "Hà Nội", "correctness": true },
+				{ "text": "Thành phố Hồ Chí Minh", "correctness": false },
+				{ "text": "Đà Nẵng", "correctness": false }
+			]
+		},
+		{
+			"question": "Jak dlouhá je řeka Vltava?",
+			"cases": [
+				{ "text": "430 km", "correctness": true },
+				{ "text": "1 165 km", "correctness": false },
+				{ "text": "250 km", "correctness": false }
+			]
+		},
+		{
+			"question": "Hvað búa margir í Reykjavík?",
+			"cases": [
+				{ "text": "Um 140 000", "correctness": true },
+				{ "text": "Um 400 000", "correctness": false },
+				{ "text": "Um 20 000", "correctness": false }
+			]
+		},
+		{
+			"question": "Hvor i København ligger Tivoli?",
+			"cases": [
+				{ "text": "Ved Rådhuspladsen", "correctness": true },
+				{ "text": "På Amager", "correctness": false },
+				{ "text": "I Nyhavn", "correctness": false }
+			]
+		},
+		{
+			"question": "Mikä on Helsingin ruotsinkielinen nimi?",
+			"cases": [
+				{ "text": "Helsingfors", "correctness": true },
+				{ "text": "Åbo", "correctness": false },
+				{ "text": "Tammerfors", "correctness": false }
+			]
+		},
+		{
+			"question": "São Paulo, Ribeirão Preto and Florianópolis are cities of which country?",
+			"cases": [
+				{ "text": "Brazil", "correctness": true },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Argentina", "correctness": false }
+			]
+		},
+		{
+			"question": "Zürich, Genève and Neuchâtel are cities of which country?",
+			"cases": [
+				{ "text": "Switzerland", "correctness": true },
+				{ "text": "Austria", "correctness": false },
+				{ "text": "France", "correctness": false }
+			]
+		},
+		{
+			"question": "Ålesund, Tromsø and Bodø are towns of which country?",
+			"cases": [
+				{ "text": "Norway", "correctness": true },
+				{ "text": "Sweden", "correctness": false },
+				{ "text": "Denmark", "correctness": false }
+			]
+		},
+		{
+			"question": "What does NASA stand for?",
+			"cases": [
+				{ "text": "National Aeronautics and Space Administration", "correctness": true },
+				{ "text": "National Air and Space Agency", "correctness": false }
+			]
+		}
+	]
+}

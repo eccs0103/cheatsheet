@@ -1,0 +1,2981 @@
+{
+	"title": "Multilingual knowledge",
+	"polls": [
+		{
+			"question": "What is the capital of Armenia?",
+			"cases": [
+				{ "text": "Yerevan", "correctness": true },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tbilisi", "correctness": false },
+				{ "text": "Paris", "correctness": false }
+			]
+		},
+		{
+			"question": "Yerevan is the capital of which country?",
+			"cases": [
+				{ "text": "Armenia", "correctness": true },
+				{ "text": "Australia", "correctness": false },
+				{ "text": "Georgia", "correctness": false },
+				{ "text": "France", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of France?",
+			"cases": [
+				{ "text": "Paris", "correctness": true },
+				{ "text": "Rome", "correctness": false },
+				{ "text": "Athens", "correctness": false },
+				{ "text": "Berlin", "correctness": false }
+			]
+		},
+		{
+			"question": "Paris is the capital of which country?",
+			"cases": [
+				{ "text": "France", "correctness": true },
+				{ "text": "Italy", "correctness": false },
+				{ "text": "Greece", "correctness": false },
+				{ "text": "Germany", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Germany?",
+			"cases": [
+				{ "text": "Berlin", "correctness": true },
+				{ "text": "Cairo", "correctness": false },
+				{ "text": "Warsaw", "correctness": false },
+				{ "text": "Madrid", "correctness": false }
+			]
+		},
+		{
+			"question": "Berlin is the capital of which country?",
+			"cases": [
+				{ "text": "Germany", "correctness": true },
+				{ "text": "Egypt", "correctness": false },
+				{ "text": "Poland", "correctness": false },
+				{ "text": "Spain", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Spain?",
+			"cases": [
+				{ "text": "Madrid", "correctness": true },
+				{ "text": "Mexico City", "correctness": false },
+				{ "text": "Lisbon", "correctness": false },
+				{ "text": "Tokyo", "correctness": false }
+			]
+		},
+		{
+			"question": "Madrid is the capital of which country?",
+			"cases": [
+				{ "text": "Spain", "correctness": true },
+				{ "text": "Mexico", "correctness": false },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japan", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Japan?",
+			"cases": [
+				{ "text": "Tokyo", "correctness": true },
+				{ "text": "New Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasília", "correctness": false }
+			]
+		},
+		{
+			"question": "Tokyo is the capital of which country?",
+			"cases": [
+				{ "text": "Japan", "correctness": true },
+				{ "text": "India", "correctness": false },
+				{ "text": "Norway", "correctness": false },
+				{ "text": "Brazil", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Brazil?",
+			"cases": [
+				{ "text": "Brasília", "correctness": true },
+				{ "text": "Beijing", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false }
+			]
+		},
+		{
+			"question": "Brasília is the capital of which country?",
+			"cases": [
+				{ "text": "Brazil", "correctness": true },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentina", "correctness": false },
+				{ "text": "Canada", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Canada?",
+			"cases": [
+				{ "text": "Ottawa", "correctness": true },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Yerevan", "correctness": false },
+				{ "text": "Canberra", "correctness": false }
+			]
+		},
+		{
+			"question": "Ottawa is the capital of which country?",
+			"cases": [
+				{ "text": "Canada", "correctness": true },
+				{ "text": "Turkey", "correctness": false },
+				{ "text": "Armenia", "correctness": false },
+				{ "text": "Australia", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Australia?",
+			"cases": [
+				{ "text": "Canberra", "correctness": true },
+				{ "text": "Tbilisi", "correctness": false },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rome", "correctness": false }
+			]
+		},
+		{
+			"question": "Canberra is the capital of which country?",
+			"cases": [
+				{ "text": "Australia", "correctness": true },
+				{ "text": "Georgia", "correctness": false },
+				{ "text": "France", "correctness": false },
+				{ "text": "Italy", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Italy?",
+			"cases": [
+				{ "text": "Rome", "correctness": true },
+				{ "text": "Athens", "correctness": false },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Cairo", "correctness": false }
+			]
+		},
+		{
+			"question": "Rome is the capital of which country?",
+			"cases": [
+				{ "text": "Italy", "correctness": true },
+				{ "text": "Greece", "correctness": false },
+				{ "text": "Germany", "correctness": false },
+				{ "text": "Egypt", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Egypt?",
+			"cases": [
+				{ "text": "Cairo", "correctness": true },
+				{ "text": "Warsaw", "correctness": false },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexico City", "correctness": false }
+			]
+		},
+		{
+			"question": "Cairo is the capital of which country?",
+			"cases": [
+				{ "text": "Egypt", "correctness": true },
+				{ "text": "Poland", "correctness": false },
+				{ "text": "Spain", "correctness": false },
+				{ "text": "Mexico", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Mexico?",
+			"cases": [
+				{ "text": "Mexico City", "correctness": true },
+				{ "text": "Lisbon", "correctness": false },
+				{ "text": "Tokyo", "correctness": false },
+				{ "text": "New Delhi", "correctness": false }
+			]
+		},
+		{
+			"question": "Mexico City is the capital of which country?",
+			"cases": [
+				{ "text": "Mexico", "correctness": true },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japan", "correctness": false },
+				{ "text": "India", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of India?",
+			"cases": [
+				{ "text": "New Delhi", "correctness": true },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasília", "correctness": false },
+				{ "text": "Beijing", "correctness": false }
+			]
+		},
+		{
+			"question": "New Delhi is the capital of which country?",
+			"cases": [
+				{ "text": "India", "correctness": true },
+				{ "text": "Norway", "correctness": false },
+				{ "text": "Brazil", "correctness": false },
+				{ "text": "China", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of China?",
+			"cases": [
+				{ "text": "Beijing", "correctness": true },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false }
+			]
+		},
+		{
+			"question": "Beijing is the capital of which country?",
+			"cases": [
+				{ "text": "China", "correctness": true },
+				{ "text": "Argentina", "correctness": false },
+				{ "text": "Canada", "correctness": false },
+				{ "text": "Turkey", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Turkey?",
+			"cases": [
+				{ "text": "Ankara", "correctness": true },
+				{ "text": "Yerevan", "correctness": false },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tbilisi", "correctness": false }
+			]
+		},
+		{
+			"question": "Ankara is the capital of which country?",
+			"cases": [
+				{ "text": "Turkey", "correctness": true },
+				{ "text": "Armenia", "correctness": false },
+				{ "text": "Australia", "correctness": false },
+				{ "text": "Georgia", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Georgia?",
+			"cases": [
+				{ "text": "Tbilisi", "correctness": true },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rome", "correctness": false },
+				{ "text": "Athens", "correctness": false }
+			]
+		},
+		{
+			"question": "Tbilisi is the capital of which country?",
+			"cases": [
+				{ "text": "Georgia", "correctness": true },
+				{ "text": "France", "correctness": false },
+				{ "text": "Italy", "correctness": false },
+				{ "text": "Greece", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Greece?",
+			"cases": [
+				{ "text": "Athens", "correctness": true },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Cairo", "correctness": false },
+				{ "text": "Warsaw", "correctness": false }
+			]
+		},
+		{
+			"question": "Athens is the capital of which country?",
+			"cases": [
+				{ "text": "Greece", "correctness": true },
+				{ "text": "Germany", "correctness": false },
+				{ "text": "Egypt", "correctness": false },
+				{ "text": "Poland", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Poland?",
+			"cases": [
+				{ "text": "Warsaw", "correctness": true },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexico City", "correctness": false },
+				{ "text": "Lisbon", "correctness": false }
+			]
+		},
+		{
+			"question": "Warsaw is the capital of which country?",
+			"cases": [
+				{ "text": "Poland", "correctness": true },
+				{ "text": "Spain", "correctness": false },
+				{ "text": "Mexico", "correctness": false },
+				{ "text": "Portugal", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Portugal?",
+			"cases": [
+				{ "text": "Lisbon", "correctness": true },
+				{ "text": "Tokyo", "correctness": false },
+				{ "text": "New Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false }
+			]
+		},
+		{
+			"question": "Lisbon is the capital of which country?",
+			"cases": [
+				{ "text": "Portugal", "correctness": true },
+				{ "text": "Japan", "correctness": false },
+				{ "text": "India", "correctness": false },
+				{ "text": "Norway", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Norway?",
+			"cases": [
+				{ "text": "Oslo", "correctness": true },
+				{ "text": "Brasília", "correctness": false },
+				{ "text": "Beijing", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false }
+			]
+		},
+		{
+			"question": "Oslo is the capital of which country?",
+			"cases": [
+				{ "text": "Norway", "correctness": true },
+				{ "text": "Brazil", "correctness": false },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentina", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the capital of Argentina?",
+			"cases": [
+				{ "text": "Buenos Aires", "correctness": true },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Yerevan", "correctness": false }
+			]
+		},
+		{
+			"question": "Buenos Aires is the capital of which country?",
+			"cases": [
+				{ "text": "Argentina", "correctness": true },
+				{ "text": "Canada", "correctness": false },
+				{ "text": "Turkey", "correctness": false },
+				{ "text": "Armenia", "correctness": false }
+			]
+		},
+		{
+			"question": "How many continents are there on Earth?",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "At what temperature in °C does water boil at sea level?",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the chemical symbol of gold?",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "Which is the largest planet of the Solar System?",
+			"cases": [
+				{ "text": "Jupiter", "correctness": true },
+				{ "text": "Saturn", "correctness": false },
+				{ "text": "Mars", "correctness": false },
+				{ "text": "Neptune", "correctness": false }
+			]
+		},
+		{
+			"question": "Who wrote the novel “War and Peace”?",
+			"cases": [
+				{ "text": "Leo Tolstoy", "correctness": true },
+				{ "text": "Fyodor Dostoevsky", "correctness": false },
+				{ "text": "Anton Chekhov", "correctness": false }
+			]
+		},
+		{
+			"question": "Which of these numbers are prime?",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "Which of these gases are noble gases?",
+			"cases": [
+				{ "text": "Helium", "correctness": true },
+				{ "text": "Neon", "correctness": true },
+				{ "text": "Argon", "correctness": true },
+				{ "text": "Oxygen", "correctness": false },
+				{ "text": "Nitrogen", "correctness": false }
+			]
+		},
+		{
+			"question": "How many sides does a hexagon have?",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "In which year did the Second World War end?",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "Which ocean is the largest by area?",
+			"cases": [
+				{ "text": "Pacific", "correctness": true },
+				{ "text": "Atlantic", "correctness": false },
+				{ "text": "Indian", "correctness": false }
+			]
+		},
+		{
+			"question": "Who painted the Mona Lisa?",
+			"cases": [
+				{ "text": "Leonardo da Vinci", "correctness": true },
+				{ "text": "Michelangelo", "correctness": false },
+				{ "text": "Raphael", "correctness": false }
+			]
+		},
+		{
+			"question": "What is the square root of 144?",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Long question: a train leaves the first station at 08:15 and travels at a constant speed of 90 km/h without stops; the distance to the last station is 270 km. At what time does the train arrive, assuming the clocks of both stations are synchronised and no time zone is crossed on the way?",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "Which of these animals are mammals?",
+			"cases": [
+				{ "text": "Dolphin", "correctness": true },
+				{ "text": "Bat", "correctness": true },
+				{ "text": "Shark", "correctness": false },
+				{ "text": "Penguin", "correctness": false }
+			]
+		},
+		{
+			"question": "How many minutes are there in a day?",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		},
+		{
+			"question": "Армения: какой город является столицей?",
+			"cases": [
+				{ "text": "Ереван", "correctness": true },
+				{ "text": "Канберра", "correctness": false },
+				{ "text": "Тбилиси", "correctness": false },
+				{ "text": "Париж", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Ереван?",
+			"cases": [
+				{ "text": "Армения", "correctness": true },
+				{ "text": "Австралия", "correctness": false },
+				{ "text": "Грузия", "correctness": false },
+				{ "text": "Франция", "correctness": false }
+			]
+		},
+		{
+			"question": "Франция: какой город является столицей?",
+			"cases": [
+				{ "text": "Париж", "correctness": true },
+				{ "text": "Рим", "correctness": false },
+				{ "text": "Афины", "correctness": false },
+				{ "text": "Берлин", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Париж?",
+			"cases": [
+				{ "text": "Франция", "correctness": true },
+				{ "text": "Италия", "correctness": false },
+				{ "text": "Греция", "correctness": false },
+				{ "text": "Германия", "correctness": false }
+			]
+		},
+		{
+			"question": "Германия: какой город является столицей?",
+			"cases": [
+				{ "text": "Берлин", "correctness": true },
+				{ "text": "Каир", "correctness": false },
+				{ "text": "Варшава", "correctness": false },
+				{ "text": "Мадрид", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Берлин?",
+			"cases": [
+				{ "text": "Германия", "correctness": true },
+				{ "text": "Египет", "correctness": false },
+				{ "text": "Польша", "correctness": false },
+				{ "text": "Испания", "correctness": false }
+			]
+		},
+		{
+			"question": "Испания: какой город является столицей?",
+			"cases": [
+				{ "text": "Мадрид", "correctness": true },
+				{ "text": "Мехико", "correctness": false },
+				{ "text": "Лиссабон", "correctness": false },
+				{ "text": "Токио", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Мадрид?",
+			"cases": [
+				{ "text": "Испания", "correctness": true },
+				{ "text": "Мексика", "correctness": false },
+				{ "text": "Португалия", "correctness": false },
+				{ "text": "Япония", "correctness": false }
+			]
+		},
+		{
+			"question": "Япония: какой город является столицей?",
+			"cases": [
+				{ "text": "Токио", "correctness": true },
+				{ "text": "Нью-Дели", "correctness": false },
+				{ "text": "Осло", "correctness": false },
+				{ "text": "Бразилиа", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Токио?",
+			"cases": [
+				{ "text": "Япония", "correctness": true },
+				{ "text": "Индия", "correctness": false },
+				{ "text": "Норвегия", "correctness": false },
+				{ "text": "Бразилия", "correctness": false }
+			]
+		},
+		{
+			"question": "Бразилия: какой город является столицей?",
+			"cases": [
+				{ "text": "Бразилиа", "correctness": true },
+				{ "text": "Пекин", "correctness": false },
+				{ "text": "Буэнос-Айрес", "correctness": false },
+				{ "text": "Оттава", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Бразилиа?",
+			"cases": [
+				{ "text": "Бразилия", "correctness": true },
+				{ "text": "Китай", "correctness": false },
+				{ "text": "Аргентина", "correctness": false },
+				{ "text": "Канада", "correctness": false }
+			]
+		},
+		{
+			"question": "Канада: какой город является столицей?",
+			"cases": [
+				{ "text": "Оттава", "correctness": true },
+				{ "text": "Анкара", "correctness": false },
+				{ "text": "Ереван", "correctness": false },
+				{ "text": "Канберра", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Оттава?",
+			"cases": [
+				{ "text": "Канада", "correctness": true },
+				{ "text": "Турция", "correctness": false },
+				{ "text": "Армения", "correctness": false },
+				{ "text": "Австралия", "correctness": false }
+			]
+		},
+		{
+			"question": "Австралия: какой город является столицей?",
+			"cases": [
+				{ "text": "Канберра", "correctness": true },
+				{ "text": "Тбилиси", "correctness": false },
+				{ "text": "Париж", "correctness": false },
+				{ "text": "Рим", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Канберра?",
+			"cases": [
+				{ "text": "Австралия", "correctness": true },
+				{ "text": "Грузия", "correctness": false },
+				{ "text": "Франция", "correctness": false },
+				{ "text": "Италия", "correctness": false }
+			]
+		},
+		{
+			"question": "Италия: какой город является столицей?",
+			"cases": [
+				{ "text": "Рим", "correctness": true },
+				{ "text": "Афины", "correctness": false },
+				{ "text": "Берлин", "correctness": false },
+				{ "text": "Каир", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Рим?",
+			"cases": [
+				{ "text": "Италия", "correctness": true },
+				{ "text": "Греция", "correctness": false },
+				{ "text": "Германия", "correctness": false },
+				{ "text": "Египет", "correctness": false }
+			]
+		},
+		{
+			"question": "Египет: какой город является столицей?",
+			"cases": [
+				{ "text": "Каир", "correctness": true },
+				{ "text": "Варшава", "correctness": false },
+				{ "text": "Мадрид", "correctness": false },
+				{ "text": "Мехико", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Каир?",
+			"cases": [
+				{ "text": "Египет", "correctness": true },
+				{ "text": "Польша", "correctness": false },
+				{ "text": "Испания", "correctness": false },
+				{ "text": "Мексика", "correctness": false }
+			]
+		},
+		{
+			"question": "Мексика: какой город является столицей?",
+			"cases": [
+				{ "text": "Мехико", "correctness": true },
+				{ "text": "Лиссабон", "correctness": false },
+				{ "text": "Токио", "correctness": false },
+				{ "text": "Нью-Дели", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Мехико?",
+			"cases": [
+				{ "text": "Мексика", "correctness": true },
+				{ "text": "Португалия", "correctness": false },
+				{ "text": "Япония", "correctness": false },
+				{ "text": "Индия", "correctness": false }
+			]
+		},
+		{
+			"question": "Индия: какой город является столицей?",
+			"cases": [
+				{ "text": "Нью-Дели", "correctness": true },
+				{ "text": "Осло", "correctness": false },
+				{ "text": "Бразилиа", "correctness": false },
+				{ "text": "Пекин", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Нью-Дели?",
+			"cases": [
+				{ "text": "Индия", "correctness": true },
+				{ "text": "Норвегия", "correctness": false },
+				{ "text": "Бразилия", "correctness": false },
+				{ "text": "Китай", "correctness": false }
+			]
+		},
+		{
+			"question": "Китай: какой город является столицей?",
+			"cases": [
+				{ "text": "Пекин", "correctness": true },
+				{ "text": "Буэнос-Айрес", "correctness": false },
+				{ "text": "Оттава", "correctness": false },
+				{ "text": "Анкара", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Пекин?",
+			"cases": [
+				{ "text": "Китай", "correctness": true },
+				{ "text": "Аргентина", "correctness": false },
+				{ "text": "Канада", "correctness": false },
+				{ "text": "Турция", "correctness": false }
+			]
+		},
+		{
+			"question": "Турция: какой город является столицей?",
+			"cases": [
+				{ "text": "Анкара", "correctness": true },
+				{ "text": "Ереван", "correctness": false },
+				{ "text": "Канберра", "correctness": false },
+				{ "text": "Тбилиси", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Анкара?",
+			"cases": [
+				{ "text": "Турция", "correctness": true },
+				{ "text": "Армения", "correctness": false },
+				{ "text": "Австралия", "correctness": false },
+				{ "text": "Грузия", "correctness": false }
+			]
+		},
+		{
+			"question": "Грузия: какой город является столицей?",
+			"cases": [
+				{ "text": "Тбилиси", "correctness": true },
+				{ "text": "Париж", "correctness": false },
+				{ "text": "Рим", "correctness": false },
+				{ "text": "Афины", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Тбилиси?",
+			"cases": [
+				{ "text": "Грузия", "correctness": true },
+				{ "text": "Франция", "correctness": false },
+				{ "text": "Италия", "correctness": false },
+				{ "text": "Греция", "correctness": false }
+			]
+		},
+		{
+			"question": "Греция: какой город является столицей?",
+			"cases": [
+				{ "text": "Афины", "correctness": true },
+				{ "text": "Берлин", "correctness": false },
+				{ "text": "Каир", "correctness": false },
+				{ "text": "Варшава", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Афины?",
+			"cases": [
+				{ "text": "Греция", "correctness": true },
+				{ "text": "Германия", "correctness": false },
+				{ "text": "Египет", "correctness": false },
+				{ "text": "Польша", "correctness": false }
+			]
+		},
+		{
+			"question": "Польша: какой город является столицей?",
+			"cases": [
+				{ "text": "Варшава", "correctness": true },
+				{ "text": "Мадрид", "correctness": false },
+				{ "text": "Мехико", "correctness": false },
+				{ "text": "Лиссабон", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Варшава?",
+			"cases": [
+				{ "text": "Польша", "correctness": true },
+				{ "text": "Испания", "correctness": false },
+				{ "text": "Мексика", "correctness": false },
+				{ "text": "Португалия", "correctness": false }
+			]
+		},
+		{
+			"question": "Португалия: какой город является столицей?",
+			"cases": [
+				{ "text": "Лиссабон", "correctness": true },
+				{ "text": "Токио", "correctness": false },
+				{ "text": "Нью-Дели", "correctness": false },
+				{ "text": "Осло", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Лиссабон?",
+			"cases": [
+				{ "text": "Португалия", "correctness": true },
+				{ "text": "Япония", "correctness": false },
+				{ "text": "Индия", "correctness": false },
+				{ "text": "Норвегия", "correctness": false }
+			]
+		},
+		{
+			"question": "Норвегия: какой город является столицей?",
+			"cases": [
+				{ "text": "Осло", "correctness": true },
+				{ "text": "Бразилиа", "correctness": false },
+				{ "text": "Пекин", "correctness": false },
+				{ "text": "Буэнос-Айрес", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Осло?",
+			"cases": [
+				{ "text": "Норвегия", "correctness": true },
+				{ "text": "Бразилия", "correctness": false },
+				{ "text": "Китай", "correctness": false },
+				{ "text": "Аргентина", "correctness": false }
+			]
+		},
+		{
+			"question": "Аргентина: какой город является столицей?",
+			"cases": [
+				{ "text": "Буэнос-Айрес", "correctness": true },
+				{ "text": "Оттава", "correctness": false },
+				{ "text": "Анкара", "correctness": false },
+				{ "text": "Ереван", "correctness": false }
+			]
+		},
+		{
+			"question": "Столицей какой страны является Буэнос-Айрес?",
+			"cases": [
+				{ "text": "Аргентина", "correctness": true },
+				{ "text": "Канада", "correctness": false },
+				{ "text": "Турция", "correctness": false },
+				{ "text": "Армения", "correctness": false }
+			]
+		},
+		{
+			"question": "Сколько континентов на Земле?",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "При какой температуре в °C кипит вода на уровне моря?",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "Каков химический символ золота?",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "Какая планета самая большая в Солнечной системе?",
+			"cases": [
+				{ "text": "Юпитер", "correctness": true },
+				{ "text": "Сатурн", "correctness": false },
+				{ "text": "Марс", "correctness": false },
+				{ "text": "Нептун", "correctness": false }
+			]
+		},
+		{
+			"question": "Кто написал роман «Война и мир»?",
+			"cases": [
+				{ "text": "Лев Толстой", "correctness": true },
+				{ "text": "Фёдор Достоевский", "correctness": false },
+				{ "text": "Антон Чехов", "correctness": false }
+			]
+		},
+		{
+			"question": "Какие из этих чисел простые?",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "Какие из этих газов являются благородными?",
+			"cases": [
+				{ "text": "Гелий", "correctness": true },
+				{ "text": "Неон", "correctness": true },
+				{ "text": "Аргон", "correctness": true },
+				{ "text": "Кислород", "correctness": false },
+				{ "text": "Азот", "correctness": false }
+			]
+		},
+		{
+			"question": "Сколько сторон у шестиугольника?",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "В каком году закончилась Вторая мировая война?",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "Какой океан самый большой по площади?",
+			"cases": [
+				{ "text": "Тихий", "correctness": true },
+				{ "text": "Атлантический", "correctness": false },
+				{ "text": "Индийский", "correctness": false }
+			]
+		},
+		{
+			"question": "Кто написал «Мону Лизу»?",
+			"cases": [
+				{ "text": "Леонардо да Винчи", "correctness": true },
+				{ "text": "Микеланджело", "correctness": false },
+				{ "text": "Рафаэль", "correctness": false }
+			]
+		},
+		{
+			"question": "Чему равен квадратный корень из 144?",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Длинный вопрос: поезд отправляется с первой станции в 08:15 и идёт с постоянной скоростью 90 км/ч без остановок; расстояние до последней станции — 270 км. Во сколько поезд прибудет, если часы обеих станций синхронизированы и поезд не пересекает часовые пояса?",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "Какие из этих животных — млекопитающие?",
+			"cases": [
+				{ "text": "Дельфин", "correctness": true },
+				{ "text": "Летучая мышь", "correctness": true },
+				{ "text": "Акула", "correctness": false },
+				{ "text": "Пингвин", "correctness": false }
+			]
+		},
+		{
+			"question": "Сколько минут в сутках?",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		},
+		{
+			"question": "Հայաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Երևան", "correctness": true },
+				{ "text": "Կանբեռա", "correctness": false },
+				{ "text": "Թբիլիսի", "correctness": false },
+				{ "text": "Փարիզ", "correctness": false }
+			]
+		},
+		{
+			"question": "Երևան. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Հայաստան", "correctness": true },
+				{ "text": "Ավստրալիա", "correctness": false },
+				{ "text": "Վրաստան", "correctness": false },
+				{ "text": "Ֆրանսիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Ֆրանսիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Փարիզ", "correctness": true },
+				{ "text": "Հռոմ", "correctness": false },
+				{ "text": "Աթենք", "correctness": false },
+				{ "text": "Բեռլին", "correctness": false }
+			]
+		},
+		{
+			"question": "Փարիզ. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Ֆրանսիա", "correctness": true },
+				{ "text": "Իտալիա", "correctness": false },
+				{ "text": "Հունաստան", "correctness": false },
+				{ "text": "Գերմանիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Գերմանիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Բեռլին", "correctness": true },
+				{ "text": "Կահիրե", "correctness": false },
+				{ "text": "Վարշավա", "correctness": false },
+				{ "text": "Մադրիդ", "correctness": false }
+			]
+		},
+		{
+			"question": "Բեռլին. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Գերմանիա", "correctness": true },
+				{ "text": "Եգիպտոս", "correctness": false },
+				{ "text": "Լեհաստան", "correctness": false },
+				{ "text": "Իսպանիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Իսպանիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Մադրիդ", "correctness": true },
+				{ "text": "Մեխիկո", "correctness": false },
+				{ "text": "Լիսաբոն", "correctness": false },
+				{ "text": "Տոկիո", "correctness": false }
+			]
+		},
+		{
+			"question": "Մադրիդ. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Իսպանիա", "correctness": true },
+				{ "text": "Մեքսիկա", "correctness": false },
+				{ "text": "Պորտուգալիա", "correctness": false },
+				{ "text": "Ճապոնիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Ճապոնիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Տոկիո", "correctness": true },
+				{ "text": "Նյու Դելի", "correctness": false },
+				{ "text": "Օսլո", "correctness": false },
+				{ "text": "Բրազիլիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Տոկիո. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Ճապոնիա", "correctness": true },
+				{ "text": "Հնդկաստան", "correctness": false },
+				{ "text": "Նորվեգիա", "correctness": false },
+				{ "text": "Բրազիլիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Բրազիլիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Բրազիլիա", "correctness": true },
+				{ "text": "Պեկին", "correctness": false },
+				{ "text": "Բուենոս Այրես", "correctness": false },
+				{ "text": "Օտտավա", "correctness": false }
+			]
+		},
+		{
+			"question": "Բրազիլիա. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Բրազիլիա", "correctness": true },
+				{ "text": "Չինաստան", "correctness": false },
+				{ "text": "Արգենտինա", "correctness": false },
+				{ "text": "Կանադա", "correctness": false }
+			]
+		},
+		{
+			"question": "Կանադա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Օտտավա", "correctness": true },
+				{ "text": "Անկարա", "correctness": false },
+				{ "text": "Երևան", "correctness": false },
+				{ "text": "Կանբեռա", "correctness": false }
+			]
+		},
+		{
+			"question": "Օտտավա. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Կանադա", "correctness": true },
+				{ "text": "Թուրքիա", "correctness": false },
+				{ "text": "Հայաստան", "correctness": false },
+				{ "text": "Ավստրալիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Ավստրալիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Կանբեռա", "correctness": true },
+				{ "text": "Թբիլիսի", "correctness": false },
+				{ "text": "Փարիզ", "correctness": false },
+				{ "text": "Հռոմ", "correctness": false }
+			]
+		},
+		{
+			"question": "Կանբեռա. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Ավստրալիա", "correctness": true },
+				{ "text": "Վրաստան", "correctness": false },
+				{ "text": "Ֆրանսիա", "correctness": false },
+				{ "text": "Իտալիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Իտալիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Հռոմ", "correctness": true },
+				{ "text": "Աթենք", "correctness": false },
+				{ "text": "Բեռլին", "correctness": false },
+				{ "text": "Կահիրե", "correctness": false }
+			]
+		},
+		{
+			"question": "Հռոմ. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Իտալիա", "correctness": true },
+				{ "text": "Հունաստան", "correctness": false },
+				{ "text": "Գերմանիա", "correctness": false },
+				{ "text": "Եգիպտոս", "correctness": false }
+			]
+		},
+		{
+			"question": "Եգիպտոս. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Կահիրե", "correctness": true },
+				{ "text": "Վարշավա", "correctness": false },
+				{ "text": "Մադրիդ", "correctness": false },
+				{ "text": "Մեխիկո", "correctness": false }
+			]
+		},
+		{
+			"question": "Կահիրե. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Եգիպտոս", "correctness": true },
+				{ "text": "Լեհաստան", "correctness": false },
+				{ "text": "Իսպանիա", "correctness": false },
+				{ "text": "Մեքսիկա", "correctness": false }
+			]
+		},
+		{
+			"question": "Մեքսիկա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Մեխիկո", "correctness": true },
+				{ "text": "Լիսաբոն", "correctness": false },
+				{ "text": "Տոկիո", "correctness": false },
+				{ "text": "Նյու Դելի", "correctness": false }
+			]
+		},
+		{
+			"question": "Մեխիկո. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Մեքսիկա", "correctness": true },
+				{ "text": "Պորտուգալիա", "correctness": false },
+				{ "text": "Ճապոնիա", "correctness": false },
+				{ "text": "Հնդկաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Հնդկաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Նյու Դելի", "correctness": true },
+				{ "text": "Օսլո", "correctness": false },
+				{ "text": "Բրազիլիա", "correctness": false },
+				{ "text": "Պեկին", "correctness": false }
+			]
+		},
+		{
+			"question": "Նյու Դելի. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Հնդկաստան", "correctness": true },
+				{ "text": "Նորվեգիա", "correctness": false },
+				{ "text": "Բրազիլիա", "correctness": false },
+				{ "text": "Չինաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Չինաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Պեկին", "correctness": true },
+				{ "text": "Բուենոս Այրես", "correctness": false },
+				{ "text": "Օտտավա", "correctness": false },
+				{ "text": "Անկարա", "correctness": false }
+			]
+		},
+		{
+			"question": "Պեկին. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Չինաստան", "correctness": true },
+				{ "text": "Արգենտինա", "correctness": false },
+				{ "text": "Կանադա", "correctness": false },
+				{ "text": "Թուրքիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Թուրքիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Անկարա", "correctness": true },
+				{ "text": "Երևան", "correctness": false },
+				{ "text": "Կանբեռա", "correctness": false },
+				{ "text": "Թբիլիսի", "correctness": false }
+			]
+		},
+		{
+			"question": "Անկարա. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Թուրքիա", "correctness": true },
+				{ "text": "Հայաստան", "correctness": false },
+				{ "text": "Ավստրալիա", "correctness": false },
+				{ "text": "Վրաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Վրաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Թբիլիսի", "correctness": true },
+				{ "text": "Փարիզ", "correctness": false },
+				{ "text": "Հռոմ", "correctness": false },
+				{ "text": "Աթենք", "correctness": false }
+			]
+		},
+		{
+			"question": "Թբիլիսի. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Վրաստան", "correctness": true },
+				{ "text": "Ֆրանսիա", "correctness": false },
+				{ "text": "Իտալիա", "correctness": false },
+				{ "text": "Հունաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Հունաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Աթենք", "correctness": true },
+				{ "text": "Բեռլին", "correctness": false },
+				{ "text": "Կահիրե", "correctness": false },
+				{ "text": "Վարշավա", "correctness": false }
+			]
+		},
+		{
+			"question": "Աթենք. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Հունաստան", "correctness": true },
+				{ "text": "Գերմանիա", "correctness": false },
+				{ "text": "Եգիպտոս", "correctness": false },
+				{ "text": "Լեհաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Լեհաստան. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Վարշավա", "correctness": true },
+				{ "text": "Մադրիդ", "correctness": false },
+				{ "text": "Մեխիկո", "correctness": false },
+				{ "text": "Լիսաբոն", "correctness": false }
+			]
+		},
+		{
+			"question": "Վարշավա. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Լեհաստան", "correctness": true },
+				{ "text": "Իսպանիա", "correctness": false },
+				{ "text": "Մեքսիկա", "correctness": false },
+				{ "text": "Պորտուգալիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Պորտուգալիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Լիսաբոն", "correctness": true },
+				{ "text": "Տոկիո", "correctness": false },
+				{ "text": "Նյու Դելի", "correctness": false },
+				{ "text": "Օսլո", "correctness": false }
+			]
+		},
+		{
+			"question": "Լիսաբոն. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Պորտուգալիա", "correctness": true },
+				{ "text": "Ճապոնիա", "correctness": false },
+				{ "text": "Հնդկաստան", "correctness": false },
+				{ "text": "Նորվեգիա", "correctness": false }
+			]
+		},
+		{
+			"question": "Նորվեգիա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Օսլո", "correctness": true },
+				{ "text": "Բրազիլիա", "correctness": false },
+				{ "text": "Պեկին", "correctness": false },
+				{ "text": "Բուենոս Այրես", "correctness": false }
+			]
+		},
+		{
+			"question": "Օսլո. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Նորվեգիա", "correctness": true },
+				{ "text": "Բրազիլիա", "correctness": false },
+				{ "text": "Չինաստան", "correctness": false },
+				{ "text": "Արգենտինա", "correctness": false }
+			]
+		},
+		{
+			"question": "Արգենտինա. ո՞ր քաղաքն է մայրաքաղաքը։",
+			"cases": [
+				{ "text": "Բուենոս Այրես", "correctness": true },
+				{ "text": "Օտտավա", "correctness": false },
+				{ "text": "Անկարա", "correctness": false },
+				{ "text": "Երևան", "correctness": false }
+			]
+		},
+		{
+			"question": "Բուենոս Այրես. ո՞ր երկրի մայրաքաղաքն է։",
+			"cases": [
+				{ "text": "Արգենտինա", "correctness": true },
+				{ "text": "Կանադա", "correctness": false },
+				{ "text": "Թուրքիա", "correctness": false },
+				{ "text": "Հայաստան", "correctness": false }
+			]
+		},
+		{
+			"question": "Քանի՞ մայրցամաք կա Երկրի վրա։",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞ր ջերմաստիճանում (°C) է եռում ջուրը ծովի մակարդակում։",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞րն է ոսկու քիմիական նշանը։",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞րն է Արեգակնային համակարգի ամենամեծ մոլորակը։",
+			"cases": [
+				{ "text": "Յուպիտեր", "correctness": true },
+				{ "text": "Սատուրն", "correctness": false },
+				{ "text": "Մարս", "correctness": false },
+				{ "text": "Նեպտուն", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞վ է գրել «Պատերազմ և խաղաղություն» վեպը։",
+			"cases": [
+				{ "text": "Լև Տոլստոյ", "correctness": true },
+				{ "text": "Ֆյոդոր Դոստոևսկի", "correctness": false },
+				{ "text": "Անտոն Չեխով", "correctness": false }
+			]
+		},
+		{
+			"question": "Այս թվերից որո՞նք են պարզ։",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "Այս գազերից որո՞նք են իներտ գազեր։",
+			"cases": [
+				{ "text": "Հելիում", "correctness": true },
+				{ "text": "Նեոն", "correctness": true },
+				{ "text": "Արգոն", "correctness": true },
+				{ "text": "Թթվածին", "correctness": false },
+				{ "text": "Ազոտ", "correctness": false }
+			]
+		},
+		{
+			"question": "Քանի՞ կողմ ունի վեցանկյունը։",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞ր թվականին ավարտվեց Երկրորդ համաշխարհային պատերազմը։",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞ր օվկիանոսն է ամենամեծը մակերեսով։",
+			"cases": [
+				{ "text": "Խաղաղ", "correctness": true },
+				{ "text": "Ատլանտյան", "correctness": false },
+				{ "text": "Հնդկական", "correctness": false }
+			]
+		},
+		{
+			"question": "Ո՞վ է նկարել «Մոնա Լիզան»։",
+			"cases": [
+				{ "text": "Լեոնարդո դա Վինչի", "correctness": true },
+				{ "text": "Միքելանջելո", "correctness": false },
+				{ "text": "Ռաֆայել", "correctness": false }
+			]
+		},
+		{
+			"question": "Որքա՞ն է 144-ի քառակուսի արմատը։",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Երկար հարց. գնացքը առաջին կայարանից մեկնում է 08:15-ին և առանց կանգառների շարժվում է 90 կմ/ժ հաստատուն արագությամբ, իսկ մինչև վերջին կայարան հեռավորությունը 270 կմ է։ Ժամը քանիսի՞ն կհասնի գնացքը, եթե երկու կայարանների ժամացույցները համաժամեցված են։",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "Այս կենդանիներից որո՞նք են կաթնասուններ։",
+			"cases": [
+				{ "text": "Դելֆին", "correctness": true },
+				{ "text": "Չղջիկ", "correctness": true },
+				{ "text": "Շնաձուկ", "correctness": false },
+				{ "text": "Պինգվին", "correctness": false }
+			]
+		},
+		{
+			"question": "Քանի՞ րոպե կա մեկ օրում։",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Armenien?",
+			"cases": [
+				{ "text": "Eriwan", "correctness": true },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tiflis", "correctness": false },
+				{ "text": "Paris", "correctness": false }
+			]
+		},
+		{
+			"question": "Eriwan ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Armenien", "correctness": true },
+				{ "text": "Australien", "correctness": false },
+				{ "text": "Georgien", "correctness": false },
+				{ "text": "Frankreich", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Frankreich?",
+			"cases": [
+				{ "text": "Paris", "correctness": true },
+				{ "text": "Rom", "correctness": false },
+				{ "text": "Athen", "correctness": false },
+				{ "text": "Berlin", "correctness": false }
+			]
+		},
+		{
+			"question": "Paris ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Frankreich", "correctness": true },
+				{ "text": "Italien", "correctness": false },
+				{ "text": "Griechenland", "correctness": false },
+				{ "text": "Deutschland", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Deutschland?",
+			"cases": [
+				{ "text": "Berlin", "correctness": true },
+				{ "text": "Kairo", "correctness": false },
+				{ "text": "Warschau", "correctness": false },
+				{ "text": "Madrid", "correctness": false }
+			]
+		},
+		{
+			"question": "Berlin ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Deutschland", "correctness": true },
+				{ "text": "Ägypten", "correctness": false },
+				{ "text": "Polen", "correctness": false },
+				{ "text": "Spanien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Spanien?",
+			"cases": [
+				{ "text": "Madrid", "correctness": true },
+				{ "text": "Mexiko-Stadt", "correctness": false },
+				{ "text": "Lissabon", "correctness": false },
+				{ "text": "Tokio", "correctness": false }
+			]
+		},
+		{
+			"question": "Madrid ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Spanien", "correctness": true },
+				{ "text": "Mexiko", "correctness": false },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japan", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Japan?",
+			"cases": [
+				{ "text": "Tokio", "correctness": true },
+				{ "text": "Neu-Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasília", "correctness": false }
+			]
+		},
+		{
+			"question": "Tokio ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Japan", "correctness": true },
+				{ "text": "Indien", "correctness": false },
+				{ "text": "Norwegen", "correctness": false },
+				{ "text": "Brasilien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Brasilien?",
+			"cases": [
+				{ "text": "Brasília", "correctness": true },
+				{ "text": "Peking", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false }
+			]
+		},
+		{
+			"question": "Brasília ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Brasilien", "correctness": true },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentinien", "correctness": false },
+				{ "text": "Kanada", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Kanada?",
+			"cases": [
+				{ "text": "Ottawa", "correctness": true },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Eriwan", "correctness": false },
+				{ "text": "Canberra", "correctness": false }
+			]
+		},
+		{
+			"question": "Ottawa ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Kanada", "correctness": true },
+				{ "text": "Türkei", "correctness": false },
+				{ "text": "Armenien", "correctness": false },
+				{ "text": "Australien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Australien?",
+			"cases": [
+				{ "text": "Canberra", "correctness": true },
+				{ "text": "Tiflis", "correctness": false },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rom", "correctness": false }
+			]
+		},
+		{
+			"question": "Canberra ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Australien", "correctness": true },
+				{ "text": "Georgien", "correctness": false },
+				{ "text": "Frankreich", "correctness": false },
+				{ "text": "Italien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Italien?",
+			"cases": [
+				{ "text": "Rom", "correctness": true },
+				{ "text": "Athen", "correctness": false },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Kairo", "correctness": false }
+			]
+		},
+		{
+			"question": "Rom ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Italien", "correctness": true },
+				{ "text": "Griechenland", "correctness": false },
+				{ "text": "Deutschland", "correctness": false },
+				{ "text": "Ägypten", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Ägypten?",
+			"cases": [
+				{ "text": "Kairo", "correctness": true },
+				{ "text": "Warschau", "correctness": false },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexiko-Stadt", "correctness": false }
+			]
+		},
+		{
+			"question": "Kairo ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Ägypten", "correctness": true },
+				{ "text": "Polen", "correctness": false },
+				{ "text": "Spanien", "correctness": false },
+				{ "text": "Mexiko", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Mexiko?",
+			"cases": [
+				{ "text": "Mexiko-Stadt", "correctness": true },
+				{ "text": "Lissabon", "correctness": false },
+				{ "text": "Tokio", "correctness": false },
+				{ "text": "Neu-Delhi", "correctness": false }
+			]
+		},
+		{
+			"question": "Mexiko-Stadt ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Mexiko", "correctness": true },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japan", "correctness": false },
+				{ "text": "Indien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Indien?",
+			"cases": [
+				{ "text": "Neu-Delhi", "correctness": true },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasília", "correctness": false },
+				{ "text": "Peking", "correctness": false }
+			]
+		},
+		{
+			"question": "Neu-Delhi ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Indien", "correctness": true },
+				{ "text": "Norwegen", "correctness": false },
+				{ "text": "Brasilien", "correctness": false },
+				{ "text": "China", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von China?",
+			"cases": [
+				{ "text": "Peking", "correctness": true },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false }
+			]
+		},
+		{
+			"question": "Peking ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "China", "correctness": true },
+				{ "text": "Argentinien", "correctness": false },
+				{ "text": "Kanada", "correctness": false },
+				{ "text": "Türkei", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Türkei?",
+			"cases": [
+				{ "text": "Ankara", "correctness": true },
+				{ "text": "Eriwan", "correctness": false },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tiflis", "correctness": false }
+			]
+		},
+		{
+			"question": "Ankara ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Türkei", "correctness": true },
+				{ "text": "Armenien", "correctness": false },
+				{ "text": "Australien", "correctness": false },
+				{ "text": "Georgien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Georgien?",
+			"cases": [
+				{ "text": "Tiflis", "correctness": true },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rom", "correctness": false },
+				{ "text": "Athen", "correctness": false }
+			]
+		},
+		{
+			"question": "Tiflis ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Georgien", "correctness": true },
+				{ "text": "Frankreich", "correctness": false },
+				{ "text": "Italien", "correctness": false },
+				{ "text": "Griechenland", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Griechenland?",
+			"cases": [
+				{ "text": "Athen", "correctness": true },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Kairo", "correctness": false },
+				{ "text": "Warschau", "correctness": false }
+			]
+		},
+		{
+			"question": "Athen ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Griechenland", "correctness": true },
+				{ "text": "Deutschland", "correctness": false },
+				{ "text": "Ägypten", "correctness": false },
+				{ "text": "Polen", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Polen?",
+			"cases": [
+				{ "text": "Warschau", "correctness": true },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexiko-Stadt", "correctness": false },
+				{ "text": "Lissabon", "correctness": false }
+			]
+		},
+		{
+			"question": "Warschau ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Polen", "correctness": true },
+				{ "text": "Spanien", "correctness": false },
+				{ "text": "Mexiko", "correctness": false },
+				{ "text": "Portugal", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Portugal?",
+			"cases": [
+				{ "text": "Lissabon", "correctness": true },
+				{ "text": "Tokio", "correctness": false },
+				{ "text": "Neu-Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false }
+			]
+		},
+		{
+			"question": "Lissabon ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Portugal", "correctness": true },
+				{ "text": "Japan", "correctness": false },
+				{ "text": "Indien", "correctness": false },
+				{ "text": "Norwegen", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Norwegen?",
+			"cases": [
+				{ "text": "Oslo", "correctness": true },
+				{ "text": "Brasília", "correctness": false },
+				{ "text": "Peking", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false }
+			]
+		},
+		{
+			"question": "Oslo ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Norwegen", "correctness": true },
+				{ "text": "Brasilien", "correctness": false },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentinien", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Hauptstadt von Argentinien?",
+			"cases": [
+				{ "text": "Buenos Aires", "correctness": true },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Eriwan", "correctness": false }
+			]
+		},
+		{
+			"question": "Buenos Aires ist die Hauptstadt welches Landes?",
+			"cases": [
+				{ "text": "Argentinien", "correctness": true },
+				{ "text": "Kanada", "correctness": false },
+				{ "text": "Türkei", "correctness": false },
+				{ "text": "Armenien", "correctness": false }
+			]
+		},
+		{
+			"question": "Wie viele Kontinente gibt es auf der Erde?",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "Bei welcher Temperatur in °C kocht Wasser auf Meereshöhe?",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist das chemische Symbol für Gold?",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "Welcher ist der größte Planet des Sonnensystems?",
+			"cases": [
+				{ "text": "Jupiter", "correctness": true },
+				{ "text": "Saturn", "correctness": false },
+				{ "text": "Mars", "correctness": false },
+				{ "text": "Neptun", "correctness": false }
+			]
+		},
+		{
+			"question": "Wer schrieb den Roman „Krieg und Frieden“?",
+			"cases": [
+				{ "text": "Lew Tolstoi", "correctness": true },
+				{ "text": "Fjodor Dostojewski", "correctness": false },
+				{ "text": "Anton Tschechow", "correctness": false }
+			]
+		},
+		{
+			"question": "Welche dieser Zahlen sind Primzahlen?",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "Welche dieser Gase sind Edelgase?",
+			"cases": [
+				{ "text": "Helium", "correctness": true },
+				{ "text": "Neon", "correctness": true },
+				{ "text": "Argon", "correctness": true },
+				{ "text": "Sauerstoff", "correctness": false },
+				{ "text": "Stickstoff", "correctness": false }
+			]
+		},
+		{
+			"question": "Wie viele Seiten hat ein Sechseck?",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "In welchem Jahr endete der Zweite Weltkrieg?",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "Welcher Ozean ist flächenmäßig der größte?",
+			"cases": [
+				{ "text": "Pazifik", "correctness": true },
+				{ "text": "Atlantik", "correctness": false },
+				{ "text": "Indischer", "correctness": false }
+			]
+		},
+		{
+			"question": "Wer malte die Mona Lisa?",
+			"cases": [
+				{ "text": "Leonardo da Vinci", "correctness": true },
+				{ "text": "Michelangelo", "correctness": false },
+				{ "text": "Raffael", "correctness": false }
+			]
+		},
+		{
+			"question": "Was ist die Quadratwurzel aus 144?",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Lange Frage: Ein Zug verlässt den ersten Bahnhof um 08:15 und fährt ohne Halt mit konstanten 90 km/h; die Entfernung zum letzten Bahnhof beträgt 270 km. Um wie viel Uhr kommt der Zug an, wenn die Uhren beider Bahnhöfe synchronisiert sind und keine Zeitzone überquert wird?",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "Welche dieser Tiere sind Säugetiere?",
+			"cases": [
+				{ "text": "Delfin", "correctness": true },
+				{ "text": "Fledermaus", "correctness": true },
+				{ "text": "Hai", "correctness": false },
+				{ "text": "Pinguin", "correctness": false }
+			]
+		},
+		{
+			"question": "Wie viele Minuten hat ein Tag?",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Arménie » ?",
+			"cases": [
+				{ "text": "Erevan", "correctness": true },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tbilissi", "correctness": false },
+				{ "text": "Paris", "correctness": false }
+			]
+		},
+		{
+			"question": "Erevan est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Arménie", "correctness": true },
+				{ "text": "Australie", "correctness": false },
+				{ "text": "Géorgie", "correctness": false },
+				{ "text": "France", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « France » ?",
+			"cases": [
+				{ "text": "Paris", "correctness": true },
+				{ "text": "Rome", "correctness": false },
+				{ "text": "Athènes", "correctness": false },
+				{ "text": "Berlin", "correctness": false }
+			]
+		},
+		{
+			"question": "Paris est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "France", "correctness": true },
+				{ "text": "Italie", "correctness": false },
+				{ "text": "Grèce", "correctness": false },
+				{ "text": "Allemagne", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Allemagne » ?",
+			"cases": [
+				{ "text": "Berlin", "correctness": true },
+				{ "text": "Le Caire", "correctness": false },
+				{ "text": "Varsovie", "correctness": false },
+				{ "text": "Madrid", "correctness": false }
+			]
+		},
+		{
+			"question": "Berlin est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Allemagne", "correctness": true },
+				{ "text": "Égypte", "correctness": false },
+				{ "text": "Pologne", "correctness": false },
+				{ "text": "Espagne", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Espagne » ?",
+			"cases": [
+				{ "text": "Madrid", "correctness": true },
+				{ "text": "Mexico", "correctness": false },
+				{ "text": "Lisbonne", "correctness": false },
+				{ "text": "Tokyo", "correctness": false }
+			]
+		},
+		{
+			"question": "Madrid est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Espagne", "correctness": true },
+				{ "text": "Mexique", "correctness": false },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japon", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Japon » ?",
+			"cases": [
+				{ "text": "Tokyo", "correctness": true },
+				{ "text": "New Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasilia", "correctness": false }
+			]
+		},
+		{
+			"question": "Tokyo est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Japon", "correctness": true },
+				{ "text": "Inde", "correctness": false },
+				{ "text": "Norvège", "correctness": false },
+				{ "text": "Brésil", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Brésil » ?",
+			"cases": [
+				{ "text": "Brasilia", "correctness": true },
+				{ "text": "Pékin", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false }
+			]
+		},
+		{
+			"question": "Brasilia est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Brésil", "correctness": true },
+				{ "text": "Chine", "correctness": false },
+				{ "text": "Argentine", "correctness": false },
+				{ "text": "Canada", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Canada » ?",
+			"cases": [
+				{ "text": "Ottawa", "correctness": true },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Erevan", "correctness": false },
+				{ "text": "Canberra", "correctness": false }
+			]
+		},
+		{
+			"question": "Ottawa est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Canada", "correctness": true },
+				{ "text": "Turquie", "correctness": false },
+				{ "text": "Arménie", "correctness": false },
+				{ "text": "Australie", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Australie » ?",
+			"cases": [
+				{ "text": "Canberra", "correctness": true },
+				{ "text": "Tbilissi", "correctness": false },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rome", "correctness": false }
+			]
+		},
+		{
+			"question": "Canberra est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Australie", "correctness": true },
+				{ "text": "Géorgie", "correctness": false },
+				{ "text": "France", "correctness": false },
+				{ "text": "Italie", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Italie » ?",
+			"cases": [
+				{ "text": "Rome", "correctness": true },
+				{ "text": "Athènes", "correctness": false },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Le Caire", "correctness": false }
+			]
+		},
+		{
+			"question": "Rome est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Italie", "correctness": true },
+				{ "text": "Grèce", "correctness": false },
+				{ "text": "Allemagne", "correctness": false },
+				{ "text": "Égypte", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Égypte » ?",
+			"cases": [
+				{ "text": "Le Caire", "correctness": true },
+				{ "text": "Varsovie", "correctness": false },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexico", "correctness": false }
+			]
+		},
+		{
+			"question": "Le Caire est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Égypte", "correctness": true },
+				{ "text": "Pologne", "correctness": false },
+				{ "text": "Espagne", "correctness": false },
+				{ "text": "Mexique", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Mexique » ?",
+			"cases": [
+				{ "text": "Mexico", "correctness": true },
+				{ "text": "Lisbonne", "correctness": false },
+				{ "text": "Tokyo", "correctness": false },
+				{ "text": "New Delhi", "correctness": false }
+			]
+		},
+		{
+			"question": "Mexico est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Mexique", "correctness": true },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japon", "correctness": false },
+				{ "text": "Inde", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Inde » ?",
+			"cases": [
+				{ "text": "New Delhi", "correctness": true },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasilia", "correctness": false },
+				{ "text": "Pékin", "correctness": false }
+			]
+		},
+		{
+			"question": "New Delhi est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Inde", "correctness": true },
+				{ "text": "Norvège", "correctness": false },
+				{ "text": "Brésil", "correctness": false },
+				{ "text": "Chine", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Chine » ?",
+			"cases": [
+				{ "text": "Pékin", "correctness": true },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false }
+			]
+		},
+		{
+			"question": "Pékin est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Chine", "correctness": true },
+				{ "text": "Argentine", "correctness": false },
+				{ "text": "Canada", "correctness": false },
+				{ "text": "Turquie", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Turquie » ?",
+			"cases": [
+				{ "text": "Ankara", "correctness": true },
+				{ "text": "Erevan", "correctness": false },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tbilissi", "correctness": false }
+			]
+		},
+		{
+			"question": "Ankara est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Turquie", "correctness": true },
+				{ "text": "Arménie", "correctness": false },
+				{ "text": "Australie", "correctness": false },
+				{ "text": "Géorgie", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Géorgie » ?",
+			"cases": [
+				{ "text": "Tbilissi", "correctness": true },
+				{ "text": "Paris", "correctness": false },
+				{ "text": "Rome", "correctness": false },
+				{ "text": "Athènes", "correctness": false }
+			]
+		},
+		{
+			"question": "Tbilissi est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Géorgie", "correctness": true },
+				{ "text": "France", "correctness": false },
+				{ "text": "Italie", "correctness": false },
+				{ "text": "Grèce", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Grèce » ?",
+			"cases": [
+				{ "text": "Athènes", "correctness": true },
+				{ "text": "Berlin", "correctness": false },
+				{ "text": "Le Caire", "correctness": false },
+				{ "text": "Varsovie", "correctness": false }
+			]
+		},
+		{
+			"question": "Athènes est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Grèce", "correctness": true },
+				{ "text": "Allemagne", "correctness": false },
+				{ "text": "Égypte", "correctness": false },
+				{ "text": "Pologne", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Pologne » ?",
+			"cases": [
+				{ "text": "Varsovie", "correctness": true },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Mexico", "correctness": false },
+				{ "text": "Lisbonne", "correctness": false }
+			]
+		},
+		{
+			"question": "Varsovie est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Pologne", "correctness": true },
+				{ "text": "Espagne", "correctness": false },
+				{ "text": "Mexique", "correctness": false },
+				{ "text": "Portugal", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Portugal » ?",
+			"cases": [
+				{ "text": "Lisbonne", "correctness": true },
+				{ "text": "Tokyo", "correctness": false },
+				{ "text": "New Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false }
+			]
+		},
+		{
+			"question": "Lisbonne est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Portugal", "correctness": true },
+				{ "text": "Japon", "correctness": false },
+				{ "text": "Inde", "correctness": false },
+				{ "text": "Norvège", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Norvège » ?",
+			"cases": [
+				{ "text": "Oslo", "correctness": true },
+				{ "text": "Brasilia", "correctness": false },
+				{ "text": "Pékin", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false }
+			]
+		},
+		{
+			"question": "Oslo est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Norvège", "correctness": true },
+				{ "text": "Brésil", "correctness": false },
+				{ "text": "Chine", "correctness": false },
+				{ "text": "Argentine", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la capitale du pays « Argentine » ?",
+			"cases": [
+				{ "text": "Buenos Aires", "correctness": true },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Erevan", "correctness": false }
+			]
+		},
+		{
+			"question": "Buenos Aires est la capitale de quel pays ?",
+			"cases": [
+				{ "text": "Argentine", "correctness": true },
+				{ "text": "Canada", "correctness": false },
+				{ "text": "Turquie", "correctness": false },
+				{ "text": "Arménie", "correctness": false }
+			]
+		},
+		{
+			"question": "Combien de continents y a-t-il sur Terre ?",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "À quelle température en °C l’eau bout-elle au niveau de la mer ?",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "Quel est le symbole chimique de l’or ?",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la plus grande planète du Système solaire ?",
+			"cases": [
+				{ "text": "Jupiter", "correctness": true },
+				{ "text": "Saturne", "correctness": false },
+				{ "text": "Mars", "correctness": false },
+				{ "text": "Neptune", "correctness": false }
+			]
+		},
+		{
+			"question": "Qui a écrit le roman « Guerre et Paix » ?",
+			"cases": [
+				{ "text": "Léon Tolstoï", "correctness": true },
+				{ "text": "Fiodor Dostoïevski", "correctness": false },
+				{ "text": "Anton Tchekhov", "correctness": false }
+			]
+		},
+		{
+			"question": "Lesquels de ces nombres sont premiers ?",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "Lesquels de ces gaz sont des gaz nobles ?",
+			"cases": [
+				{ "text": "Hélium", "correctness": true },
+				{ "text": "Néon", "correctness": true },
+				{ "text": "Argon", "correctness": true },
+				{ "text": "Oxygène", "correctness": false },
+				{ "text": "Azote", "correctness": false }
+			]
+		},
+		{
+			"question": "Combien de côtés a un hexagone ?",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "En quelle année s’est terminée la Seconde Guerre mondiale ?",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "Quel océan est le plus grand en superficie ?",
+			"cases": [
+				{ "text": "Pacifique", "correctness": true },
+				{ "text": "Atlantique", "correctness": false },
+				{ "text": "Indien", "correctness": false }
+			]
+		},
+		{
+			"question": "Qui a peint la Joconde ?",
+			"cases": [
+				{ "text": "Léonard de Vinci", "correctness": true },
+				{ "text": "Michel-Ange", "correctness": false },
+				{ "text": "Raphaël", "correctness": false }
+			]
+		},
+		{
+			"question": "Quelle est la racine carrée de 144 ?",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Question longue : un train quitte la première gare à 08 h 15 et roule sans arrêt à une vitesse constante de 90 km/h ; la distance jusqu’à la dernière gare est de 270 km. À quelle heure le train arrive-t-il, si les horloges des deux gares sont synchronisées et qu’aucun fuseau horaire n’est traversé ?",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "Lesquels de ces animaux sont des mammifères ?",
+			"cases": [
+				{ "text": "Dauphin", "correctness": true },
+				{ "text": "Chauve-souris", "correctness": true },
+				{ "text": "Requin", "correctness": false },
+				{ "text": "Manchot", "correctness": false }
+			]
+		},
+		{
+			"question": "Combien de minutes y a-t-il dans une journée ?",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Armenia?",
+			"cases": [
+				{ "text": "Ereván", "correctness": true },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tiflis", "correctness": false },
+				{ "text": "París", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Ereván?",
+			"cases": [
+				{ "text": "Armenia", "correctness": true },
+				{ "text": "Australia", "correctness": false },
+				{ "text": "Georgia", "correctness": false },
+				{ "text": "Francia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Francia?",
+			"cases": [
+				{ "text": "París", "correctness": true },
+				{ "text": "Roma", "correctness": false },
+				{ "text": "Atenas", "correctness": false },
+				{ "text": "Berlín", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital París?",
+			"cases": [
+				{ "text": "Francia", "correctness": true },
+				{ "text": "Italia", "correctness": false },
+				{ "text": "Grecia", "correctness": false },
+				{ "text": "Alemania", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Alemania?",
+			"cases": [
+				{ "text": "Berlín", "correctness": true },
+				{ "text": "El Cairo", "correctness": false },
+				{ "text": "Varsovia", "correctness": false },
+				{ "text": "Madrid", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Berlín?",
+			"cases": [
+				{ "text": "Alemania", "correctness": true },
+				{ "text": "Egipto", "correctness": false },
+				{ "text": "Polonia", "correctness": false },
+				{ "text": "España", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de España?",
+			"cases": [
+				{ "text": "Madrid", "correctness": true },
+				{ "text": "Ciudad de México", "correctness": false },
+				{ "text": "Lisboa", "correctness": false },
+				{ "text": "Tokio", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Madrid?",
+			"cases": [
+				{ "text": "España", "correctness": true },
+				{ "text": "México", "correctness": false },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japón", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Japón?",
+			"cases": [
+				{ "text": "Tokio", "correctness": true },
+				{ "text": "Nueva Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasilia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Tokio?",
+			"cases": [
+				{ "text": "Japón", "correctness": true },
+				{ "text": "India", "correctness": false },
+				{ "text": "Noruega", "correctness": false },
+				{ "text": "Brasil", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Brasil?",
+			"cases": [
+				{ "text": "Brasilia", "correctness": true },
+				{ "text": "Pekín", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Brasilia?",
+			"cases": [
+				{ "text": "Brasil", "correctness": true },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentina", "correctness": false },
+				{ "text": "Canadá", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Canadá?",
+			"cases": [
+				{ "text": "Ottawa", "correctness": true },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Ereván", "correctness": false },
+				{ "text": "Canberra", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Ottawa?",
+			"cases": [
+				{ "text": "Canadá", "correctness": true },
+				{ "text": "Turquía", "correctness": false },
+				{ "text": "Armenia", "correctness": false },
+				{ "text": "Australia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Australia?",
+			"cases": [
+				{ "text": "Canberra", "correctness": true },
+				{ "text": "Tiflis", "correctness": false },
+				{ "text": "París", "correctness": false },
+				{ "text": "Roma", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Canberra?",
+			"cases": [
+				{ "text": "Australia", "correctness": true },
+				{ "text": "Georgia", "correctness": false },
+				{ "text": "Francia", "correctness": false },
+				{ "text": "Italia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Italia?",
+			"cases": [
+				{ "text": "Roma", "correctness": true },
+				{ "text": "Atenas", "correctness": false },
+				{ "text": "Berlín", "correctness": false },
+				{ "text": "El Cairo", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Roma?",
+			"cases": [
+				{ "text": "Italia", "correctness": true },
+				{ "text": "Grecia", "correctness": false },
+				{ "text": "Alemania", "correctness": false },
+				{ "text": "Egipto", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Egipto?",
+			"cases": [
+				{ "text": "El Cairo", "correctness": true },
+				{ "text": "Varsovia", "correctness": false },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Ciudad de México", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital El Cairo?",
+			"cases": [
+				{ "text": "Egipto", "correctness": true },
+				{ "text": "Polonia", "correctness": false },
+				{ "text": "España", "correctness": false },
+				{ "text": "México", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de México?",
+			"cases": [
+				{ "text": "Ciudad de México", "correctness": true },
+				{ "text": "Lisboa", "correctness": false },
+				{ "text": "Tokio", "correctness": false },
+				{ "text": "Nueva Delhi", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Ciudad de México?",
+			"cases": [
+				{ "text": "México", "correctness": true },
+				{ "text": "Portugal", "correctness": false },
+				{ "text": "Japón", "correctness": false },
+				{ "text": "India", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de India?",
+			"cases": [
+				{ "text": "Nueva Delhi", "correctness": true },
+				{ "text": "Oslo", "correctness": false },
+				{ "text": "Brasilia", "correctness": false },
+				{ "text": "Pekín", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Nueva Delhi?",
+			"cases": [
+				{ "text": "India", "correctness": true },
+				{ "text": "Noruega", "correctness": false },
+				{ "text": "Brasil", "correctness": false },
+				{ "text": "China", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de China?",
+			"cases": [
+				{ "text": "Pekín", "correctness": true },
+				{ "text": "Buenos Aires", "correctness": false },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Pekín?",
+			"cases": [
+				{ "text": "China", "correctness": true },
+				{ "text": "Argentina", "correctness": false },
+				{ "text": "Canadá", "correctness": false },
+				{ "text": "Turquía", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Turquía?",
+			"cases": [
+				{ "text": "Ankara", "correctness": true },
+				{ "text": "Ereván", "correctness": false },
+				{ "text": "Canberra", "correctness": false },
+				{ "text": "Tiflis", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Ankara?",
+			"cases": [
+				{ "text": "Turquía", "correctness": true },
+				{ "text": "Armenia", "correctness": false },
+				{ "text": "Australia", "correctness": false },
+				{ "text": "Georgia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Georgia?",
+			"cases": [
+				{ "text": "Tiflis", "correctness": true },
+				{ "text": "París", "correctness": false },
+				{ "text": "Roma", "correctness": false },
+				{ "text": "Atenas", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Tiflis?",
+			"cases": [
+				{ "text": "Georgia", "correctness": true },
+				{ "text": "Francia", "correctness": false },
+				{ "text": "Italia", "correctness": false },
+				{ "text": "Grecia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Grecia?",
+			"cases": [
+				{ "text": "Atenas", "correctness": true },
+				{ "text": "Berlín", "correctness": false },
+				{ "text": "El Cairo", "correctness": false },
+				{ "text": "Varsovia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Atenas?",
+			"cases": [
+				{ "text": "Grecia", "correctness": true },
+				{ "text": "Alemania", "correctness": false },
+				{ "text": "Egipto", "correctness": false },
+				{ "text": "Polonia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Polonia?",
+			"cases": [
+				{ "text": "Varsovia", "correctness": true },
+				{ "text": "Madrid", "correctness": false },
+				{ "text": "Ciudad de México", "correctness": false },
+				{ "text": "Lisboa", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Varsovia?",
+			"cases": [
+				{ "text": "Polonia", "correctness": true },
+				{ "text": "España", "correctness": false },
+				{ "text": "México", "correctness": false },
+				{ "text": "Portugal", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Portugal?",
+			"cases": [
+				{ "text": "Lisboa", "correctness": true },
+				{ "text": "Tokio", "correctness": false },
+				{ "text": "Nueva Delhi", "correctness": false },
+				{ "text": "Oslo", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Lisboa?",
+			"cases": [
+				{ "text": "Portugal", "correctness": true },
+				{ "text": "Japón", "correctness": false },
+				{ "text": "India", "correctness": false },
+				{ "text": "Noruega", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Noruega?",
+			"cases": [
+				{ "text": "Oslo", "correctness": true },
+				{ "text": "Brasilia", "correctness": false },
+				{ "text": "Pekín", "correctness": false },
+				{ "text": "Buenos Aires", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Oslo?",
+			"cases": [
+				{ "text": "Noruega", "correctness": true },
+				{ "text": "Brasil", "correctness": false },
+				{ "text": "China", "correctness": false },
+				{ "text": "Argentina", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la capital de Argentina?",
+			"cases": [
+				{ "text": "Buenos Aires", "correctness": true },
+				{ "text": "Ottawa", "correctness": false },
+				{ "text": "Ankara", "correctness": false },
+				{ "text": "Ereván", "correctness": false }
+			]
+		},
+		{
+			"question": "¿De qué país es capital Buenos Aires?",
+			"cases": [
+				{ "text": "Argentina", "correctness": true },
+				{ "text": "Canadá", "correctness": false },
+				{ "text": "Turquía", "correctness": false },
+				{ "text": "Armenia", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuántos continentes hay en la Tierra?",
+			"cases": [
+				{ "text": "7", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "6", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "¿A qué temperatura en °C hierve el agua al nivel del mar?",
+			"cases": [
+				{ "text": "100", "correctness": true },
+				{ "text": "90", "correctness": false },
+				{ "text": "80", "correctness": false },
+				{ "text": "120", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es el símbolo químico del oro?",
+			"cases": [
+				{ "text": "Au", "correctness": true },
+				{ "text": "Ag", "correctness": false },
+				{ "text": "Gd", "correctness": false },
+				{ "text": "Go", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es el planeta más grande del sistema solar?",
+			"cases": [
+				{ "text": "Júpiter", "correctness": true },
+				{ "text": "Saturno", "correctness": false },
+				{ "text": "Marte", "correctness": false },
+				{ "text": "Neptuno", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Quién escribió la novela «Guerra y paz»?",
+			"cases": [
+				{ "text": "León Tolstói", "correctness": true },
+				{ "text": "Fiódor Dostoyevski", "correctness": false },
+				{ "text": "Antón Chéjov", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuáles de estos números son primos?",
+			"cases": [
+				{ "text": "2", "correctness": true },
+				{ "text": "3", "correctness": true },
+				{ "text": "5", "correctness": true },
+				{ "text": "7", "correctness": true },
+				{ "text": "4", "correctness": false },
+				{ "text": "9", "correctness": false },
+				{ "text": "15", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuáles de estos gases son gases nobles?",
+			"cases": [
+				{ "text": "Helio", "correctness": true },
+				{ "text": "Neón", "correctness": true },
+				{ "text": "Argón", "correctness": true },
+				{ "text": "Oxígeno", "correctness": false },
+				{ "text": "Nitrógeno", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuántos lados tiene un hexágono?",
+			"cases": [
+				{ "text": "6", "correctness": true },
+				{ "text": "5", "correctness": false },
+				{ "text": "7", "correctness": false },
+				{ "text": "8", "correctness": false }
+			]
+		},
+		{
+			"question": "¿En qué año terminó la Segunda Guerra Mundial?",
+			"cases": [
+				{ "text": "1945", "correctness": true },
+				{ "text": "1939", "correctness": false },
+				{ "text": "1944", "correctness": false },
+				{ "text": "1918", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Qué océano es el más grande por superficie?",
+			"cases": [
+				{ "text": "Pacífico", "correctness": true },
+				{ "text": "Atlántico", "correctness": false },
+				{ "text": "Índico", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Quién pintó la Mona Lisa?",
+			"cases": [
+				{ "text": "Leonardo da Vinci", "correctness": true },
+				{ "text": "Miguel Ángel", "correctness": false },
+				{ "text": "Rafael", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuál es la raíz cuadrada de 144?",
+			"cases": [
+				{ "text": "12", "correctness": true },
+				{ "text": "14", "correctness": false },
+				{ "text": "11", "correctness": false },
+				{ "text": "72", "correctness": false }
+			]
+		},
+		{
+			"question": "Pregunta larga: un tren sale de la primera estación a las 08:15 y viaja sin paradas a una velocidad constante de 90 km/h; la distancia hasta la última estación es de 270 km. ¿A qué hora llega el tren, si los relojes de ambas estaciones están sincronizados y no se cruza ningún huso horario?",
+			"cases": [
+				{ "text": "11:15", "correctness": true },
+				{ "text": "10:15", "correctness": false },
+				{ "text": "11:45", "correctness": false },
+				{ "text": "12:15", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuáles de estos animales son mamíferos?",
+			"cases": [
+				{ "text": "Delfín", "correctness": true },
+				{ "text": "Murciélago", "correctness": true },
+				{ "text": "Tiburón", "correctness": false },
+				{ "text": "Pingüino", "correctness": false }
+			]
+		},
+		{
+			"question": "¿Cuántos minutos tiene un día?",
+			"cases": [
+				{ "text": "1440", "correctness": true },
+				{ "text": "1240", "correctness": false },
+				{ "text": "1400", "correctness": false },
+				{ "text": "3600", "correctness": false }
+			]
+		}
+	]
+}

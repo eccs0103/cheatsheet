@@ -129,11 +129,23 @@ header:has(input#editing:checked) ~ main label.entry {
 
 footer {
 	grid-auto-columns: 1fr;
+
+	& > button {
+		grid-row: 1;
+	}
 }
 
 header:has(input#editing:checked) ~ footer > button#open-add,
-header:not(:has(input#editing:checked)) ~ footer > button:not(#open-add) {
+header:not(:has(input#editing:checked)) ~ footer > button:not(#open-add),
+header:not(:has(input#editing:checked)) ~ footer > p#share-hint {
 	display: none;
+}
+
+p#share-hint {
+	grid-row: 2;
+	grid-column: 1 / span 4;
+	text-align: center;
+	padding-top: 0;
 }
 
 button#open-add span.icon {
@@ -156,7 +168,7 @@ button#delete span.icon {
 	--url: url(../../assets/icons/trash.svg);
 }
 
-dialog:is(#add, #share) {
+dialog#add {
 	position: absolute;
 	min-width: 0;
 	width: clamp(calc(10 * var(--size-standart)), 40vw, calc(20 * var(--size-standart)));
@@ -175,7 +187,7 @@ dialog:is(#add, #share) {
 }
 
 @media screen and (orientation: portrait) {
-	dialog:is(#add, #share) {
+	dialog#add {
 		inset: auto 0 0 0;
 		width: 100%;
 		border-bottom-left-radius: 0;
@@ -184,7 +196,7 @@ dialog:is(#add, #share) {
 }
 
 @media screen and (orientation: landscape) {
-	dialog:is(#add, #share) {
+	dialog#add {
 		inset: 0 0 0 auto;
 		height: 100%;
 		border-top-right-radius: 0;
@@ -192,7 +204,7 @@ dialog:is(#add, #share) {
 	}
 }
 
-button:is(#close-add, #close-share) > span.icon {
+button#close-add > span.icon {
 	--url: url(../../assets/icons/xmark.svg);
 }
 
@@ -219,8 +231,4 @@ a#write {
 	& span.icon {
 		--url: url(../../assets/icons/file-pen.svg);
 	}
-}
-
-button#share-plain span.icon {
-	--url: url(../../assets/icons/share-nodes.svg);
 }

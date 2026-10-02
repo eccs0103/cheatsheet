@@ -46,11 +46,12 @@ export class Library extends Model {
 		return entry;
 	}
 
-	replace(id: string, sheet: Sheet): Entry {
+	replace(id: string, sheet: Sheet): Sheet {
 		const entry = this.find(id);
 		if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+		const previous = entry.sheet;
 		entry.revise(sheet);
-		return entry;
+		return previous;
 	}
 }
 //#endregion

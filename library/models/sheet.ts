@@ -58,18 +58,10 @@ export class Sheet extends Model {
 	}
 
 	toFile(): File {
-		return this.#toFile("json", "application/json");
-	}
-
-	toPlainFile(): File {
-		return this.#toFile("txt", "text/plain");
-	}
-
-	#toFile(extension: string, type: string): File {
 		const text = JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
 		const { name } = this;
-		if (name === null) return new File([text], `sheet.${extension}`, { type });
-		return new File([text], `${name}.${extension}`, { type });
+		if (name === null) return new File([text], "sheet.json", { type: "application/json" });
+		return new File([text], `${name}.json`, { type: "application/json" });
 	}
 }
 //#endregion

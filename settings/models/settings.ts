@@ -10,19 +10,12 @@ export enum Scheme {
 	dark = "dark",
 }
 //#endregion
-//#region Matching
-export enum Matching {
-	any = "any",
-	order = "order",
-	phrase = "phrase",
-}
-//#endregion
 //#region Settings
 export interface SettingsScheme {
 	scheme: Scheme;
 	incorrect: boolean;
 	sensitive: boolean;
-	matching: Matching;
+	skipping: boolean;
 	accents: boolean;
 	tolerant: boolean;
 }
@@ -37,8 +30,8 @@ export class Settings extends Model {
 	@Field(Boolean, { name: "sensitive" })
 	sensitive: boolean;
 
-	@Field(Enum.Of(Matching), { name: "matching" })
-	matching: Matching;
+	@Field(Boolean, { name: "skipping" })
+	skipping: boolean;
 
 	@Field(Boolean, { name: "accents" })
 	accents: boolean;
@@ -47,9 +40,9 @@ export class Settings extends Model {
 	tolerant: boolean;
 
 	constructor();
-	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, matching: Matching, accents: boolean, tolerant: boolean);
-	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, matching?: Matching, accents?: boolean, tolerant?: boolean) {
-		if (scheme === undefined || incorrect === undefined || sensitive === undefined || matching === undefined || accents === undefined || tolerant === undefined) {
+	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, skipping: boolean, accents: boolean, tolerant: boolean);
+	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, skipping?: boolean, accents?: boolean, tolerant?: boolean) {
+		if (scheme === undefined || incorrect === undefined || sensitive === undefined || skipping === undefined || accents === undefined || tolerant === undefined) {
 			super();
 			return;
 		}
@@ -58,13 +51,13 @@ export class Settings extends Model {
 		this.scheme = scheme;
 		this.incorrect = incorrect;
 		this.sensitive = sensitive;
-		this.matching = matching;
+		this.skipping = skipping;
 		this.accents = accents;
 		this.tolerant = tolerant;
 	}
 
 	static get default(): Settings {
-		return new Settings(Scheme.system, false, false, Matching.any, false, true);
+		return new Settings(Scheme.system, true, false, true, false, true);
 	}
 
 	apply(): void {

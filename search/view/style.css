@@ -8,6 +8,8 @@ span#count {
 }
 
 article.question {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 6em;
 	display: grid;
 	grid-template:
 		'number-area	text-area		' auto

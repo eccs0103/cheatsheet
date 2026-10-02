@@ -47,23 +47,33 @@ Example of a valid JSON structure:
 	]
 }
 ```
-...and can be added in the **Library** (Add sheet → *From device* or *From a link*). Several files can be added at once; a broken file is reported and skipped while the others are still added. A sheet saved as `.txt` with the same JSON content is accepted too.
+...and can be added in the **Library** (Add sheet → *From device* or *From a link*). Several files can be added at once; a broken file is reported and skipped while the others are still added. The whole library lives in the browser's local storage, which holds about 5 million characters; a sheet that does not fit is reported and not added.
 
 Only this format is supported; the legacy formats of earlier versions are no longer read.
 
 Sheets can also be created and edited in the **Editor** (Add sheet → *From scratch*, or edit mode → mark one sheet → *Edit*): add and remove questions and answers, and mark each answer as correct or wrong.
 
-Selected sheets can be downloaded or shared. Browsers that refuse to share `.json` files (Chrome and Edge on desktop) are offered to share them as `.txt` instead.
+Selected sheets can be downloaded or shared. Where the browser cannot share `.json` files, *Share* is disabled with a hint to download the sheets and send them yourself.
 
-Opening a sheet leads to the **Search** page. It searches the questions as you type, and the settings tune how:
-- **Word matching**: *Any order* (every typed word appears somewhere, the default), *Words in order*, or *Exact phrase*.
-- **Typo tolerance**: words of five or more letters still match with one typo (on by default).
-- **Case sensitive** and **Accent sensitive**: off by default, so `ё` finds `е` and `sao` finds `São`.
-- **Incorrect answers**: show the incorrect answers next to the correct ones (off by default).
+Opening a sheet leads to the **Search** page. It searches the questions as you type, highlights the matched parts, and the settings tune how:
+- **Skip words** (on by default): the typed words must appear in the typed order, other words may stand between them. Off: the typed text must match as one phrase.
+- **Typo tolerance** (on by default): a word may be misspelled; longer words tolerate more typos (one per 4 letters beyond the first), counting missing, extra, wrong and swapped letters.
+- **Case sensitive** and **Accent sensitive** (off by default): `ё` finds `е`, `sao` finds `São`, `lodz` finds `Łódź`.
+- **Incorrect answers** (on by default): show the incorrect answers next to the correct ones.
 
-Press <kbd>Esc</kbd> to clear the search.
+Press <kbd>Esc</kbd> to clear the search. Large sheets render the first 50 matches and add more while scrolling.
 
-Ready-made sheets for manual testing live in `resources/examples/` and are served at `/examples/…`, e.g. `http://localhost:5173/examples/capitals.json` for *From a link*.
+Ready-made sheets for manual testing live in `resources/examples/` and are served at `/examples/…`, e.g. `http://localhost:5173/examples/capitals.json` for *From a link*:
+
+| File | What it tests |
+| --- | --- |
+| `capitals.json`, `untitled.json` | A small sheet, and one without a title |
+| `large.json` | About a hundred similar questions |
+| `invalid.json` | A broken sheet; add it together with others to see the error report |
+| `multilingual.json` | 330 questions in English, Russian, Armenian, German, French and Spanish, with long texts and several correct answers |
+| `accents.json` | Diacritics and other scripts; try `missisipi`, `massachusets`, `tchaikovski`, `kirgizstan`, `guernika`, `rythm`, `lodz`, `tromso`, `istanbul`, `ελλαδας`, `еще` |
+| `stress-10k.json` | 10 000 questions (about 3.2 M characters in storage) |
+| `stress-limit.json` | 14 220 questions, sized to about 90% of the storage; adding it next to `stress-10k` shows the storage error |
 - - -
 ## Development
 ```

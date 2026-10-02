@@ -1,27 +1,26 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type Token } from "../models/token.js";
+import { type Mark } from "../models/mark.js";
 
 //#region Highlighter
 export class Highlighter {
 	static #name: string = "search";
 	#highlight: Highlight = new Highlight();
 
-	paint(container: HTMLElement, results: readonly (readonly Token[] | null)[]): void {
+	paint(container: HTMLElement, results: readonly (readonly Mark[] | null)[]): void {
 		const highlight = this.#highlight;
 		highlight.clear();
 		CSS.highlights.set(Highlighter.#name, highlight);
-		const spans = container.querySelectorAll("article.question > span.text");
-		spans.forEach((span, index) => {
-			const tokens = results[index];
-			if (tokens === null) return;
-			const node = span.firstChild;
-			if (!(node instanceof Text)) return;
-			for (const token of tokens) {
-				highlight.add(token.range(node));
+		for (const article of container.getElements(HTMLElement, "article.question:not([hidden])")) {
+			const marks = results[Number(article.dataset.index)];
+			if (marks === null) continue;
+			const node = article.getElement(HTMLElement, "span.text").firstChild;
+			if (!(node instanceof Text)) continue;
+			for (const mark of marks) {
+				highlight.add(mark.range(node));
 			}
-		});
+		}
 	}
 }
 //#endregion
