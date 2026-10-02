@@ -47,7 +47,7 @@ Example of a valid JSON structure:
 	]
 }
 ```
-...and can be added in the **Library** (Add sheet → *From device* or *From a link*). Several files can be added at once; a broken file is reported and skipped while the others are still added. The whole library lives in the browser's local storage, which holds about 5 million characters; a sheet that does not fit is reported and not added.
+...and can be added in the **Library** (Add sheet → *From device* or *From a link*). Several files can be added at once; a broken file is reported and skipped while the others are still added. The library is kept in the browser's IndexedDB, one record per sheet, so its size is limited only by the browser's storage quota; a library saved by an older version in local storage is moved there on the first visit.
 
 Only this format is supported; the legacy formats of earlier versions are no longer read.
 
@@ -72,8 +72,8 @@ Ready-made sheets for manual testing live in `resources/examples/` and are serve
 | `invalid.json` | A broken sheet; add it together with others to see the error report |
 | `multilingual.json` | 330 questions in English, Russian, Armenian, German, French and Spanish, with long texts and several correct answers |
 | `accents.json` | Diacritics and other scripts; try `missisipi`, `massachusets`, `tchaikovski`, `kirgizstan`, `guernika`, `rythm`, `lodz`, `tromso`, `istanbul`, `ελλαδας`, `еще` |
-| `stress-10k.json` | 10 000 questions (about 3.2 M characters in storage) |
-| `stress-limit.json` | 14 220 questions, sized to about 90% of the storage; adding it next to `stress-10k` shows the storage error |
+| `stress-10k.json` | 10 000 questions |
+| `stress-14k.json` | 14 220 questions; together with `stress-10k` it exceeds what the old local-storage library could hold |
 - - -
 ## Development
 ```

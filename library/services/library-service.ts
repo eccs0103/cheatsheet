@@ -1,90 +1,92 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type BufferedCell } from "adaptive-extender/web";
 import { Library } from "../models/library.js";
-import { type Entry } from "../models/entry.js";
+import { Entry } from "../models/entry.js";
 import { Sheet } from "../models/sheet.js";
+import { ObjectStore } from "./object-store.js";
 
 //#region Library service
 export class LibraryService {
-	static #key: string = "Cheatsheet\\Library";
-	static #lock: boolean = true;
-	static #instance: LibraryService | null = null;
-	#cell: BufferedCell<typeof Library>;
+	static #legacy: string = "Cheatsheet\\Library";
+	#store: ObjectStore;
 
-	constructor() {
-		if (LibraryService.#lock) throw new TypeError("Illegal constructor");
+	constructor(store: ObjectStore) {
+		this.#store = store;
+	}
 
-		const key = LibraryService.#key;
+	static async open(): Promise<LibraryService> {
+		const library = new LibraryService(new ObjectStore("Cheatsheet", "Library"));
+		await library.#migrate();
+		return library;
+	}
+
+	// Libraries saved before IndexedDB live in one localStorage value; it is removed only after every entry is stored
+	async #migrate(): Promise<void> {
+		const key = LibraryService.#legacy;
+		const text = localStorage.getItem(key);
+		if (text === null) return;
+		let source: unknown;
 		try {
-			this.#cell = localStorage.openBufferedCell(key, Library, new Library([]));
+			source = JSON.parse(text);
 		} catch (reason) {
 			if (!(reason instanceof SyntaxError)) throw reason;
 			localStorage.removeItem(key);
-			this.#cell = localStorage.openBufferedCell(key, Library, new Library([]));
+			return;
 		}
-	}
-
-	static get instance(): LibraryService {
-		if (LibraryService.#instance === null) {
-			LibraryService.#lock = false;
-			LibraryService.#instance = new LibraryService();
-			LibraryService.#lock = true;
+		const { entries } = Library.import(source, "library");
+		for (const entry of entries) {
+			await this.#put(entry);
 		}
-		return LibraryService.#instance;
+		localStorage.removeItem(key);
 	}
 
-	get entries(): Entry[] {
-		return this.#cell.content.newest;
+	async list(): Promise<Entry[]> {
+		const values = await this.#store.values();
+		return values.map(value => Entry.import(value, "entry")).sort((left, right) => right.date.getTime() - left.date.getTime());
 	}
 
-	find(id: string): Entry | null {
-		return this.#cell.content.find(id);
+	async find(id: string): Promise<Entry | null> {
+		const value = await this.#store.get(id);
+		if (value === undefined) return null;
+		return Entry.import(value, "entry");
 	}
 
 	async add(files: readonly File[]): Promise<void> {
-		const cell = this.#cell;
-		const { content } = cell;
 		const errors: Error[] = [];
-		const ids: Set<string> = new Set();
 		for (const file of files) {
 			try {
-				ids.add(content.add(Sheet.import(JSON.parse(await file.text()), "sheet")).id);
+				await this.#put(Entry.of(Sheet.import(JSON.parse(await file.text()), "sheet")));
 			} catch (reason) {
 				errors.push(new Error(`${file.name}: ${Error.from(reason).message}`, { cause: reason }));
 			}
-		}
-		try {
-			await cell.save();
-		} catch (reason) {
-			content.remove(ids);
-			throw LibraryService.#explain(reason);
 		}
 		if (errors.length === 0) return;
 		throw new AggregateError(errors, `Unable to add ${errors.length} of ${files.length} sheet(s):\n${errors.map(error => error.message).join("\n")}`);
 	}
 
 	async insert(sheet: Sheet): Promise<void> {
-		const cell = this.#cell;
-		const { content } = cell;
-		const entry = content.add(sheet);
-		try {
-			await cell.save();
-		} catch (reason) {
-			content.remove(new Set([entry.id]));
-			throw LibraryService.#explain(reason);
-		}
+		await this.#put(Entry.of(sheet));
 	}
 
 	async replace(id: string, sheet: Sheet): Promise<void> {
-		const cell = this.#cell;
-		const { content } = cell;
-		const previous = content.replace(id, sheet);
+		const entry = await this.find(id);
+		if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+		entry.revise(sheet);
+		await this.#put(entry);
+	}
+
+	async remove(ids: ReadonlySet<string>): Promise<void> {
+		const store = this.#store;
+		for (const id of ids) {
+			await store.delete(id);
+		}
+	}
+
+	async #put(entry: Entry): Promise<void> {
 		try {
-			await cell.save();
+			await this.#store.put(entry.id, Entry.export(entry));
 		} catch (reason) {
-			content.replace(id, previous);
 			throw LibraryService.#explain(reason);
 		}
 	}
@@ -93,12 +95,6 @@ export class LibraryService {
 		const error = Error.from(reason);
 		if (error.name !== "QuotaExceededError") return error;
 		return new Error("Not enough browser storage for these sheets. Delete some sheets and try again.", { cause: reason });
-	}
-
-	async remove(ids: ReadonlySet<string>): Promise<void> {
-		const cell = this.#cell;
-		cell.content.remove(ids);
-		await cell.save();
 	}
 }
 //#endregion

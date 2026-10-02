@@ -35,6 +35,10 @@ export class Entry extends Model {
 		this.sheet = sheet;
 	}
 
+	static of(sheet: Sheet): Entry {
+		return new Entry(crypto.randomUUID(), new Date(), sheet);
+	}
+
 	get link(): string {
 		return `../search/?sheet=${encodeURIComponent(this.id)}`;
 	}

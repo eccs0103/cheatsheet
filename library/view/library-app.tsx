@@ -11,10 +11,11 @@ import { ActionsBar } from "./actions-bar.js";
 //#region Library app
 export interface LibraryAppProps {
 	library: LibraryService;
+	initial: Entry[];
 }
 
-export function LibraryApp({ library }: LibraryAppProps): ReactElement {
-	const [entries, setEntries] = useState<Entry[]>(() => library.entries);
+export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement {
+	const [entries, setEntries] = useState<Entry[]>(initial);
 	const [editing, setEditing] = useState<boolean>(false);
 	const [selection, setSelection] = useState<ReadonlySet<string>>(() => new Set());
 	const [adding, setAdding] = useState<boolean>(false);
@@ -22,8 +23,14 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 	const selected = entries.filter(entry => selection.has(entry.id));
 	const complete = entries.length > 0 && selected.length === entries.length;
 
-	const reload = (): void => {
-		const fresh = library.entries;
+	const reload = async (): Promise<void> => {
+		let fresh: Entry[];
+		try {
+			fresh = await library.list();
+		} catch (reason) {
+			window.alert(Error.from(reason).message);
+			return;
+		}
 		setEntries(fresh);
 		setSelection(new Set());
 		if (fresh.length > 0) return;
@@ -74,8 +81,8 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 					{entries.map(entry => <EntryRow key={entry.id} entry={entry} marked={selection.has(entry.id)} onMark={mark} />)}
 				</ul>
 			</main>
-			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />
-			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={reload} />
+			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={() => void reload()} />
+			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={() => void reload()} />
 		</>
 	);
 }

@@ -10,7 +10,6 @@ import { LibraryService } from "../services/library-service.js";
 import { LibraryApp } from "../view/library-app.js";
 
 const settings = SettingsService.instance;
-const library = LibraryService.instance;
 const { body } = document;
 
 //#region Library controller
@@ -19,8 +18,10 @@ class LibraryController extends Controller {
 		void AnalyticsController.launch();
 		settings.content.apply();
 
+		const library = await LibraryService.open();
+		const entries = await library.list();
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
-		createRoot(divRoot).render(<StrictMode><LibraryApp library={library} /></StrictMode>);
+		createRoot(divRoot).render(<StrictMode><LibraryApp library={library} initial={entries} /></StrictMode>);
 	}
 
 	async catch(error: Error): Promise<void> {

@@ -10,7 +10,6 @@ import { LibraryService } from "../../library/services/library-service.js";
 import { SearchApp } from "../view/search-app.js";
 
 const settings = SettingsService.instance;
-const library = LibraryService.instance;
 const { body } = document;
 
 //#region Search controller
@@ -22,7 +21,8 @@ class SearchController extends Controller {
 
 		const id = new URLSearchParams(location.search).get("sheet");
 		if (id === null) throw new ReferenceError("No sheet is chosen");
-		const entry = library.find(id);
+		const library = await LibraryService.open();
+		const entry = await library.find(id);
 		if (entry === null) throw new ReferenceError("The chosen sheet no longer exists");
 		const { sheet } = entry;
 		const { name } = sheet;

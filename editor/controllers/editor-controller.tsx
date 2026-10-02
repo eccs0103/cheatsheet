@@ -11,7 +11,6 @@ import { Sheet } from "../../library/models/sheet.js";
 import { EditorApp } from "../view/editor-app.js";
 
 const settings = SettingsService.instance;
-const library = LibraryService.instance;
 const { body } = document;
 
 //#region Editor controller
@@ -21,14 +20,15 @@ class EditorController extends Controller {
 		settings.content.apply();
 
 		const id = new URLSearchParams(location.search).get("sheet");
-		const initial = EditorController.#sheet(id);
+		const library = await LibraryService.open();
+		const initial = await EditorController.#sheet(library, id);
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
 		createRoot(divRoot).render(<StrictMode><EditorApp library={library} id={id} initial={initial} /></StrictMode>);
 	}
 
-	static #sheet(id: string | null): Sheet {
+	static async #sheet(library: LibraryService, id: string | null): Promise<Sheet> {
 		if (id === null) return new Sheet(String.empty, []);
-		const entry = library.find(id);
+		const entry = await library.find(id);
 		if (entry === null) throw new ReferenceError("The chosen sheet no longer exists");
 		const { sheet } = entry;
 		const { name } = sheet;
