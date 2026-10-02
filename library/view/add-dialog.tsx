@@ -72,21 +72,35 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 					<span className="icon with-padding small-padding">Close</span>
 				</button>
 			</div>
-			<div className="flex column with-gap with-inline-padding large-padding">
-				<input id="files" type="file" accept=".json,application/json" multiple hidden onChange={(event) => void upload(event)} />
-				<label htmlFor="files" role="button" className="depth rounded with-padding flex alt-center with-gap">
-					<span id="device" className="icon with-padding small-padding">Upload</span>
-					<span>Upload from device</span>
-				</label>
-				<form id="link" className="depth rounded with-padding flex alt-center with-gap" onSubmit={(event) => void pull(event)}>
-					<span id="cloud" className="icon with-padding small-padding">Link</span>
-					<input name="url" type="url" placeholder="Paste a link to a sheet" className="layer rounded with-padding" value={url} onChange={(event) => setUrl(event.currentTarget.value)} />
-					<button type="submit" className="with-padding" disabled={String.isWhitespace(url)}>Import</button>
-				</form>
-				<a id="write" href="../editor/" role="button" className="depth rounded with-padding flex alt-center with-gap">
-					<span className="icon with-padding small-padding">Write</span>
-					<span>Write in editor</span>
-				</a>
+			<div className="flex column with-inline-padding large-padding">
+				<section className="option">
+					<h4 className="title">From device</h4>
+					<span className="definition description">Choose one or more .json sheet files.</span>
+					<input id="files" type="file" accept=".json,application/json" multiple hidden onChange={(event) => void upload(event)} />
+					<label htmlFor="files" role="button" className="value rounded depth with-padding flex alt-center with-gap">
+						<span id="device" className="icon in-line">Upload</span>
+						<span>Upload</span>
+					</label>
+				</section>
+				<section className="option">
+					<h4 className="title">From a link</h4>
+					<span className="definition description">Paste the address of a .json sheet.</span>
+					<form id="link" className="grid-line flex alt-center with-gap" onSubmit={(event) => void pull(event)}>
+						<input name="url" type="url" placeholder="https://" className="depth rounded with-padding" value={url} onChange={(event) => setUrl(event.currentTarget.value)} />
+						<button type="submit" className="rounded depth with-padding flex alt-center with-gap" disabled={String.isWhitespace(url)}>
+							<span id="cloud" className="icon in-line">Import</span>
+							<span>Import</span>
+						</button>
+					</form>
+				</section>
+				<section className="option">
+					<h4 className="title">From scratch</h4>
+					<span className="definition description">Write a new sheet in the editor.</span>
+					<a id="write" href="../editor/" role="button" className="value rounded depth with-padding flex alt-center with-gap">
+						<span className="icon in-line">Write</span>
+						<span>Write</span>
+					</a>
+				</section>
 			</div>
 		</dialog>
 	);

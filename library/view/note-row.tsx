@@ -21,7 +21,7 @@ export function NoteRow({ note, marked, onMark }: NoteRowProps): ReactElement {
 					<span className="sheet-icon with-padding">
 						<span className="icon with-padding small-padding"></span>
 					</span>
-					<span className="sheet-title">{sheet.name}</span>
+					<span className="sheet-title" data-placeholder="Untitled">{sheet.name}</span>
 					<time className="sheet-date" dateTime={date.toISOString()}>{date.toLocaleString()}</time>
 				</a>
 			</label>

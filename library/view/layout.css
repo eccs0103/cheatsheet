@@ -44,8 +44,15 @@ a#return {
 	color: inherit;
 
 	& > span.icon {
-		--url: url(../assets/icons/arrow-left.svg);
+		--url: url(../../assets/icons/arrow-left.svg);
 	}
+}
+
+[data-placeholder]:empty::before {
+	content: attr(data-placeholder);
+	color: var(--color-light-negative);
+	font-style: italic;
+	font-weight: normal;
 }
 
 main > p.description {

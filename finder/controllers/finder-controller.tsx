@@ -25,8 +25,9 @@ class FinderController extends Controller {
 		const note = library.find(id);
 		if (note === null) throw new ReferenceError("The chosen sheet no longer exists");
 		const { sheet } = note;
+		const { name } = sheet;
 
-		document.title = `${sheet.name} - Cheatsheet`;
+		if (name !== null) document.title = `${name} - Cheatsheet`;
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
 		createRoot(divRoot).render(<StrictMode><FinderApp sheet={sheet} settings={content} /></StrictMode>);
 	}

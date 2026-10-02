@@ -67,7 +67,7 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 				</button>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				{sheet.polls.length === 0 && <p className="description">No questions yet. Type the first one below.</p>}
+				<p className="description" hidden={sheet.polls.length > 0}>No questions yet. Type the first one below.</p>
 				{sheet.polls.map((poll, index) => <PollEditor key={index} index={index} poll={poll} focused={appended} onChange={refresh} onRemove={discard} />)}
 			</main>
 			<footer className="layer rounded in-bottom with-padding">

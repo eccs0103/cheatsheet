@@ -17,8 +17,8 @@ export function FinderApp({ sheet, settings }: FinderAppProps): ReactElement {
 	const [text, setText] = useState<string>(String.empty);
 	const query = useMemo(() => new Query(text, settings.sensitive, settings.skipping), [text, settings]);
 	const { polls } = sheet;
-	const cards = polls.map((poll, index) => query.matches(poll.question) && <PollCard key={index} number={index + 1} poll={poll} query={query} incorrect={settings.incorrect} />);
-	const count = cards.filter(card => card !== false).length;
+	const matches = polls.map(poll => query.matches(poll.question));
+	const count = matches.filter(match => match).length;
 
 	return (
 		<>
@@ -26,15 +26,15 @@ export function FinderApp({ sheet, settings }: FinderAppProps): ReactElement {
 				<a id="return" href="../library/" className="with-padding flex alt-center with-gap" title="Return">
 					<span className="icon with-padding small-padding">Return</span>
 				</a>
-				<h3 id="title">{sheet.name}</h3>
+				<h3 id="title" data-placeholder="Untitled">{sheet.name}</h3>
 				<span id="count" className="description with-inline-padding large-padding" title="Matching questions">{count} / {polls.length}</span>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				{count === 0 && <p className="description">No questions match this search.</p>}
-				{cards}
+				<p className="description" hidden={count > 0}>No questions match this search.</p>
+				{polls.map((poll, index) => <PollCard key={index} number={index + 1} poll={poll} query={query} incorrect={settings.incorrect} hidden={!matches[index]} />)}
 			</main>
-			<footer className="layer rounded in-bottom with-padding">
-				<label className="depth rounded flex alt-center">
+			<footer className="layer rounded in-bottom">
+				<label className="with-padding flex alt-center with-gap">
 					<span className="icon with-padding small-padding">Search</span>
 					<input id="search" type="text" placeholder="Type part of a question" autoFocus value={text} onChange={(event) => setText(event.currentTarget.value)} />
 				</label>

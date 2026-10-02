@@ -58,7 +58,7 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 				</label>
 				<h3 className="with-inline-padding">
 					<span>Library</span>
-					{editing && <span className="description"> · {selected.length} selected</span>}
+					<span className="description"> · {selected.length} selected</span>
 				</h3>
 				<input id="editing" type="checkbox" hidden checked={editing} disabled={notes.length === 0} onChange={toggle} />
 				<label htmlFor="editing" className="with-padding flex alt-center with-gap" title="Edit">
@@ -69,12 +69,12 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 				</a>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				{notes.length === 0 && <p className="description">No sheets yet. Add one to get started.</p>}
+				<p className="description" hidden={notes.length > 0}>No sheets yet. Add one to get started.</p>
 				<ul id="notes" className="flex column with-block-gap">
 					{notes.map(note => <NoteRow key={note.id} note={note} marked={selection.has(note.id)} onMark={mark} />)}
 				</ul>
 			</main>
-			<ActionsBar library={library} editing={editing} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />
+			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />
 			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={reload} />
 		</>
 	);

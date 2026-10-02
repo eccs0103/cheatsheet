@@ -10,7 +10,8 @@ label[for="select-all"] {
 	}
 }
 
-header:not(:has(input#editing:checked)) > label[for="select-all"] {
+header:not(:has(input#editing:checked)) > label[for="select-all"],
+header:not(:has(input#editing:checked)) > h3 > span.description {
 	display: none;
 }
 
@@ -130,6 +131,11 @@ footer {
 	grid-auto-columns: 1fr;
 }
 
+header:has(input#editing:checked) ~ footer > button#open-add,
+header:not(:has(input#editing:checked)) ~ footer > button:not(#open-add) {
+	display: none;
+}
+
 button#open-add span.icon {
 	--url: url(../../assets/icons/plus.svg);
 }
@@ -198,9 +204,13 @@ span.icon#cloud {
 	--url: url(../../assets/icons/cloud-arrow-down.svg);
 }
 
-form#link > input {
-	flex-grow: 1;
-	min-width: 0;
+form#link {
+	justify-self: stretch;
+
+	& > input {
+		flex-grow: 1;
+		min-width: 0;
+	}
 }
 
 a#write {

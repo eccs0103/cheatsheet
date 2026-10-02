@@ -34,7 +34,7 @@ article.poll {
 }
 
 li.case {
-	padding: var(--size-separator) var(--size-gap) var(--size-separator) var(--size-small-gap);
+	column-gap: var(--size-small-gap);
 
 	& > span.icon {
 		height: var(--size-small-standart);
@@ -67,7 +67,6 @@ span.question mark {
 
 footer > label {
 	cursor: text;
-	padding-inline-start: var(--size-small-gap);
 
 	& > span.icon {
 		--url: url(../../assets/icons/magnifying-glass.svg);

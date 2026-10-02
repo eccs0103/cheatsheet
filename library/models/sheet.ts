@@ -32,10 +32,9 @@ export class Sheet extends Model {
 		this.polls = polls;
 	}
 
-	get name(): string {
+	get name(): string | null {
 		const title = this.title.trim();
-		if (String.isEmpty(title)) return "Untitled";
-		return title;
+		return title.insteadEmpty(null);
 	}
 
 	get complete(): boolean {
@@ -60,7 +59,9 @@ export class Sheet extends Model {
 
 	toFile(): File {
 		const text = JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
-		return new File([text], `${this.name}.json`, { type: "application/json" });
+		const { name } = this;
+		if (name === null) return new File([text], "sheet.json", { type: "application/json" });
+		return new File([text], `${name}.json`, { type: "application/json" });
 	}
 }
 //#endregion

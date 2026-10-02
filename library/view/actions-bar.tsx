@@ -9,13 +9,12 @@ import { FileDownload } from "./file-download.js";
 //#region Actions bar
 export interface ActionsBarProps {
 	library: LibraryService;
-	editing: boolean;
 	selected: readonly Note[];
 	onAdd(): void;
 	onChange(): void;
 }
 
-export function ActionsBar({ library, editing, selected, onAdd, onChange }: ActionsBarProps): ReactElement {
+export function ActionsBar({ library, selected, onAdd, onChange }: ActionsBarProps): ReactElement {
 	const files = (): File[] => selected.map(note => note.sheet.toFile());
 
 	const edit = (): void => {
@@ -50,17 +49,12 @@ export function ActionsBar({ library, editing, selected, onAdd, onChange }: Acti
 		}
 	};
 
-	if (!editing) return (
-		<footer className="layer rounded in-bottom">
-			<button id="open-add" type="button" className="with-padding large-padding flex center with-gap" onClick={onAdd}>
-				<span className="icon with-padding small-padding">Add</span>
-				<span>Add sheet</span>
-			</button>
-		</footer>
-	);
-
 	return (
 		<footer className="layer rounded in-bottom">
+			<button id="open-add" type="button" className="with-padding flex column center" title="Add sheet" onClick={onAdd}>
+				<span className="icon with-padding small-padding">Add</span>
+				<span className="font-smaller-3">Add sheet</span>
+			</button>
 			<button id="edit" type="button" className="with-padding flex column center" title="Edit selection" disabled={selected.length !== 1} onClick={edit}>
 				<span className="icon with-padding small-padding">Edit</span>
 				<span className="font-smaller-3">Edit</span>
