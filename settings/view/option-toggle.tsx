@@ -16,7 +16,7 @@ export function OptionToggle({ id, title, definition, checked, onToggle }: Optio
 	return (
 		<section className="option">
 			<h4 className="title">{title}</h4>
-			<dfn className="definition">{definition}</dfn>
+			<span className="definition description">{definition}</span>
 			<input id={id} type="checkbox" hidden checked={checked} onChange={(event) => onToggle(event.currentTarget.checked)} />
 			<label htmlFor={id} role="checkbox" className="value toggle depth">
 				<span className="knob layer"></span>

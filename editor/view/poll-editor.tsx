@@ -11,44 +11,44 @@ import { InsertRow } from "./insert-row.js";
 export interface PollEditorProps {
 	index: number;
 	poll: Poll;
+	focused: boolean;
 	onChange(): void;
 	onRemove(poll: Poll): void;
 }
 
-export function PollEditor({ index, poll, onChange, onRemove }: PollEditorProps): ReactElement {
-	const handleQuestion = (event: ChangeEvent<HTMLInputElement>): void => {
+export function PollEditor({ index, poll, focused, onChange, onRemove }: PollEditorProps): ReactElement {
+	const rephrase = (event: ChangeEvent<HTMLInputElement>): void => {
 		poll.question = event.currentTarget.value;
 		onChange();
 	};
 
-	const handleAppend = (text: string): void => {
+	const append = (text: string): void => {
 		poll.append(text);
 		onChange();
 	};
 
-	const handleRemoveCase = (item: Case): void => {
+	const drop = (item: Case): void => {
 		poll.remove(item);
 		onChange();
 	};
 
-	const handleRemove = (): void => {
+	const discard = (): void => {
 		if (!window.confirm("The poll cannot be restored. Are you sure?")) return;
 		onRemove(poll);
 	};
 
 	return (
-		<>
-			<div className="poll">
-				<input type="text" required placeholder="Question" className="question with-padding" value={poll.question} onChange={handleQuestion} />
-				<div className="cases">
-					{poll.cases.map((item, position) => <CaseEditor key={position} id={`mark-${index}-${position}`} item={item} onChange={onChange} onRemove={handleRemoveCase} />)}
-					<InsertRow placeholder="Input the case" title="Add case" small={true} onInsert={handleAppend} />
-				</div>
-			</div>
-			<button type="button" className="remove flex alt-center" title="Delete poll" onClick={handleRemove}>
+		<article className="poll layer rounded with-padding">
+			<span className="number description">{index + 1}</span>
+			<input type="text" required placeholder="Question" className="question depth rounded with-padding" value={poll.question} onChange={rephrase} />
+			<button type="button" className="remove alert flex alt-center" title="Delete poll" onClick={discard}>
 				<span className="icon with-padding small-padding">Delete poll</span>
 			</button>
-		</>
+			<div className="cases flex column with-block-gap small-gap">
+				{poll.cases.map((item, position) => <CaseEditor key={position} id={`mark-${index}-${position}`} item={item} onChange={onChange} onRemove={drop} />)}
+				<InsertRow placeholder="Input the case" title="Add case" small={true} focused={focused} onInsert={append} />
+			</div>
+		</article>
 	);
 }
 //#endregion

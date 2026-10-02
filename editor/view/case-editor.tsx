@@ -13,34 +13,32 @@ export interface CaseEditorProps {
 }
 
 export function CaseEditor({ id, item, onChange, onRemove }: CaseEditorProps): ReactElement {
-	const handleToggle = (): void => {
+	const toggle = (): void => {
 		item.toggle();
 		onChange();
 	};
 
-	const handleText = (event: ChangeEvent<HTMLInputElement>): void => {
+	const rewrite = (event: ChangeEvent<HTMLInputElement>): void => {
 		item.text = event.currentTarget.value;
 		onChange();
 	};
 
-	const handleRemove = (): void => {
+	const remove = (): void => {
 		if (!window.confirm("The case cannot be restored. Are you sure?")) return;
 		onRemove(item);
 	};
 
 	return (
-		<>
-			<div className="case">
-				<input id={id} type="checkbox" hidden checked={item.correctness} onChange={handleToggle} />
-				<label htmlFor={id} role="checkbox" className="check flex alt-center" title="Mark as correct">
-					<span className="icon in-line">Mark</span>
-				</label>
-				<input type="text" required placeholder="Case" className="with-padding" value={item.text} onChange={handleText} />
-			</div>
-			<button type="button" className="remove flex alt-center" title="Delete case" onClick={handleRemove}>
-				<span className="icon in-line">Delete case</span>
+		<div className="case flex alt-center with-inline-gap small-gap">
+			<input id={id} type="checkbox" hidden checked={item.correctness} onChange={toggle} />
+			<label htmlFor={id} role="checkbox" aria-checked={item.correctness} className="check flex alt-center" title="Mark as correct">
+				<span className="icon with-padding small-padding">Mark</span>
+			</label>
+			<input type="text" required placeholder="Case" className="depth rounded with-padding" value={item.text} onChange={rewrite} />
+			<button type="button" className="remove flex alt-center" title="Delete case" onClick={remove}>
+				<span className="icon with-padding small-padding">Delete case</span>
 			</button>
-		</>
+		</div>
 	);
 }
 //#endregion

@@ -17,19 +17,21 @@ export interface EditorAppProps {
 
 export function EditorApp({ library, id, initial }: EditorAppProps): ReactElement {
 	const [sheet] = useState<Sheet>(initial);
+	const [appended, setAppended] = useState<boolean>(false);
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
 
-	const handleTitle = (event: ChangeEvent<HTMLInputElement>): void => {
+	const retitle = (event: ChangeEvent<HTMLInputElement>): void => {
 		sheet.title = event.currentTarget.value;
 		refresh();
 	};
 
-	const handleAppend = (question: string): void => {
+	const append = (question: string): void => {
 		sheet.append(question);
+		setAppended(true);
 		refresh();
 	};
 
-	const handleRemove = (poll: Poll): void => {
+	const discard = (poll: Poll): void => {
 		sheet.remove(poll);
 		refresh();
 	};
@@ -42,7 +44,7 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		await library.replace(id, sheet);
 	};
 
-	const handleSave = async (): Promise<void> => {
+	const save = async (): Promise<void> => {
 		try {
 			await store();
 			location.assign("../library/");
@@ -57,19 +59,20 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 				<a id="return" href="../library/" className="with-padding flex alt-center with-gap" title="Return">
 					<span className="icon with-padding small-padding">Return</span>
 				</a>
-				<label className="with-padding">
-					<input id="title" type="text" placeholder="Input the title" value={sheet.title} onChange={handleTitle} />
+				<label className="with-block-padding">
+					<input id="title" type="text" placeholder="Input the title" className="depth rounded with-padding" value={sheet.title} onChange={retitle} />
 				</label>
-				<button id="save" type="button" className="with-padding flex alt-center with-gap" title="Save" disabled={!sheet.complete} onClick={() => void handleSave()}>
+				<button id="save" type="button" className="highlight with-padding flex alt-center with-gap" title="Save" disabled={!sheet.complete} onClick={() => void save()}>
 					<span className="icon with-padding small-padding">Save</span>
 				</button>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				<div id="polls" className="layer rounded with-padding">
-					{sheet.polls.map((poll, index) => <PollEditor key={index} index={index} poll={poll} onChange={refresh} onRemove={handleRemove} />)}
-					<InsertRow placeholder="Input the question" title="Add question" small={false} onInsert={handleAppend} />
-				</div>
+				{sheet.polls.length === 0 && <p className="description">No questions yet. Type the first one below.</p>}
+				{sheet.polls.map((poll, index) => <PollEditor key={index} index={index} poll={poll} focused={appended} onChange={refresh} onRemove={discard} />)}
 			</main>
+			<footer className="layer rounded in-bottom with-padding">
+				<InsertRow placeholder="Input the question" title="Add question" small={false} focused={false} onInsert={append} />
+			</footer>
 		</>
 	);
 }

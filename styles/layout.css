@@ -1,0 +1,54 @@
+:root {
+	--size-column: min(100%, calc(24 * var(--size-standart)));
+}
+
+body {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	justify-items: center;
+}
+
+header,
+footer {
+	inline-size: var(--size-column);
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	z-index: 1;
+}
+
+header {
+	grid-row: 1;
+}
+
+footer {
+	grid-row: 3;
+}
+
+header > h3 {
+	min-inline-size: 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+main {
+	grid-row: 2;
+	inline-size: var(--size-column);
+	max-block-size: 100%;
+	overflow: hidden auto;
+}
+
+a#return {
+	color: inherit;
+
+	& > span.icon {
+		--url: url(../assets/icons/arrow-left.svg);
+	}
+}
+
+main > p.description {
+	text-align: center;
+	padding-block: var(--size-large-gap);
+}

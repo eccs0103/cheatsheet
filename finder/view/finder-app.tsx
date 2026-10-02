@@ -16,6 +16,9 @@ export interface FinderAppProps {
 export function FinderApp({ sheet, settings }: FinderAppProps): ReactElement {
 	const [text, setText] = useState<string>(String.empty);
 	const query = useMemo(() => new Query(text, settings.sensitive, settings.skipping), [text, settings]);
+	const { polls } = sheet;
+	const cards = polls.map((poll, index) => query.matches(poll.question) && <PollCard key={index} number={index + 1} poll={poll} query={query} incorrect={settings.incorrect} />);
+	const count = cards.filter(card => card !== false).length;
 
 	return (
 		<>
@@ -24,13 +27,16 @@ export function FinderApp({ sheet, settings }: FinderAppProps): ReactElement {
 					<span className="icon with-padding small-padding">Return</span>
 				</a>
 				<h3 id="title">{sheet.name}</h3>
+				<span id="count" className="description with-inline-padding large-padding" title="Matching questions">{count} / {polls.length}</span>
 			</header>
 			<main className="with-padding flex column with-block-gap">
-				{sheet.polls.map((poll, index) => <PollCard key={index} poll={poll} query={query} incorrect={settings.incorrect} />)}
+				{count === 0 && <p className="description">No questions match this search.</p>}
+				{cards}
 			</main>
-			<footer className="layer rounded in-bottom">
-				<label className="with-padding flex">
-					<input id="search" type="text" placeholder="Input for search" autoFocus value={text} onChange={(event) => setText(event.currentTarget.value)} />
+			<footer className="layer rounded in-bottom with-padding">
+				<label className="depth rounded flex alt-center">
+					<span className="icon with-padding small-padding">Search</span>
+					<input id="search" type="text" placeholder="Type part of a question" autoFocus value={text} onChange={(event) => setText(event.currentTarget.value)} />
 				</label>
 			</footer>
 		</>

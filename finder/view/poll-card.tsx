@@ -7,20 +7,23 @@ import { type Query } from "../services/query.js";
 
 //#region Poll card
 export interface PollCardProps {
+	number: number;
 	poll: Poll;
 	query: Query;
 	incorrect: boolean;
 }
 
-export function PollCard({ poll, query, incorrect }: PollCardProps): ReactElement {
+export function PollCard({ number, poll, query, incorrect }: PollCardProps): ReactElement {
 	const { question } = poll;
 	return (
-		<article className="poll layer rounded with-padding with-inline-gap" hidden={!query.matches(question)}>
+		<article className="poll layer rounded with-padding">
+			<span className="number description">{number}</span>
 			<span className="question">{query.split(question).map((segment, index) => segment.toElement(index))}</span>
-			<ul className="cases">
+			<ul className="cases flex column with-block-gap small-gap">
 				{poll.visible(incorrect).map((item, index) => (
-					<li key={index} className="case with-inline-gap">
-						<span className={item.correctness ? "highlight" : "alert"}>{item.text}</span>
+					<li key={index} className={item.correctness ? "case correct highlight depth rounded flex alt-center" : "case incorrect description depth rounded flex alt-center"}>
+						<span className="icon with-padding small-padding">{item.correctness ? "Correct" : "Incorrect"}</span>
+						<span className="text">{item.text}</span>
 					</li>
 				))}
 			</ul>

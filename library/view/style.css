@@ -1,23 +1,9 @@
-body {
-	position: fixed;
-	inset: 0;
-	display: grid;
-	grid-template-rows: auto 1fr;
-	justify-items: center;
-}
-
 header {
-	min-inline-size: 100vmin;
-	max-inline-size: 100vmax;
-	inline-size: 100%;
-	display: grid;
-	grid-template-columns: 1fr auto auto;
-	place-items: center;
+	grid-template-columns: auto 1fr auto auto;
 }
 
 label[for="select-all"] {
 	grid-column: 1;
-	justify-self: start;
 
 	& > span.icon {
 		--url: url(../../assets/icons/square.svg);
@@ -33,11 +19,20 @@ input#select-all:checked + label[for="select-all"] {
 
 	& > span.icon {
 		--url: url(../../assets/icons/square-check.svg);
+		color: var(--color-highlight);
+	}
+}
+
+header > h3 {
+	grid-column: 2;
+
+	& > span.description {
+		font-weight: normal;
 	}
 }
 
 label[for="editing"] {
-	grid-column: 2;
+	grid-column: 3;
 
 	& > span.icon {
 		--url: url(../../assets/icons/pencil.svg);
@@ -53,7 +48,7 @@ input#editing:checked + label[for="editing"] {
 }
 
 a#settings {
-	grid-column: 3;
+	grid-column: 4;
 	color: inherit;
 
 	& > span.icon {
@@ -61,30 +56,29 @@ a#settings {
 	}
 }
 
-main {
-	min-inline-size: 100vmin;
-	max-inline-size: 100vmin;
-	max-block-size: 100%;
-	overflow: hidden auto;
-}
-
 ul#notes {
 	list-style: none;
+
+	&:not(:has(> li)) {
+		display: none;
+	}
 }
 
 label.note {
-	display: grid;
-	grid-template-columns: 1fr auto;
-	align-items: center;
+	display: block;
 }
 
 label.note > a.sheet {
 	display: grid;
 	grid-template:
-		'sheet-icon-area	sheet-title-area' 1fr
-		'sheet-icon-area	sheet-date-area' 1fr
+		'sheet-icon-area	sheet-title-area' auto
+		'sheet-icon-area	sheet-date-area' auto
 		/ auto 1fr
 	;
+	align-items: center;
+	column-gap: var(--size-small-gap);
+	padding-inline-end: var(--size-large-gap);
+	color: inherit;
 
 	& > .sheet-icon {
 		grid-area: sheet-icon-area;
@@ -98,15 +92,22 @@ label.note > a.sheet {
 	& > .sheet-title {
 		grid-area: sheet-title-area;
 		align-self: end;
+		font-weight: 600;
+		min-width: 0;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	& > .sheet-date {
 		grid-area: sheet-date-area;
 		align-self: start;
+		font-size: 0.8em;
 	}
 }
 
 header:has(input#editing:checked) ~ main label.note {
+	cursor: pointer;
+
 	& > a.sheet {
 		pointer-events: none;
 	}
@@ -117,50 +118,20 @@ header:has(input#editing:checked) ~ main label.note {
 
 	& > input:checked + a.sheet > .sheet-icon > span.icon {
 		--url: url(../../assets/icons/square-check.svg);
+		color: var(--color-highlight);
+	}
+
+	&:has(> input:checked) {
+		outline: var(--size-separator) solid var(--color-highlight);
 	}
 }
 
-div.float-section {
-	position: absolute;
-	right: var(--size-large-gap);
-	bottom: var(--size-large-gap);
-	width: fit-content;
-	height: fit-content;
-	border-radius: 50vmin;
-	overflow: hidden;
-}
-
-header:has(input#editing:checked) ~ main div.float-section button#open-add {
-	display: none;
+footer {
+	grid-auto-columns: 1fr;
 }
 
 button#open-add span.icon {
 	--url: url(../../assets/icons/plus.svg);
-}
-
-header:not(:has(input#editing:checked)) ~ main div.float-section button#open-actions {
-	display: none;
-}
-
-button#open-actions span.icon {
-	--url: url(../../assets/icons/bars.svg);
-}
-
-span.icon#device {
-	--url: url(../../assets/icons/laptop.svg);
-}
-
-span.icon#cloud {
-	--url: url(../../assets/icons/cloud-arrow-down.svg);
-}
-
-form#link > input {
-	flex-grow: 1;
-	min-width: 0;
-}
-
-a#write span.icon {
-	--url: url(../../assets/icons/file-pen.svg);
 }
 
 button#edit span.icon {
@@ -177,4 +148,65 @@ button#share span.icon {
 
 button#delete span.icon {
 	--url: url(../../assets/icons/trash.svg);
+}
+
+dialog#add {
+	position: absolute;
+	min-width: 0;
+	width: clamp(calc(10 * var(--size-standart)), 40vw, calc(20 * var(--size-standart)));
+	max-width: 100%;
+	max-height: 100%;
+	overflow: hidden auto;
+	padding-bottom: var(--size-large-gap);
+
+	& > div:first-of-type {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		opacity: 0.9;
+		justify-content: space-between;
+	}
+}
+
+@media screen and (orientation: portrait) {
+	dialog#add {
+		inset: auto 0 0 0;
+		width: 100%;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	dialog#add {
+		inset: 0 0 0 auto;
+		height: 100%;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+}
+
+button#close-add > span.icon {
+	--url: url(../../assets/icons/xmark.svg);
+}
+
+span.icon#device {
+	--url: url(../../assets/icons/laptop.svg);
+}
+
+span.icon#cloud {
+	--url: url(../../assets/icons/cloud-arrow-down.svg);
+}
+
+form#link > input {
+	flex-grow: 1;
+	min-width: 0;
+}
+
+a#write {
+	color: inherit;
+
+	& span.icon {
+		--url: url(../../assets/icons/file-pen.svg);
+	}
 }

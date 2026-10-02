@@ -6,15 +6,8 @@ import { type Note } from "../models/note.js";
 import { type LibraryService } from "../services/library-service.js";
 import { NoteRow } from "./note-row.js";
 import { AddDialog } from "./add-dialog.js";
-import { ActionsDialog } from "./actions-dialog.js";
+import { ActionsBar } from "./actions-bar.js";
 
-//#region Panel
-enum Panel {
-	none = "none",
-	add = "add",
-	actions = "actions",
-}
-//#endregion
 //#region Library app
 export interface LibraryAppProps {
 	library: LibraryService;
@@ -24,12 +17,12 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 	const [notes, setNotes] = useState<Note[]>(() => library.notes);
 	const [editing, setEditing] = useState<boolean>(false);
 	const [selection, setSelection] = useState<ReadonlySet<string>>(() => new Set());
-	const [panel, setPanel] = useState<Panel>(Panel.none);
+	const [adding, setAdding] = useState<boolean>(false);
 
 	const selected = notes.filter(note => selection.has(note.id));
 	const complete = notes.length > 0 && selected.length === notes.length;
 
-	const handleChange = (): void => {
+	const reload = (): void => {
 		const fresh = library.notes;
 		setNotes(fresh);
 		setSelection(new Set());
@@ -37,12 +30,12 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 		setEditing(false);
 	};
 
-	const handleEditing = (): void => {
+	const toggle = (): void => {
 		setEditing(!editing);
 		setSelection(new Set());
 	};
 
-	const handleSelectAll = (): void => {
+	const select = (): void => {
 		if (complete) {
 			setSelection(new Set());
 			return;
@@ -50,22 +43,24 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 		setSelection(new Set(notes.map(note => note.id)));
 	};
 
-	const handleMark = (id: string): void => {
+	const mark = (id: string): void => {
 		const next = new Set(selection);
 		if (!next.delete(id)) next.add(id);
 		setSelection(next);
 	};
 
-	const handleClose = (): void => setPanel(Panel.none);
-
 	return (
 		<>
 			<header className="layer rounded in-top">
-				<input id="select-all" type="checkbox" hidden checked={complete} onChange={handleSelectAll} />
+				<input id="select-all" type="checkbox" hidden checked={complete} onChange={select} />
 				<label htmlFor="select-all" className="with-padding flex alt-center with-gap" title="Mark all">
 					<span className="icon with-padding small-padding">Mark all</span>
 				</label>
-				<input id="editing" type="checkbox" hidden checked={editing} onChange={handleEditing} />
+				<h3 className="with-inline-padding">
+					<span>Library</span>
+					{editing && <span className="description"> · {selected.length} selected</span>}
+				</h3>
+				<input id="editing" type="checkbox" hidden checked={editing} disabled={notes.length === 0} onChange={toggle} />
 				<label htmlFor="editing" className="with-padding flex alt-center with-gap" title="Edit">
 					<span className="icon with-padding small-padding">Edit</span>
 				</label>
@@ -74,24 +69,13 @@ export function LibraryApp({ library }: LibraryAppProps): ReactElement {
 				</a>
 			</header>
 			<main className="with-padding flex column with-block-gap">
+				{notes.length === 0 && <p className="description">No sheets yet. Add one to get started.</p>}
 				<ul id="notes" className="flex column with-block-gap">
-					{notes.map(note => <NoteRow key={note.id} note={note} marked={selection.has(note.id)} onMark={handleMark} />)}
+					{notes.map(note => <NoteRow key={note.id} note={note} marked={selection.has(note.id)} onMark={mark} />)}
 				</ul>
-				<div className="float-section">
-					<button id="open-add" type="button" className="layer with-padding large-padding flex alt-center with-gap" title="Add" onClick={() => setPanel(Panel.add)}>
-						<span className="with-padding flex">
-							<span className="icon with-padding small-padding">Add</span>
-						</span>
-					</button>
-					<button id="open-actions" type="button" className="layer with-padding large-padding flex alt-center with-gap" title="Actions" onClick={() => setPanel(Panel.actions)}>
-						<span className="with-padding flex">
-							<span className="icon with-padding small-padding">Actions</span>
-						</span>
-					</button>
-				</div>
 			</main>
-			<AddDialog library={library} open={panel === Panel.add} onClose={handleClose} onChange={handleChange} />
-			<ActionsDialog library={library} selected={selected} open={panel === Panel.actions} onClose={handleClose} onChange={handleChange} />
+			<ActionsBar library={library} editing={editing} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />
+			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={reload} />
 		</>
 	);
 }
