@@ -60,8 +60,7 @@ export class Sheet extends Model {
 	toFile(): File {
 		const text = JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
 		const { name } = this;
-		if (name === null) return new File([text], "sheet.json", { type: "application/json" });
-		return new File([text], `${name}.json`, { type: "application/json" });
+		return new File([text], name ?? String.empty, { type: "application/json" });
 	}
 }
 //#endregion
