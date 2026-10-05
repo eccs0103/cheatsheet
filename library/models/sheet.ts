@@ -33,8 +33,7 @@ export class Sheet extends Model {
 	}
 
 	get name(): string | null {
-		const title = this.title.trim();
-		return title.insteadEmpty(null);
+		return this.title.insteadWhitespace(null);
 	}
 
 	get complete(): boolean {
