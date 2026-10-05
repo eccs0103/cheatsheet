@@ -19,6 +19,16 @@ class LibraryController extends Controller {
 		settings.content.apply();
 
 		const library = await LibraryService.open();
+		const source = new URLSearchParams(location.search).get("import");
+		if (source !== null) {
+			try {
+				const entry = await library.pull(new URL(source));
+				location.replace(entry.link);
+				return;
+			} catch (reason) {
+				window.alert(Error.from(reason).message);
+			}
+		}
 		const entries = await library.list();
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
 		createRoot(divRoot).render(<StrictMode><LibraryApp library={library} initial={entries} /></StrictMode>);

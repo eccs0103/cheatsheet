@@ -50,10 +50,7 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 	const pull = async (event: SubmitEvent<HTMLFormElement>): Promise<void> => {
 		event.preventDefault();
 		try {
-			const address = new URL(url);
-			const response = await fetch(address);
-			if (!response.ok) throw new ReferenceError(`Unable to download the sheet: ${response.status} ${response.statusText}`);
-			await library.add([new File([await response.blob()], address.href)]);
+			await library.pull(new URL(url));
 			setUrl(String.empty);
 			onClose();
 		} catch (reason) {

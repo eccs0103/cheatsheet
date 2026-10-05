@@ -67,6 +67,23 @@ export class LibraryService {
 		throw new AggregateError(errors, `Unable to add ${errors.length} of ${files.length} sheet(s):\n${errors.map(error => error.message).join("\n")}`);
 	}
 
+	// The source address is the entry id, so the same link refreshes its sheet instead of adding a copy; `no-cache` lets the browser revalidate by ETag, so an unchanged sheet is not downloaded again
+	// ponytail: a local edit to a linked sheet is overwritten on the next pull even when the source is unchanged; store the ETag on the entry if that matters
+	async pull(address: Readonly<URL>): Promise<Entry> {
+		const response = await fetch(address, { cache: "no-cache" });
+		if (!response.ok) throw new ReferenceError(`Unable to download the sheet: ${response.status} ${response.statusText}`);
+		const sheet = Sheet.import(await response.json(), "sheet");
+		const { href } = address;
+		const entry = await this.find(href);
+		if (entry !== null) {
+			await this.replace(href, sheet);
+			return entry;
+		}
+		const fresh = new Entry(href, new Date(), sheet);
+		await LibraryService.#guard(this.#store.insert(fresh));
+		return fresh;
+	}
+
 	async insert(sheet: Sheet): Promise<void> {
 		await LibraryService.#guard(this.#store.insert(Entry.of(sheet)));
 	}
