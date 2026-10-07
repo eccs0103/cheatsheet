@@ -8,6 +8,8 @@ span#count {
 }
 
 article.question {
+	/* A card skipped by content-visibility has no content to hold its height, so the scrolling column must not shrink it */
+	flex-shrink: 0;
 	content-visibility: auto;
 	contain-intrinsic-size: auto 6em;
 	display: grid;

@@ -16,9 +16,7 @@ Ready-made sheets for manual testing live in `resources/examples/` and are serve
 | File                             | What it tests                                                                                                                                                   |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `capitals.json`, `untitled.json` | A small sheet, and one without a title                                                                                                                          |
-| `large.json`                     | About a hundred similar questions                                                                                                                               |
 | `invalid.json`                   | A broken sheet; add it together with others to see the error report                                                                                             |
 | `multilingual.json`              | 330 questions in English, Russian, Armenian, German, French and Spanish, with long texts and several correct answers                                            |
 | `accents.json`                   | Diacritics and other scripts; try `missisipi`, `massachusets`, `tchaikovski`, `kirgizstan`, `guernika`, `rythm`, `lodz`, `tromso`, `istanbul`, `ελλαδας`, `еще` |
-| `stress-10k.json`                | 10 000 questions                                                                                                                                                |
-| `stress-14k.json`                | 14 220 questions; together with `stress-10k` it exceeds what the old local-storage library could hold                                                           |
+| `stress.json`                    | 14 000 giant questions (several long sentences, 4–8 answers each, 22 MB); on its own it exceeds what the old local-storage library could hold                   |

@@ -1,11 +1,11 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type ReactElement, useCallback, useReducer, useState } from "react";
+import { type ChangeEvent, type ReactElement, type RefObject, startTransition, useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { type Question } from "../../library/models/question.js";
 import { type Sheet } from "../../library/models/sheet.js";
 import { type LibraryService } from "../../library/services/library-service.js";
-import { QuestionBlock } from "./question-block.js";
+import { QuestionEditor } from "./question-editor.js";
 import { InsertRow } from "./insert-row.js";
 import { Keys } from "./keys.js";
 
@@ -17,12 +17,16 @@ export interface EditorAppProps {
 }
 
 export function EditorApp({ library, id, initial }: EditorAppProps): ReactElement {
-	const size = 50;
+	const step = 50;
 	const [sheet] = useState<Sheet>(initial);
 	const [keys] = useState<Keys>(() => new Keys());
+	const [limit, setLimit] = useState<number>(step);
+	const [added] = useState<Set<Question>>(() => new Set());
 	const [appended, setAppended] = useState<Question | null>(null);
 	const [complete, setComplete] = useState<boolean>(() => sheet.complete);
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
+	const refMain: RefObject<HTMLElement | null> = useRef(null);
+	const { questions } = sheet;
 
 	// Re-renders the editor only when the sheet becomes complete or incomplete
 	const check = useCallback((): void => setComplete(sheet.complete), [sheet]);
@@ -32,8 +36,11 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		refresh();
 	};
 
+	// A question added before the whole sheet is loaded shows right after the loaded part
 	const append = (text: string): void => {
-		setAppended(sheet.append(text));
+		const question = sheet.append(text);
+		added.add(question);
+		setAppended(question);
 		check();
 		refresh();
 	};
@@ -61,10 +68,25 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		}
 	};
 
-	const { questions } = sheet;
-	const blocks: ReactElement[] = [];
-	for (let start = 0; start < questions.length; start += size) {
-		blocks.push(<QuestionBlock key={start} questions={questions} start={start} end={Math.min(start + size, questions.length)} keys={keys} appended={appended} onChange={check} onRemove={discard} />);
+	// Loads the next page when the last loaded question nears the screen, as a transition so React builds it in slices; added questions sit after it, so it is found by its place among the cards
+	useEffect(() => {
+		const main = refMain.current;
+		if (main === null) return;
+		if (limit >= questions.length) return;
+		const article = main.getElements(HTMLElement, "article.question").item(limit - 1);
+		if (article === null) return;
+		const observer = new IntersectionObserver((entries) => {
+			if (!entries.some(entry => entry.isIntersecting)) return;
+			startTransition(() => setLimit(limit + step));
+		}, { root: main, rootMargin: "100% 0px" });
+		observer.observe(article);
+		return () => observer.disconnect();
+	}, [limit, questions.length]);
+
+	const editors: ReactElement[] = [];
+	for (const [index, question] of questions.entries()) {
+		if (index >= limit && !added.has(question)) continue;
+		editors.push(<QuestionEditor key={keys.of(question)} number={index + 1} question={question} keys={keys} focused={question === appended} onChange={check} onRemove={discard} />);
 	}
 
 	return (
@@ -80,9 +102,9 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 					<span className="icon with-padding small-padding">Save</span>
 				</button>
 			</header>
-			<main className="with-padding flex column with-block-gap">
+			<main ref={refMain} className="with-padding flex column with-block-gap">
 				<p className="description" hidden={questions.length > 0}>No questions yet. Type the first one below.</p>
-				{blocks}
+				{editors}
 			</main>
 			<footer className="layer rounded in-bottom with-padding">
 				<InsertRow placeholder="Input the question" title="Add question" small={false} focused={false} onInsert={append} />

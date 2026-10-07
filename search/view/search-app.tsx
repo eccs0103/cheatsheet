@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type KeyboardEvent, type ReactElement, type RefObject, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { type ChangeEvent, type KeyboardEvent, type ReactElement, type RefObject, startTransition, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { type Sheet } from "../../library/models/sheet.js";
 import { type Settings } from "../../settings/models/settings.js";
 import { type Matches } from "../models/matches.js";
@@ -23,7 +23,6 @@ export function SearchApp({ sheet, settings, scanner }: SearchAppProps): ReactEl
 	const [mounted] = useState<Set<number>>(() => new Set());
 	const [limit, setLimit] = useState<number>(step);
 	const refMain: RefObject<HTMLElement | null> = useRef(null);
-	const refSentinel: RefObject<HTMLDivElement | null> = useRef(null);
 	const { questions } = sheet;
 	const { incorrect } = settings;
 	const [matches, setMatches] = useState<Matches>(() => scanner.matches);
@@ -54,15 +53,19 @@ export function SearchApp({ sheet, settings, scanner }: SearchAppProps): ReactEl
 		highlighter.paint(main, matches);
 	}, [highlighter, matches, limit]);
 
+	// Loads the next page when the last shown card nears the screen, as a transition so React builds it in slices
 	useEffect(() => {
-		const sentinel = refSentinel.current;
-		if (sentinel === null) return;
+		const main = refMain.current;
+		if (main === null) return;
 		if (limit >= matches.count) return;
+		const articles = main.getElements(HTMLElement, "article.question:not([hidden])");
+		const article = articles.item(articles.length - 1);
+		if (article === null) return;
 		const observer = new IntersectionObserver((entries) => {
 			if (!entries.some(entry => entry.isIntersecting)) return;
-			setLimit(limit + step);
-		}, { root: refMain.current, rootMargin: "100% 0px" });
-		observer.observe(sentinel);
+			startTransition(() => setLimit(limit + step));
+		}, { root: main, rootMargin: "100% 0px" });
+		observer.observe(article);
 		return () => observer.disconnect();
 	}, [limit, matches]);
 
@@ -90,7 +93,6 @@ export function SearchApp({ sheet, settings, scanner }: SearchAppProps): ReactEl
 			<main ref={refMain} className="with-padding flex column with-block-gap">
 				<p className="description" hidden={matches.count > 0}>No questions match this search.</p>
 				{order.map(position => <article key={position} data-index={position} className="question layer rounded with-padding" hidden={!shown.has(position)}>{cards[position]}</article>)}
-				<div ref={refSentinel} className="sentinel"></div>
 			</main>
 			<footer className="layer rounded in-bottom">
 				<label className="with-padding flex alt-center with-gap">

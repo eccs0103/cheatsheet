@@ -17,6 +17,8 @@ button#save > span.icon {
 }
 
 article.question {
+	/* A card skipped by content-visibility has no content to hold its height, so the scrolling column must not shrink it */
+	flex-shrink: 0;
 	content-visibility: auto;
 	contain-intrinsic-size: auto calc((var(--size-standart) + var(--size-gap)) * 6);
 	display: grid;
@@ -51,11 +53,6 @@ article.question {
 	& > div.answers {
 		grid-area: answers-area;
 	}
-}
-
-/* A block not built yet holds about the height of its 50 questions (the block size in editor-app.tsx) with four answers each, so it never collapses and pulls the next blocks into view all at once */
-section.block:empty {
-	min-block-size: calc((var(--size-standart) + var(--size-gap)) * 6 * 50);
 }
 
 div.answer {
