@@ -1,13 +1,14 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type ReactElement, type RefObject, startTransition, useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { type ChangeEvent, type ReactElement, type RefObject, startTransition, useCallback, useInsertionEffect, useLayoutEffect, useReducer, useRef, useState } from "react";
 import { type Question } from "../../library/models/question.js";
 import { type Sheet } from "../../library/models/sheet.js";
 import { type LibraryService } from "../../library/services/library-service.js";
 import { QuestionEditor } from "./question-editor.js";
 import { InsertRow } from "./insert-row.js";
 import { Keys } from "./keys.js";
+import { Range, Viewport } from "./viewport.js";
 
 //#region Editor app
 export interface EditorAppProps {
@@ -17,15 +18,16 @@ export interface EditorAppProps {
 }
 
 export function EditorApp({ library, id, initial }: EditorAppProps): ReactElement {
-	const step = 50;
 	const [sheet] = useState<Sheet>(initial);
 	const [keys] = useState<Keys>(() => new Keys());
-	const [limit, setLimit] = useState<number>(step);
-	const [added] = useState<Set<Question>>(() => new Set());
+	const [viewport] = useState<Viewport>(() => new Viewport());
+	const [range, setRange] = useState<Range>(Range.empty);
 	const [appended, setAppended] = useState<Question | null>(null);
 	const [complete, setComplete] = useState<boolean>(() => sheet.complete);
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
 	const refMain: RefObject<HTMLElement | null> = useRef(null);
+	const refQuestions: RefObject<HTMLDivElement | null> = useRef(null);
+	const refCards: RefObject<HTMLDivElement | null> = useRef(null);
 	const { questions } = sheet;
 
 	// Re-renders the editor only when the sheet becomes complete or incomplete
@@ -36,10 +38,8 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		refresh();
 	};
 
-	// A question added before the whole sheet is loaded shows right after the loaded part
 	const append = (text: string): void => {
 		const question = sheet.append(text);
-		added.add(question);
 		setAppended(question);
 		check();
 		refresh();
@@ -68,26 +68,51 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		}
 	};
 
-	// Loads the next page when the last loaded question nears the screen, as a transition so React builds it in slices; added questions sit after it, so it is found by its place among the cards
-	useEffect(() => {
+	// Only the questions near the screen are built; the list's padding holds the space of the rest, from their measured or estimated heights
+	const locate = useCallback((): void => {
+		const main = refMain.current;
+		const divQuestions = refQuestions.current;
+		const divCards = refCards.current;
+		if (main === null || divQuestions === null || divCards === null) return;
+		const top = main.getBoundingClientRect().top - divQuestions.getBoundingClientRect().top;
+		const next = viewport.range(divCards, sheet.questions, top, main.clientHeight);
+		setRange(previous => previous.equals(next) ? previous : next);
+	}, [viewport, sheet]);
+
+	// Scrolling and new measurements move the range as a transition, so a fast drag abandons builds it has already passed
+	const follow = useCallback((): void => startTransition(locate), [locate]);
+
+	useLayoutEffect(() => {
 		const main = refMain.current;
 		if (main === null) return;
-		if (limit >= questions.length) return;
-		const article = main.getElements(HTMLElement, "article.question").item(limit - 1);
-		if (article === null) return;
-		const observer = new IntersectionObserver((entries) => {
-			if (!entries.some(entry => entry.isIntersecting)) return;
-			startTransition(() => setLimit(limit + step));
-		}, { root: main, rootMargin: "100% 0px" });
-		observer.observe(article);
-		return () => observer.disconnect();
-	}, [limit, questions.length]);
+		const controller = new AbortController();
+		viewport.addEventListener("change", follow, { signal: controller.signal });
+		const observer = new ResizeObserver(follow);
+		observer.observe(main);
+		return () => {
+			controller.abort();
+			observer.disconnect();
+		};
+	}, [viewport, follow]);
 
-	const editors: ReactElement[] = [];
-	for (const [index, question] of questions.entries()) {
-		if (index >= limit && !added.has(question)) continue;
-		editors.push(<QuestionEditor key={keys.of(question)} number={index + 1} question={question} keys={keys} focused={question === appended} onChange={check} onRemove={discard} />);
-	}
+	useLayoutEffect(() => locate(), [locate, questions.length]);
+
+	// Set before any layout effect, so a question that takes the focus on mount already sits at its final place
+	useInsertionEffect(() => {
+		const divQuestions = refQuestions.current;
+		if (divQuestions === null) return;
+		range.place(divQuestions);
+	}, [range]);
+
+	// A question added at the bottom is scrolled to, so it is built and takes the focus
+	useLayoutEffect(() => {
+		const main = refMain.current;
+		if (main === null || appended === null) return;
+		main.scrollTo({ top: main.scrollHeight, behavior: "instant" });
+	}, [appended]);
+
+	const { start } = range;
+	const editors = questions.slice(start, range.end).map((question, offset) => <QuestionEditor key={keys.of(question)} number={start + offset + 1} question={question} keys={keys} viewport={viewport} focused={question === appended} onChange={check} onRemove={discard} />);
 
 	return (
 		<>
@@ -102,9 +127,13 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 					<span className="icon with-padding small-padding">Save</span>
 				</button>
 			</header>
-			<main ref={refMain} className="with-padding flex column with-block-gap">
+			<main ref={refMain} className="with-padding flex column with-block-gap" onScroll={follow}>
 				<p className="description" hidden={questions.length > 0}>No questions yet. Type the first one below.</p>
-				{editors}
+				<div ref={refQuestions} className="questions">
+					<div className="before"></div>
+					<div ref={refCards} className="cards flex column with-block-gap">{editors}</div>
+					<div className="after"></div>
+				</div>
 			</main>
 			<footer className="layer rounded in-bottom with-padding">
 				<InsertRow placeholder="Input the question" title="Add question" small={false} focused={false} onInsert={append} />

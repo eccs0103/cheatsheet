@@ -16,11 +16,31 @@ button#save > span.icon {
 	--url: url(../../assets/icons/floppy-disk.svg);
 }
 
-article.question {
-	/* A card skipped by content-visibility has no content to hold its height, so the scrolling column must not shrink it */
+/* Registered, so the estimate of a line resolves to pixels for the viewport */
+@property --row {
+	syntax: "<length>";
+	inherits: false;
+	initial-value: 0;
+}
+
+/* Only the questions near the screen are built; two spacers hold the space of the rest, sized through --before and --after by the viewport. They are siblings of the cards, not padding around them, because a padding change on an ancestor switches off the browser's scroll anchoring */
+div.questions {
 	flex-shrink: 0;
-	content-visibility: auto;
-	contain-intrinsic-size: auto calc((var(--size-standart) + var(--size-gap)) * 6);
+
+	& > div.before {
+		block-size: var(--before, 0);
+	}
+
+	& > div.cards {
+		--row: calc(var(--size-standart) + var(--size-gap));
+	}
+
+	& > div.after {
+		block-size: var(--after, 0);
+	}
+}
+
+article.question {
 	display: grid;
 	grid-template:
 		'number-area	text-area		remove-area	' auto
