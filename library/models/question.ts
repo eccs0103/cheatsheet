@@ -48,7 +48,7 @@ export class Question extends Model {
 	}
 
 	remove(answer: Answer): void {
-		this.answers = this.answers.filter(item => item !== answer);
+		this.answers.remove(answer);
 	}
 }
 //#endregion

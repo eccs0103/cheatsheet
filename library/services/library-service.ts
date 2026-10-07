@@ -113,8 +113,7 @@ export class LibraryService {
 	}
 
 	async replace(id: string, sheet: Sheet): Promise<void> {
-		const entry = await this.find(id);
-		if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+		const entry = ReferenceError.suppress(await this.find(id), `Unable to find the sheet '${id}'`);
 		entry.revise(sheet);
 		await this.#update(entry);
 	}
@@ -129,9 +128,8 @@ export class LibraryService {
 	async files(summaries: readonly Summary[]): Promise<File[]> {
 		const files: File[] = [];
 		for (const { id } of summaries) {
-			const entry = await this.find(id);
-			if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
-			files.push(entry.sheet.toFile());
+			const { sheet } = ReferenceError.suppress(await this.find(id), `Unable to find the sheet '${id}'`);
+			files.push(sheet.toFile());
 		}
 		return files;
 	}

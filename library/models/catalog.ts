@@ -47,11 +47,7 @@ export class Catalog extends Model {
 	}
 
 	reconcile(entries: Iterable<Entry>): void {
-		const summaries: Summary[] = [];
-		for (const entry of entries) {
-			summaries.push(Summary.of(entry));
-		}
-		this.summaries = summaries;
+		this.summaries = Array.from(entries, Summary.of);
 	}
 }
 //#endregion

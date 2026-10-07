@@ -10,7 +10,7 @@ export class Matches {
 
 	static all(count: number): Matches {
 		const matches = new Matches();
-		for (let position = 0; position < count; position++) {
+		for (const position of Iterator.range(0, count)) {
 			matches.add(position, []);
 		}
 		return matches;

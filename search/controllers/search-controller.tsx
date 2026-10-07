@@ -20,12 +20,9 @@ class SearchController extends Controller {
 		const { content } = settings;
 		content.apply();
 
-		const id = new URLSearchParams(location.search).get("sheet");
-		if (id === null) throw new ReferenceError("No sheet is chosen");
+		const id = ReferenceError.suppress(new URLSearchParams(location.search).get("sheet"), "No sheet is chosen");
 		const library = await LibraryService.open();
-		const entry = await library.find(id);
-		if (entry === null) throw new ReferenceError("The chosen sheet no longer exists");
-		const { sheet } = entry;
+		const { sheet } = ReferenceError.suppress(await library.find(id), "The chosen sheet no longer exists");
 		const { name } = sheet;
 
 		if (name !== null) document.title = `${name} - Cheatsheet`;

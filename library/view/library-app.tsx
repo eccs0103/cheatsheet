@@ -46,7 +46,7 @@ export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement 
 
 	const mark = (id: string): void => {
 		const next = new Set(selection);
-		if (!next.delete(id)) next.add(id);
+		next.toggle(id);
 		setSelection(next);
 	};
 
@@ -62,8 +62,8 @@ export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement 
 					<span className="description"> · {selected.length} selected</span>
 				</h3>
 				<input id="editing" type="checkbox" hidden checked={editing} disabled={entries.length === 0} onChange={toggle} />
-				<label htmlFor="editing" className="with-padding flex alt-center with-gap" title="Edit">
-					<span className="icon with-padding small-padding">Edit</span>
+				<label htmlFor="editing" className="with-padding flex alt-center with-gap" title="Select sheets">
+					<span className="icon with-padding small-padding">Select sheets</span>
 				</label>
 				<a id="settings" href="../settings/" className="with-padding flex alt-center with-gap" title="Settings">
 					<span className="icon with-padding small-padding">Settings</span>

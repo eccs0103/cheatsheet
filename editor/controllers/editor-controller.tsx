@@ -28,9 +28,7 @@ class EditorController extends Controller {
 
 	static async #sheet(library: LibraryService, id: string | null): Promise<Sheet> {
 		if (id === null) return new Sheet(String.empty, []);
-		const entry = await library.find(id);
-		if (entry === null) throw new ReferenceError("The chosen sheet no longer exists");
-		const { sheet } = entry;
+		const { sheet } = ReferenceError.suppress(await library.find(id), "The chosen sheet no longer exists");
 		const { name } = sheet;
 		if (name !== null) document.title = `${name} - Editor - Cheatsheet`;
 		return sheet;

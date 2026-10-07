@@ -36,7 +36,7 @@ label[for="editing"] {
 	grid-column: 3;
 
 	& > span.icon {
-		--url: url(../../assets/icons/pencil.svg);
+		--url: url(../../assets/icons/list-check.svg);
 	}
 }
 
