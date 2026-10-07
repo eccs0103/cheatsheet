@@ -17,10 +17,11 @@ article.question {
 		/ minmax(var(--size-standart), auto) 1fr
 	;
 	row-gap: var(--size-gap);
+	column-gap: var(--size-gap);
 
 	& > span.number {
 		grid-area: number-area;
-		text-align: center;
+		text-align: end;
 		font-variant-numeric: tabular-nums;
 	}
 

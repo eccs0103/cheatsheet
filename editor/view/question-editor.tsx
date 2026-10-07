@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type ChangeEvent, type ReactElement } from "react";
+import { type ChangeEvent, type ReactElement, memo, useReducer } from "react";
 import { type Answer } from "../../library/models/answer.js";
 import { type Question } from "../../library/models/question.js";
 import { AnswerEditor } from "./answer-editor.js";
@@ -18,20 +18,28 @@ export interface QuestionEditorProps {
 	onRemove(question: Question): void;
 }
 
-export function QuestionEditor({ number, question, keys, focused, onChange, onRemove }: QuestionEditorProps): ReactElement {
+// Memoized and refreshed by its own edits, so typing in one question never re-renders the others
+export const QuestionEditor = memo(function QuestionEditor({ number, question, keys, focused, onChange, onRemove }: QuestionEditorProps): ReactElement {
+	const [, refresh] = useReducer((version: number) => version + 1, 0);
+
+	const update = (): void => {
+		refresh();
+		onChange();
+	};
+
 	const rephrase = (event: ChangeEvent<HTMLInputElement>): void => {
 		question.text = event.currentTarget.value;
-		onChange();
+		update();
 	};
 
 	const append = (text: string): void => {
 		question.append(text);
-		onChange();
+		update();
 	};
 
 	const drop = (answer: Answer): void => {
 		question.remove(answer);
-		onChange();
+		update();
 	};
 
 	const discard = (): void => {
@@ -47,10 +55,10 @@ export function QuestionEditor({ number, question, keys, focused, onChange, onRe
 				<span className="icon with-padding small-padding">Delete question</span>
 			</button>
 			<div className="answers flex column with-block-gap small-gap">
-				{question.answers.map(answer => <AnswerEditor key={keys.of(answer)} id={`mark-${keys.of(answer)}`} answer={answer} onChange={onChange} onRemove={drop} />)}
+				{question.answers.map(answer => <AnswerEditor key={keys.of(answer)} id={`mark-${keys.of(answer)}`} answer={answer} onChange={update} onRemove={drop} />)}
 				<InsertRow placeholder="Input the answer" title="Add answer" small={true} focused={focused} onInsert={append} />
 			</div>
 		</article>
 	);
-}
+});
 //#endregion

@@ -1,22 +1,26 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type PortableStore } from "adaptive-extender/web";
+import { type BufferedCell, type PortableStore } from "adaptive-extender/web";
 import { Library } from "../models/library.js";
 import { Entry } from "../models/entry.js";
 import { Sheet } from "../models/sheet.js";
+import { Catalog } from "../models/catalog.js";
+import { Summary } from "../models/summary.js";
 
 //#region Library service
 export class LibraryService {
 	static #legacy: string = "Cheatsheet\\Library";
 	#store: PortableStore<typeof Entry, "id">;
+	#cell: BufferedCell<typeof Catalog>;
 
-	constructor(store: PortableStore<typeof Entry, "id">) {
+	constructor(store: PortableStore<typeof Entry, "id">, cell: BufferedCell<typeof Catalog>) {
 		this.#store = store;
+		this.#cell = cell;
 	}
 
 	static async open(): Promise<LibraryService> {
-		const library = new LibraryService(indexedDB.openPortableStore("Cheatsheet", "Library", Entry, "id"));
+		const library = new LibraryService(indexedDB.openPortableStore("Cheatsheet", "Library", Entry, "id"), localStorage.openBufferedCell("Cheatsheet\\Catalog", Catalog, new Catalog([])));
 		await library.#migrate();
 		return library;
 	}
@@ -44,21 +48,45 @@ export class LibraryService {
 		localStorage.removeItem(key);
 	}
 
-	async list(): Promise<Entry[]> {
-		const entries = await this.#store.select();
-		return entries.sort((left, right) => right.date.getTime() - left.date.getTime());
+	// The catalog is rebuilt from the stored sheets when their counts differ: on the first visit after 3.0.0, or after a 2.x library is migrated
+	async reconcile(): Promise<void> {
+		const cell = this.#cell;
+		const catalog = cell.content;
+		const store = this.#store;
+		if (await store.count() === catalog.size) return;
+		catalog.reconcile(await store.select());
+		await cell.save();
+	}
+
+	list(): Summary[] {
+		return this.#cell.content.list();
 	}
 
 	async find(id: string): Promise<Entry | null> {
 		return await this.#store.select(id);
 	}
 
+	async #insert(entry: Entry): Promise<Summary> {
+		await LibraryService.#guard(this.#store.insert(entry));
+		const cell = this.#cell;
+		cell.content.add(entry);
+		await cell.save();
+		return Summary.of(entry);
+	}
+
+	async #update(entry: Entry): Promise<Summary> {
+		await LibraryService.#guard(this.#store.update(entry));
+		const cell = this.#cell;
+		cell.content.revise(entry);
+		await cell.save();
+		return Summary.of(entry);
+	}
+
 	async add(files: readonly File[]): Promise<void> {
-		const store = this.#store;
 		const errors: Error[] = [];
 		for (const file of files) {
 			try {
-				await LibraryService.#guard(store.insert(Entry.of(Sheet.import(JSON.parse(await file.text()), "sheet"))));
+				await this.#insert(Entry.of(Sheet.import(JSON.parse(await file.text()), "sheet")));
 			} catch (reason) {
 				errors.push(new Error(`${file.name}: ${Error.from(reason).message}`, { cause: reason }));
 			}
@@ -69,34 +97,43 @@ export class LibraryService {
 
 	// The source address is the entry id, so the same link refreshes its sheet instead of adding a copy; `no-cache` lets the browser revalidate by ETag, so an unchanged sheet is not downloaded again
 	// ponytail: a local edit to a linked sheet is overwritten on the next pull even when the source is unchanged; store the ETag on the entry if that matters
-	async pull(address: Readonly<URL>): Promise<Entry> {
+	async pull(address: Readonly<URL>): Promise<Summary> {
 		const response = await fetch(address, { cache: "no-cache" });
 		if (!response.ok) throw new ReferenceError(`Unable to download the sheet: ${response.status} ${response.statusText}`);
 		const sheet = Sheet.import(await response.json(), "sheet");
 		const { href } = address;
 		const entry = await this.find(href);
-		if (entry !== null) {
-			await this.replace(href, sheet);
-			return entry;
-		}
-		const fresh = new Entry(href, new Date(), sheet);
-		await LibraryService.#guard(this.#store.insert(fresh));
-		return fresh;
+		if (entry === null) return await this.#insert(new Entry(href, new Date(), sheet));
+		entry.revise(sheet);
+		return await this.#update(entry);
 	}
 
 	async insert(sheet: Sheet): Promise<void> {
-		await LibraryService.#guard(this.#store.insert(Entry.of(sheet)));
+		await this.#insert(Entry.of(sheet));
 	}
 
 	async replace(id: string, sheet: Sheet): Promise<void> {
 		const entry = await this.find(id);
 		if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
 		entry.revise(sheet);
-		await LibraryService.#guard(this.#store.update(entry));
+		await this.#update(entry);
 	}
 
 	async remove(ids: ReadonlySet<string>): Promise<void> {
 		await this.#store.delete(ids);
+		const cell = this.#cell;
+		cell.content.remove(ids);
+		await cell.save();
+	}
+
+	async files(summaries: readonly Summary[]): Promise<File[]> {
+		const files: File[] = [];
+		for (const { id } of summaries) {
+			const entry = await this.find(id);
+			if (entry === null) throw new ReferenceError(`Unable to find the sheet '${id}'`);
+			files.push(entry.sheet.toFile());
+		}
+		return files;
 	}
 
 	static async #guard(operation: Promise<void>): Promise<void> {

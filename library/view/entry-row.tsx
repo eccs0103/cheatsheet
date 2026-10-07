@@ -2,17 +2,17 @@
 
 import "adaptive-extender/web";
 import { type ReactElement } from "react";
-import { type Entry } from "../models/entry.js";
+import { type Summary } from "../models/summary.js";
 
 //#region Entry row
 export interface EntryRowProps {
-	entry: Entry;
+	entry: Summary;
 	marked: boolean;
 	onMark(id: string): void;
 }
 
 export function EntryRow({ entry, marked, onMark }: EntryRowProps): ReactElement {
-	const { id, sheet, date } = entry;
+	const { id, name, date } = entry;
 	return (
 		<li>
 			<label className="entry layer rounded">
@@ -21,7 +21,7 @@ export function EntryRow({ entry, marked, onMark }: EntryRowProps): ReactElement
 					<span className="sheet-icon with-padding">
 						<span className="icon with-padding small-padding"></span>
 					</span>
-					<span className="sheet-title" data-placeholder="Untitled">{sheet.name}</span>
+					<span className="sheet-title" data-placeholder="Untitled">{name}</span>
 					<time className="sheet-date" dateTime={date.toISOString()}>{date.toLocaleString()}</time>
 				</a>
 			</label>

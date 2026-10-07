@@ -18,6 +18,10 @@ export class Query {
 		this.#skipping = skipping;
 	}
 
+	get blank(): boolean {
+		return this.#matchers.length === 0;
+	}
+
 	test(tokens: readonly Token[]): Mark[] | null {
 		const matchers = this.#matchers;
 		if (matchers.length === 0) return [];

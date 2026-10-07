@@ -52,10 +52,6 @@ export class Sheet extends Model {
 		this.questions = this.questions.filter(item => item !== question);
 	}
 
-	clone(): Sheet {
-		return Sheet.import(Sheet.export(this), "sheet");
-	}
-
 	toFile(): File {
 		const text = JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
 		const { name } = this;

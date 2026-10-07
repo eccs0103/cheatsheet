@@ -2,7 +2,7 @@
 
 import "adaptive-extender/web";
 import { type ReactElement, useState } from "react";
-import { type Entry } from "../models/entry.js";
+import { type Summary } from "../models/summary.js";
 import { type LibraryService } from "../services/library-service.js";
 import { EntryRow } from "./entry-row.js";
 import { AddDialog } from "./add-dialog.js";
@@ -11,11 +11,11 @@ import { ActionsBar } from "./actions-bar.js";
 //#region Library app
 export interface LibraryAppProps {
 	library: LibraryService;
-	initial: Entry[];
+	initial: Summary[];
 }
 
 export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement {
-	const [entries, setEntries] = useState<Entry[]>(initial);
+	const [entries, setEntries] = useState<Summary[]>(initial);
 	const [editing, setEditing] = useState<boolean>(false);
 	const [selection, setSelection] = useState<ReadonlySet<string>>(() => new Set());
 	const [adding, setAdding] = useState<boolean>(false);
@@ -23,14 +23,8 @@ export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement 
 	const selected = entries.filter(entry => selection.has(entry.id));
 	const complete = entries.length > 0 && selected.length === entries.length;
 
-	const reload = async (): Promise<void> => {
-		let fresh: Entry[];
-		try {
-			fresh = await library.list();
-		} catch (reason) {
-			window.alert(Error.from(reason).message);
-			return;
-		}
+	const reload = (): void => {
+		const fresh = library.list();
 		setEntries(fresh);
 		setSelection(new Set());
 		if (fresh.length > 0) return;
@@ -81,8 +75,8 @@ export function LibraryApp({ library, initial }: LibraryAppProps): ReactElement 
 					{entries.map(entry => <EntryRow key={entry.id} entry={entry} marked={selection.has(entry.id)} onMark={mark} />)}
 				</ul>
 			</main>
-			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={() => void reload()} />
-			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={() => void reload()} />
+			<ActionsBar library={library} selected={selected} onAdd={() => setAdding(true)} onChange={reload} />
+			<AddDialog library={library} open={adding} onClose={() => setAdding(false)} onChange={reload} />
 		</>
 	);
 }

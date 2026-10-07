@@ -2,20 +2,19 @@
 
 import "adaptive-extender/web";
 import { type ReactElement } from "react";
-import { type Entry } from "../models/entry.js";
+import { type Summary } from "../models/summary.js";
 import { type LibraryService } from "../services/library-service.js";
 import { FileDownload } from "./file-download.js";
 
 //#region Actions bar
 export interface ActionsBarProps {
 	library: LibraryService;
-	selected: readonly Entry[];
+	selected: readonly Summary[];
 	onAdd(): void;
 	onChange(): void;
 }
 
 export function ActionsBar({ library, selected, onAdd, onChange }: ActionsBarProps): ReactElement {
-	const files = (): File[] => selected.map(entry => entry.sheet.toFile());
 	const probe = new File(["{}"], "sheet.json", { type: "application/json" });
 	const supported = "canShare" in navigator && navigator.canShare({ files: [probe] });
 
@@ -24,14 +23,18 @@ export function ActionsBar({ library, selected, onAdd, onChange }: ActionsBarPro
 		location.assign(entry.editor);
 	};
 
-	const download = (): void => {
-		FileDownload.save(files());
+	const download = async (): Promise<void> => {
+		try {
+			FileDownload.save(await library.files(selected));
+		} catch (reason) {
+			window.alert(Error.from(reason).message);
+		}
 	};
 
 	const share = async (): Promise<void> => {
-		const shared = files();
 		const url = new URL("../library/", location.href);
 		try {
+			const shared = await library.files(selected);
 			await navigator.share({ files: shared, text: `Sharing ${shared.length} sheet(s) with you. Add them in ${url}.`, url: url.href });
 		} catch (reason) {
 			const error = Error.from(reason);
@@ -65,7 +68,7 @@ export function ActionsBar({ library, selected, onAdd, onChange }: ActionsBarPro
 				<span className="icon with-padding small-padding">Edit</span>
 				<span className="font-smaller-3">Edit</span>
 			</button>
-			<button id="download" type="button" className="with-padding flex column center" title="Download selection" disabled={selected.length === 0} onClick={download}>
+			<button id="download" type="button" className="with-padding flex column center" title="Download selection" disabled={selected.length === 0} onClick={() => void download()}>
 				<span className="icon with-padding small-padding">Download</span>
 				<span className="font-smaller-3">Download</span>
 			</button>

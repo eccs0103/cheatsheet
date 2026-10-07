@@ -29,9 +29,9 @@ class LibraryController extends Controller {
 				window.alert(Error.from(reason).message);
 			}
 		}
-		const entries = await library.list();
+		await library.reconcile();
 		const divRoot = body.getElement(HTMLDivElement, "div#root");
-		createRoot(divRoot).render(<StrictMode><LibraryApp library={library} initial={entries} /></StrictMode>);
+		createRoot(divRoot).render(<StrictMode><LibraryApp library={library} initial={library.list()} /></StrictMode>);
 	}
 
 	async catch(error: Error): Promise<void> {

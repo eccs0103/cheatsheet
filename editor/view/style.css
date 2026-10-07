@@ -17,6 +17,8 @@ button#save > span.icon {
 }
 
 article.question {
+	content-visibility: auto;
+	contain-intrinsic-size: auto calc((var(--size-standart) + var(--size-gap)) * 6);
 	display: grid;
 	grid-template:
 		'number-area	text-area		remove-area	' auto
@@ -49,6 +51,12 @@ article.question {
 	& > div.answers {
 		grid-area: answers-area;
 	}
+}
+
+/* A block not built yet holds about the height of its 50 questions (the block size in editor-app.tsx) with four answers each */
+section.block {
+	content-visibility: auto;
+	contain-intrinsic-size: auto calc((var(--size-standart) + var(--size-gap)) * 6 * 50);
 }
 
 div.answer {

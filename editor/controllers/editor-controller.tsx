@@ -33,7 +33,7 @@ class EditorController extends Controller {
 		const { sheet } = entry;
 		const { name } = sheet;
 		if (name !== null) document.title = `${name} - Editor - Cheatsheet`;
-		return sheet.clone();
+		return sheet;
 	}
 
 	async catch(error: Error): Promise<void> {

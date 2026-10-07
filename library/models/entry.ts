@@ -39,14 +39,6 @@ export class Entry extends Model {
 		return new Entry(crypto.randomUUID(), new Date(), sheet);
 	}
 
-	get link(): string {
-		return `../search/?sheet=${encodeURIComponent(this.id)}`;
-	}
-
-	get editor(): string {
-		return `../editor/?sheet=${encodeURIComponent(this.id)}`;
-	}
-
 	revise(sheet: Sheet): void {
 		this.sheet = sheet;
 	}
