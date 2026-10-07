@@ -1,3 +1,13 @@
+## 3.0.1 (07.10.2026)
+- The **Editor** scrolls straight to any question: the scrollbar covers the whole sheet, and only the questions on the screen are built, so large sheets open quickly and stay smooth while scrolling or dragging the scrollbar.
+- A question added in the **Editor** is scrolled to and takes the focus, even on a large sheet.
+- Typing in one question of the **Editor** no longer redraws the rest of the sheet.
+- The **Library** list opens without reading the sheets themselves, so it appears at once however large the sheets are.
+- Typing in **Search** stays smooth on large sheets: the matches update as the search finishes instead of holding up each key press.
+- The Library's toggle for marking sheets now shows a checklist icon and is named **Select sheets**.
+- The question numbers in **Search** no longer touch the question text, and the list no longer ends with double padding.
+- The example sheets in [`resources/examples/`](./resources/examples) are reduced to one per test, with a single heavy [`stress.json`](./resources/examples/stress.json) (14 000 long questions) in place of the two stress sheets and `large.json`.
+
 ## 3.0.0 (05.10.2026)
 - Rebuilt the whole site: the **Library**, **Search**, **Editor** and **Settings** pages, a new design, and a light or dark theme chosen in the settings (the system's by default).
 - The library is kept in the browser's IndexedDB, one record per sheet, so it is limited only by the browser's storage quota instead of local storage. A library saved by 2.x is moved there on the first visit.

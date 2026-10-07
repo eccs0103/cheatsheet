@@ -53,7 +53,7 @@ Example of a valid JSON structure:
 
 Only this format is supported; the legacy formats of earlier versions are no longer read.
 
-Sheets can also be created and edited in the **Editor** (Add sheet → *From scratch*, or edit mode → mark one sheet → *Edit*): add and remove questions and answers, and mark each answer as correct or wrong.
+Sheets can also be created and edited in the **Editor** (Add sheet → *From scratch*, or *Select sheets* → mark one sheet → *Edit*): add and remove questions and answers, and mark each answer as correct or wrong. The whole sheet can be scrolled through at once, however large it is.
 
 Selected sheets can be downloaded or shared. Where the browser cannot share `.json` files, *Share* is disabled with a hint to download the sheets and send them yourself.
 
