@@ -9,24 +9,24 @@ import { type Mark } from "../models/mark.js";
 import { type Token } from "../models/token.js";
 import { Folding } from "./folding.js";
 import { Query } from "./query.js";
+import { WordIndex } from "./word-index.js";
 
 //#region Scanner
 export interface ScannerEventMap {
 	"change": Event;
 }
 
-/** Tests the questions (and, with `answers` on, their visible answers) against a query a few milliseconds per frame, so typing stays smooth on large sheets; a new query restarts the scan, and `change` fires when one completes. */
+/** Tests the questions (and, with `answers` on, their visible answers) against a query a few milliseconds per frame, so typing stays smooth on large sheets; the sheet is prepared in the background from the start, a new query restarts the scan, and `change` fires when one completes. */
 export class Scanner extends EventTarget {
 	static #slice: number = 8;
-	#questions: readonly Question[];
+	// Reading the clock costs about as much as testing a question that cannot match, so it is read once per batch
+	static #batch: number = 64;
 	#folding: Folding;
 	#skipping: boolean;
 	#tolerant: boolean;
-	#answers: boolean;
-	#incorrect: boolean;
+	#index: WordIndex;
 	#engine: FastEngine = new FastEngine();
-	#index: Token[][][] = [];
-	#query: Query;
+	#query: Query | null = null;
 	#position: number = 0;
 	#pending: Matches = new Matches();
 	#matches: Matches;
@@ -35,15 +35,14 @@ export class Scanner extends EventTarget {
 		super();
 		const { sensitive, accents, skipping, tolerant, answers, incorrect } = settings;
 		const folding = new Folding(sensitive, accents);
-		this.#questions = questions;
 		this.#folding = folding;
 		this.#skipping = skipping;
 		this.#tolerant = tolerant;
-		this.#answers = answers;
-		this.#incorrect = incorrect;
-		this.#query = new Query(String.empty, folding, skipping, tolerant);
+		this.#index = new WordIndex(questions, folding, answers, incorrect);
 		this.#matches = Matches.all(questions.length);
-		this.#engine.addEventListener("trigger", this.#step.bind(this));
+		const engine = this.#engine;
+		engine.addEventListener("trigger", this.#step.bind(this));
+		engine.launched = true;
 	}
 
 	addEventListener<K extends keyof ScannerEventMap>(type: K, listener: (this: Scanner, event: ScannerEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -62,35 +61,14 @@ export class Scanner extends EventTarget {
 
 	scan(text: string): void {
 		const query = new Query(text, this.#folding, this.#skipping, this.#tolerant);
-		const engine = this.#engine;
 		if (query.blank) {
-			engine.launched = false;
-			return this.#finish(Matches.all(this.#questions.length));
+			this.#query = null;
+			return this.#finish(Matches.all(this.#index.count));
 		}
 		this.#query = query;
 		this.#position = 0;
 		this.#pending = new Matches();
-		engine.launched = true;
-	}
-
-	// Scans always run from the first question, so the token cache only ever grows at its end
-	#tokens(position: number): Token[][] {
-		const index = this.#index;
-		if (position < index.length) return index[position];
-		const folding = this.#folding;
-		const fields = this.#texts(this.#questions[position]).map(text => folding.tokenize(text));
-		index.push(fields);
-		return fields;
-	}
-
-	// The same texts, in the same order, as the card's `span.text` elements
-	#texts(question: Question): string[] {
-		const texts = [question.text];
-		if (!this.#answers) return texts;
-		for (const answer of question.visible(this.#incorrect)) {
-			texts.push(answer.text);
-		}
-		return texts;
+		this.#engine.launched = true;
 	}
 
 	#test(query: Query, fields: readonly Token[][]): Mark[][] | null {
@@ -105,20 +83,32 @@ export class Scanner extends EventTarget {
 		return marks;
 	}
 
+	// Preparing the sheet comes first; then the query narrows the questions, and only those are tested
 	#step(event: Event): void {
-		const { length } = this.#questions;
-		const query = this.#query;
-		const pending = this.#pending;
 		const deadline = performance.now() + Scanner.#slice;
+		const index = this.#index;
+		if (!index.prepare(deadline)) return;
+		const query = this.#query;
+		const engine = this.#engine;
+		if (query === null) {
+			engine.launched = false;
+			return;
+		}
+		if (!query.narrow(index, deadline)) return;
+		const { count } = index;
+		const pending = this.#pending;
 		let position = this.#position;
-		while (position < length && performance.now() < deadline) {
-			const marks = this.#test(query, this.#tokens(position));
-			if (marks !== null) pending.add(position, marks);
-			position++;
+		for (; position < count; position++) {
+			if (position % Scanner.#batch === 0 && performance.now() >= deadline) break;
+			if (!query.admits(position)) continue;
+			const marks = this.#test(query, index.fields(position));
+			if (marks === null) continue;
+			pending.add(position, marks);
 		}
 		this.#position = position;
-		if (position < length) return;
-		this.#engine.launched = false;
+		if (position < count) return;
+		this.#query = null;
+		engine.launched = false;
 		this.#finish(pending);
 	}
 

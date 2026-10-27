@@ -16,7 +16,7 @@ export interface QuestionEditorProps {
 	keys: Keys;
 	viewport: Viewport;
 	focused: boolean;
-	onChange(): void;
+	onChange(question: Question): void;
 	onRemove(question: Question): void;
 }
 
@@ -34,7 +34,7 @@ export const QuestionEditor = memo(function QuestionEditor({ number, question, k
 
 	const update = (): void => {
 		refresh();
-		onChange();
+		onChange(question);
 	};
 
 	const rephrase = (event: ChangeEvent<HTMLInputElement>): void => {

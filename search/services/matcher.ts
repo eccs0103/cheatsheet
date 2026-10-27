@@ -37,7 +37,9 @@ export class Matcher {
 	static #ratio: number = 4;
 	#word: string;
 	#budget: number = 0;
-	#cache: Map<string, Mark | null> = new Map();
+	// Results by word id: which words are aligned already, and the marks of those that match
+	#known: Uint8Array = new Uint8Array(0);
+	#hits: Map<number, Mark> = new Map();
 	#rows: Row[] = [new Row(), new Row(), new Row()];
 
 	constructor(word: string, tolerant: boolean) {
@@ -45,13 +47,27 @@ export class Matcher {
 		if (tolerant) this.#budget = Math.trunc((word.length - 1) / Matcher.#ratio);
 	}
 
-	match(text: string): Mark | null {
-		const cache = this.#cache;
-		const cached = cache.get(text);
-		if (cached !== undefined) return cached;
+	get length(): number { return this.#word.length; }
+
+	/** Aligns the word with the folded text of word `id`, once per id. */
+	match(id: number, text: string): Mark | null {
+		const known = this.#known;
+		if (id < known.length && known[id] === 1) return this.#hits.get(id) ?? null;
 		const result = this.#align(text);
-		cache.set(text, result);
+		this.#remember(id, result);
 		return result;
+	}
+
+	#remember(id: number, result: Mark | null): void {
+		const previous = this.#known;
+		let known = previous;
+		if (id >= previous.length) {
+			known = new Uint8Array(Math.max(id + 1, previous.length * 2));
+			known.set(previous);
+			this.#known = known;
+		}
+		known[id] = 1;
+		if (result !== null) this.#hits.set(id, result);
 	}
 
 	#align(text: string): Mark | null {

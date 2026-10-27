@@ -5,6 +5,7 @@ import { type ChangeEvent, type ReactElement, type RefObject, startTransition, u
 import { type Question } from "../../library/models/question.js";
 import { type Sheet } from "../../library/models/sheet.js";
 import { type LibraryService } from "../../library/services/library-service.js";
+import { Completion } from "./completion.js";
 import { QuestionEditor } from "./question-editor.js";
 import { InsertRow } from "./insert-row.js";
 import { Keys } from "./keys.js";
@@ -19,11 +20,12 @@ export interface EditorAppProps {
 
 export function EditorApp({ library, id, initial }: EditorAppProps): ReactElement {
 	const [sheet] = useState<Sheet>(initial);
+	const [completion] = useState<Completion>(() => new Completion(sheet));
 	const [keys] = useState<Keys>(() => new Keys());
 	const [viewport] = useState<Viewport>(() => new Viewport());
 	const [range, setRange] = useState<Range>(Range.empty);
 	const [appended, setAppended] = useState<Question | null>(null);
-	const [complete, setComplete] = useState<boolean>(() => sheet.complete);
+	const [complete, setComplete] = useState<boolean>(() => completion.complete);
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
 	const refMain: RefObject<HTMLElement | null> = useRef(null);
 	const refQuestions: RefObject<HTMLDivElement | null> = useRef(null);
@@ -31,7 +33,10 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 	const { questions } = sheet;
 
 	// Re-renders the editor only when the sheet becomes complete or incomplete
-	const check = useCallback((): void => setComplete(sheet.complete), [sheet]);
+	const check = useCallback((question: Question): void => {
+		completion.revise(question);
+		setComplete(completion.complete);
+	}, [completion]);
 
 	const retitle = (event: ChangeEvent<HTMLInputElement>): void => {
 		sheet.title = event.currentTarget.value;
@@ -41,15 +46,16 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 	const append = (text: string): void => {
 		const question = sheet.append(text);
 		setAppended(question);
-		check();
+		check(question);
 		refresh();
 	};
 
 	const discard = useCallback((question: Question): void => {
 		sheet.remove(question);
-		check();
+		completion.forget(question);
+		setComplete(completion.complete);
 		refresh();
-	}, [sheet, check]);
+	}, [sheet, completion]);
 
 	const store = async (): Promise<void> => {
 		if (id === null) {

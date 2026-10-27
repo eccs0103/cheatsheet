@@ -3,6 +3,7 @@
 import "adaptive-extender/web";
 import { type Mark } from "../models/mark.js";
 import { Token } from "../models/token.js";
+import { type WordIndex } from "./word-index.js";
 
 //#region Folding
 export class Folding {
@@ -12,6 +13,9 @@ export class Folding {
 	static #letters: Map<string, string> = new Map([["ł", "l"], ["Ł", "L"], ["ø", "o"], ["Ø", "O"], ["đ", "d"], ["Đ", "D"], ["ð", "d"], ["Ð", "D"], ["ħ", "h"], ["Ħ", "H"], ["ı", "i"], ["ß", "ss"], ["ẞ", "SS"], ["æ", "ae"], ["Æ", "AE"], ["œ", "oe"], ["Œ", "OE"], ["þ", "th"], ["Þ", "TH"]]);
 	#sensitive: boolean;
 	#accents: boolean;
+	// Folding depends only on the character or the word, and a sheet repeats both
+	#chars: Map<string, string> = new Map();
+	#words: Map<string, string> = new Map();
 
 	constructor(sensitive: boolean, accents: boolean) {
 		this.#sensitive = sensitive;
@@ -19,6 +23,15 @@ export class Folding {
 	}
 
 	#letter(char: string): string {
+		const chars = this.#chars;
+		const cached = chars.get(char);
+		if (cached !== undefined) return cached;
+		const result = this.#compute(char);
+		chars.set(char, result);
+		return result;
+	}
+
+	#compute(char: string): string {
 		let result = char;
 		if (!this.#accents) result = Folding.#plain(result);
 		if (!this.#sensitive) result = result.toLowerCase();
@@ -32,8 +45,17 @@ export class Folding {
 		return char.normalize("NFD").replace(Folding.#marks, String.empty);
 	}
 
-	// Folded per character, so every folded unit maps back to the character it came from
 	#fold(word: string): string {
+		const words = this.#words;
+		const cached = words.get(word);
+		if (cached !== undefined) return cached;
+		const result = this.#compose(word);
+		words.set(word, result);
+		return result;
+	}
+
+	// Folded per character, so every folded unit maps back to the character it came from
+	#compose(word: string): string {
 		if (!Folding.#ascii.test(word)) return Array.from(word, char => this.#letter(char)).join(String.empty);
 		if (this.#sensitive) return word;
 		return word.toLowerCase();
@@ -43,8 +65,11 @@ export class Folding {
 		return Array.from(text.matchAll(Folding.#word), match => this.#fold(match[0]));
 	}
 
-	tokenize(text: string): Token[] {
-		return Array.from(text.matchAll(Folding.#word), match => new Token(match.index, match[0], this.#fold(match[0])));
+	tokenize(text: string, index: WordIndex): Token[] {
+		return Array.from(text.matchAll(Folding.#word), (match) => {
+			const folded = this.#fold(match[0]);
+			return new Token(match.index, match[0], folded, index.intern(folded));
+		});
 	}
 
 	locate(word: string, offset: number, local: Mark): Mark {
