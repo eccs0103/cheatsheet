@@ -4,7 +4,6 @@ import "adaptive-extender/web";
 import { type Mark } from "./mark.js";
 
 //#region Matches
-/** The questions that match a query, in sheet order, each with the marks to highlight per searched text: the question first, then its answers. */
 export class Matches {
 	#marks: Map<number, readonly (readonly Mark[])[]> = new Map();
 

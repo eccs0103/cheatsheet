@@ -16,7 +16,6 @@ export interface ScannerEventMap {
 	"change": Event;
 }
 
-/** Tests the questions (and, with `answers` on, their visible answers) against a query a few milliseconds per frame, so typing stays smooth on large sheets; the sheet is prepared in the background from the start, a new query restarts the scan, and `change` fires when one completes. */
 export class Scanner extends EventTarget {
 	static #slice: number = 8;
 	// Reading the clock costs about as much as testing a question that cannot match, so it is read once per batch
@@ -83,7 +82,6 @@ export class Scanner extends EventTarget {
 		return marks;
 	}
 
-	// Preparing the sheet comes first; then the query narrows the questions, and only those are tested
 	#step(event: Event): void {
 		const deadline = performance.now() + Scanner.#slice;
 		const index = this.#index;

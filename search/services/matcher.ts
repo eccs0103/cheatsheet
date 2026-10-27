@@ -37,7 +37,6 @@ export class Matcher {
 	static #ratio: number = 4;
 	#word: string;
 	#budget: number = 0;
-	// Results by word id: which words are aligned already, and the marks of those that match
 	#known: Uint8Array = new Uint8Array(0);
 	#hits: Map<number, Mark> = new Map();
 	#rows: Row[] = [new Row(), new Row(), new Row()];
@@ -49,7 +48,6 @@ export class Matcher {
 
 	get length(): number { return this.#word.length; }
 
-	/** Aligns the word with the folded text of word `id`, once per id. */
 	match(id: number, text: string): Mark | null {
 		const known = this.#known;
 		if (id < known.length && known[id] === 1) return this.#hits.get(id) ?? null;

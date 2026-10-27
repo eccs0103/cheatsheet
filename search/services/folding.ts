@@ -13,7 +13,6 @@ export class Folding {
 	static #letters: Map<string, string> = new Map([["ł", "l"], ["Ł", "L"], ["ø", "o"], ["Ø", "O"], ["đ", "d"], ["Đ", "D"], ["ð", "d"], ["Ð", "D"], ["ħ", "h"], ["Ħ", "H"], ["ı", "i"], ["ß", "ss"], ["ẞ", "SS"], ["æ", "ae"], ["Æ", "AE"], ["œ", "oe"], ["Œ", "OE"], ["þ", "th"], ["Þ", "TH"]]);
 	#sensitive: boolean;
 	#accents: boolean;
-	// Folding depends only on the character or the word, and a sheet repeats both
 	#chars: Map<string, string> = new Map();
 	#words: Map<string, string> = new Map();
 

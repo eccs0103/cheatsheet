@@ -32,7 +32,6 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 	const refCards: RefObject<HTMLDivElement | null> = useRef(null);
 	const { questions } = sheet;
 
-	// Re-renders the editor only when the sheet becomes complete or incomplete
 	const check = useCallback((question: Question): void => {
 		completion.revise(question);
 		setComplete(completion.complete);
@@ -74,7 +73,6 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		}
 	};
 
-	// Only the questions near the screen are built; the list's padding holds the space of the rest, from their measured or estimated heights
 	const locate = useCallback((): void => {
 		const main = refMain.current;
 		const divQuestions = refQuestions.current;
@@ -85,7 +83,6 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		setRange(previous => previous.equals(next) ? previous : next);
 	}, [viewport, sheet]);
 
-	// Scrolling and new measurements move the range as a transition, so a fast drag abandons builds it has already passed
 	const follow = useCallback((): void => startTransition(locate), [locate]);
 
 	useLayoutEffect(() => {
@@ -110,7 +107,6 @@ export function EditorApp({ library, id, initial }: EditorAppProps): ReactElemen
 		range.place(divQuestions);
 	}, [range]);
 
-	// A question added at the bottom is scrolled to, so it is built and takes the focus
 	useLayoutEffect(() => {
 		const main = refMain.current;
 		if (main === null || appended === null) return;

@@ -40,7 +40,6 @@ export function SearchApp({ sheet, settings, scanner }: SearchAppProps): ReactEl
 		return () => controller.abort();
 	}, [scanner]);
 
-	// Cards mount on first reveal and stay mounted; the rest of the list only toggles `hidden`
 	const shown = new Set(matches.first(limit));
 	for (const position of shown) {
 		mounted.add(position);
@@ -53,7 +52,6 @@ export function SearchApp({ sheet, settings, scanner }: SearchAppProps): ReactEl
 		highlighter.paint(main, matches);
 	}, [highlighter, matches, limit]);
 
-	// Loads the next page when the last shown card nears the screen, as a transition so React builds it in slices
 	useEffect(() => {
 		const main = refMain.current;
 		if (main === null) return;

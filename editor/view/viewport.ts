@@ -4,7 +4,6 @@ import "adaptive-extender/web";
 import { type Question } from "../../library/models/question.js";
 
 //#region Range
-/** The questions to build, by index, and the space the ones before and after them take. */
 export class Range {
 	static #empty: Range = new Range(0, 0, 0, 0);
 	#start: number;
@@ -41,7 +40,6 @@ export interface ViewportEventMap {
 	"change": Event;
 }
 
-/** Measures the built question cards and works out which questions are near the screen; questions never measured are estimated from the height of a line, calibrated once from the first cards built. */
 export class Viewport extends EventTarget {
 	#heights: WeakMap<Question, number> = new WeakMap();
 	#questions: WeakMap<Element, Question> = new WeakMap();
@@ -61,7 +59,6 @@ export class Viewport extends EventTarget {
 		return super.removeEventListener(type, listener, options);
 	}
 
-	// The question text, every answer and the insert row each take one line of the card
 	static #count(question: Question): number {
 		return question.answers.length + 2;
 	}
@@ -101,12 +98,10 @@ export class Viewport extends EventTarget {
 		this.dispatchEvent(new Event("change"));
 	}
 
-	// ponytail: one pass over every question per scroll event (about a millisecond for 14k); keep prefix sums of the heights if sheets grow far beyond that
 	range(list: HTMLElement, questions: readonly Question[], top: number, height: number): Range {
 		const heights = this.#heights;
 		const style = window.getComputedStyle(list);
 		const gap = Number.parseFloat(style.rowGap);
-		// Before anything is measured, a line is as tall as the list's `--row` token
 		const line = this.#line ?? Number.parseFloat(style.getPropertyValue("--row"));
 		const from = top - height / 2;
 		const to = top + height * 1.5;

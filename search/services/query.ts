@@ -13,7 +13,6 @@ export class Query {
 	#matchers: Matcher[];
 	#folding: Folding;
 	#skipping: boolean;
-	// The next word id the lead matcher aligns, and then the questions that may match
 	#cursor: number = 0;
 	#flags: Uint8Array | null = null;
 
@@ -27,7 +26,7 @@ export class Query {
 		return this.#matchers.length === 0;
 	}
 
-	/** Aligns the longest query word with every word of the index until the deadline; true once the questions that may match are known. A question can match only if it holds a word this matcher finds. */
+	// A question can match only if it holds a word the lead matcher finds, so only those questions are tested
 	narrow(index: WordIndex, deadline: number): boolean {
 		if (this.#flags !== null) return true;
 		const lead = this.#lead();

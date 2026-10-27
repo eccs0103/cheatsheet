@@ -10,7 +10,6 @@ export interface CatalogScheme {
 	summaries: SummaryScheme[];
 }
 
-/** The list of sheets shown in the library, kept apart from the sheets themselves so it loads without them. */
 export class Catalog extends Model {
 	@Field(Array.Of(Summary), { name: "summaries" })
 	summaries: Summary[];

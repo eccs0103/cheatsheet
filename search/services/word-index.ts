@@ -6,7 +6,6 @@ import { type Token } from "../models/token.js";
 import { type Folding } from "./folding.js";
 
 //#region Word index
-/** The searchable form of a sheet, prepared a few questions at a time: each question's texts as tokens, every distinct folded word under an id, and for each word the questions that contain it. */
 export class WordIndex {
 	#questions: readonly Question[];
 	#folding: Folding;
@@ -47,7 +46,6 @@ export class WordIndex {
 		return id;
 	}
 
-	/** Prepares questions until the deadline; true once every question is prepared. */
 	prepare(deadline: number): boolean {
 		const questions = this.#questions;
 		const fields = this.#fields;

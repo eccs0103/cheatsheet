@@ -20,7 +20,6 @@ export interface QuestionEditorProps {
 	onRemove(question: Question): void;
 }
 
-// Memoized and refreshed by its own edits, so typing in one question never re-renders the others
 export const QuestionEditor = memo(function QuestionEditor({ number, question, keys, viewport, focused, onChange, onRemove }: QuestionEditorProps): ReactElement {
 	const [, refresh] = useReducer((version: number) => version + 1, 0);
 	const refArticle: RefObject<HTMLElement | null> = useRef(null);

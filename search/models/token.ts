@@ -19,7 +19,6 @@ export class Token {
 		this.#id = id;
 	}
 
-	/** The folded word's id in its word index. */
 	get id(): number { return this.#id; }
 
 	find(matcher: Matcher, folding: Folding): Mark | null {
