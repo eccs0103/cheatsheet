@@ -4,9 +4,9 @@ import "adaptive-extender/web";
 import { type Mark } from "./mark.js";
 
 //#region Matches
-/** The questions that match a query, in sheet order, each with the marks to highlight. */
+/** The questions that match a query, in sheet order, each with the marks to highlight per searched text: the question first, then its answers. */
 export class Matches {
-	#marks: Map<number, readonly Mark[]> = new Map();
+	#marks: Map<number, readonly (readonly Mark[])[]> = new Map();
 
 	static all(count: number): Matches {
 		const matches = new Matches();
@@ -18,11 +18,11 @@ export class Matches {
 
 	get count(): number { return this.#marks.size; }
 
-	add(position: number, marks: readonly Mark[]): void {
+	add(position: number, marks: readonly (readonly Mark[])[]): void {
 		this.#marks.set(position, marks);
 	}
 
-	marks(position: number): readonly Mark[] {
+	marks(position: number): readonly (readonly Mark[])[] {
 		const marks = this.#marks.get(position);
 		if (marks === undefined) throw new ReferenceError(`Question ${position} does not match`);
 		return marks;

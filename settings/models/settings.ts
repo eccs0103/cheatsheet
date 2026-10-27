@@ -18,6 +18,7 @@ export interface SettingsScheme {
 	skipping: boolean;
 	accents: boolean;
 	tolerant: boolean;
+	answers: boolean;
 }
 
 export class Settings extends Model {
@@ -39,10 +40,13 @@ export class Settings extends Model {
 	@Field(Boolean, { name: "tolerant" })
 	tolerant: boolean;
 
+	@Field(Boolean, { name: "answers" })
+	answers: boolean = false;
+
 	constructor();
-	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, skipping: boolean, accents: boolean, tolerant: boolean);
-	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, skipping?: boolean, accents?: boolean, tolerant?: boolean) {
-		if (scheme === undefined || incorrect === undefined || sensitive === undefined || skipping === undefined || accents === undefined || tolerant === undefined) {
+	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, skipping: boolean, accents: boolean, tolerant: boolean, answers: boolean);
+	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, skipping?: boolean, accents?: boolean, tolerant?: boolean, answers?: boolean) {
+		if (scheme === undefined || incorrect === undefined || sensitive === undefined || skipping === undefined || accents === undefined || tolerant === undefined || answers === undefined) {
 			super();
 			return;
 		}
@@ -54,10 +58,11 @@ export class Settings extends Model {
 		this.skipping = skipping;
 		this.accents = accents;
 		this.tolerant = tolerant;
+		this.answers = answers;
 	}
 
 	static get default(): Settings {
-		return new Settings(Scheme.system, true, false, true, false, true);
+		return new Settings(Scheme.system, true, false, true, false, true, false);
 	}
 
 	apply(): void {

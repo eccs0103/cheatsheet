@@ -13,11 +13,14 @@ export class Highlighter {
 		highlight.clear();
 		CSS.highlights.set(Highlighter.#name, highlight);
 		for (const article of container.getElements(HTMLElement, "article.question:not([hidden])")) {
-			const marks = matches.marks(Number(article.dataset.index));
-			const node = article.getElement(HTMLElement, "span.text").firstChild;
-			if (!(node instanceof Text)) continue;
-			for (const mark of marks) {
-				highlight.add(mark.range(node));
+			const fields = matches.marks(Number(article.dataset.index));
+			const spans = article.getElements(HTMLElement, "span.text");
+			for (const [index, marks] of fields.entries()) {
+				const node = spans.item(index)?.firstChild;
+				if (!(node instanceof Text)) continue;
+				for (const mark of marks) {
+					highlight.add(mark.range(node));
+				}
 			}
 		}
 	}

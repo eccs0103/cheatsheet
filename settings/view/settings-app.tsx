@@ -63,6 +63,7 @@ export function SettingsApp({ settings }: SettingsAppProps): ReactElement {
 					<h2>Search</h2>
 					<OptionToggle id="skipping" title="Skip words" definition="Other words may stand between the typed ones; otherwise the typed text must match as one phrase." checked={content.skipping} onToggle={(checked) => { content.skipping = checked; void update(); }} />
 					<OptionToggle id="tolerant" title="Typo tolerance" definition="Tolerates typos: more of them in longer words." checked={content.tolerant} onToggle={(checked) => { content.tolerant = checked; void update(); }} />
+					<OptionToggle id="answers" title="Search answers" definition="Also finds the typed text in the answers; slower on large sheets." checked={content.answers} onToggle={(checked) => { content.answers = checked; void update(); }} />
 					<OptionToggle id="sensitive" title="Case sensitive" definition="Distinguishes uppercase and lowercase letters." checked={content.sensitive} onToggle={(checked) => { content.sensitive = checked; void update(); }} />
 					<OptionToggle id="accents" title="Accent sensitive" definition="Distinguishes letters with accents, such as é and e." checked={content.accents} onToggle={(checked) => { content.accents = checked; void update(); }} />
 					<OptionToggle id="incorrect" title="Incorrect answers" definition="Shows the incorrect answers next to the correct ones." checked={content.incorrect} onToggle={(checked) => { content.incorrect = checked; void update(); }} />

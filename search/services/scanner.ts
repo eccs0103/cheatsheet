@@ -5,6 +5,7 @@ import { FastEngine } from "adaptive-extender/web";
 import { type Question } from "../../library/models/question.js";
 import { type Settings } from "../../settings/models/settings.js";
 import { Matches } from "../models/matches.js";
+import { type Mark } from "../models/mark.js";
 import { type Token } from "../models/token.js";
 import { Folding } from "./folding.js";
 import { Query } from "./query.js";
@@ -14,15 +15,17 @@ export interface ScannerEventMap {
 	"change": Event;
 }
 
-/** Tests the questions against a query a few milliseconds per frame, so typing stays smooth on large sheets; a new query restarts the scan, and `change` fires when one completes. */
+/** Tests the questions (and, with `answers` on, their visible answers) against a query a few milliseconds per frame, so typing stays smooth on large sheets; a new query restarts the scan, and `change` fires when one completes. */
 export class Scanner extends EventTarget {
 	static #slice: number = 8;
 	#questions: readonly Question[];
 	#folding: Folding;
 	#skipping: boolean;
 	#tolerant: boolean;
+	#answers: boolean;
+	#incorrect: boolean;
 	#engine: FastEngine = new FastEngine();
-	#index: Token[][] = [];
+	#index: Token[][][] = [];
 	#query: Query;
 	#position: number = 0;
 	#pending: Matches = new Matches();
@@ -30,12 +33,14 @@ export class Scanner extends EventTarget {
 
 	constructor(questions: readonly Question[], settings: Readonly<Settings>) {
 		super();
-		const { sensitive, accents, skipping, tolerant } = settings;
+		const { sensitive, accents, skipping, tolerant, answers, incorrect } = settings;
 		const folding = new Folding(sensitive, accents);
 		this.#questions = questions;
 		this.#folding = folding;
 		this.#skipping = skipping;
 		this.#tolerant = tolerant;
+		this.#answers = answers;
+		this.#incorrect = incorrect;
 		this.#query = new Query(String.empty, folding, skipping, tolerant);
 		this.#matches = Matches.all(questions.length);
 		this.#engine.addEventListener("trigger", this.#step.bind(this));
@@ -69,12 +74,35 @@ export class Scanner extends EventTarget {
 	}
 
 	// Scans always run from the first question, so the token cache only ever grows at its end
-	#tokens(position: number): Token[] {
+	#tokens(position: number): Token[][] {
 		const index = this.#index;
 		if (position < index.length) return index[position];
-		const tokens = this.#folding.tokenize(this.#questions[position].text);
-		index.push(tokens);
-		return tokens;
+		const folding = this.#folding;
+		const fields = this.#texts(this.#questions[position]).map(text => folding.tokenize(text));
+		index.push(fields);
+		return fields;
+	}
+
+	// The same texts, in the same order, as the card's `span.text` elements
+	#texts(question: Question): string[] {
+		const texts = [question.text];
+		if (!this.#answers) return texts;
+		for (const answer of question.visible(this.#incorrect)) {
+			texts.push(answer.text);
+		}
+		return texts;
+	}
+
+	#test(query: Query, fields: readonly Token[][]): Mark[][] | null {
+		const marks: Mark[][] = [];
+		let found = false;
+		for (const tokens of fields) {
+			const result = query.test(tokens);
+			if (result !== null) found = true;
+			marks.push(result ?? []);
+		}
+		if (!found) return null;
+		return marks;
 	}
 
 	#step(event: Event): void {
@@ -84,7 +112,7 @@ export class Scanner extends EventTarget {
 		const deadline = performance.now() + Scanner.#slice;
 		let position = this.#position;
 		while (position < length && performance.now() < deadline) {
-			const marks = query.test(this.#tokens(position));
+			const marks = this.#test(query, this.#tokens(position));
 			if (marks !== null) pending.add(position, marks);
 			position++;
 		}

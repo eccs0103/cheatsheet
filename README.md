@@ -60,6 +60,7 @@ Selected sheets can be downloaded or shared. Where the browser cannot share `.js
 Opening a sheet leads to the **Search** page. It searches the questions as you type, highlights the matched parts, and the settings tune how:
 - **Skip words** (on by default): the typed words must appear in the typed order, other words may stand between them. Off: the typed text must match as one phrase.
 - **Typo tolerance** (on by default): a word may be misspelled; longer words tolerate more typos (one per 4 letters beyond the first), counting missing, extra, wrong and swapped letters.
+- **Search answers** (off by default): the visible answers are searched too, each on its own: all the typed words must be found in the question or in one answer.
 - **Case sensitive** and **Accent sensitive** (off by default): `ё` finds `е`, `sao` finds `São`, `lodz` finds `Łódź`.
 - **Incorrect answers** (on by default): show the incorrect answers next to the correct ones.
 
