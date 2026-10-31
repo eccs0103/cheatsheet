@@ -23,47 +23,25 @@ export interface SettingsScheme {
 
 export class Settings extends Model {
 	@Field(Enum.Of(Scheme), { name: "scheme" })
-	scheme: Scheme;
+	scheme: Scheme = Scheme.system;
 
 	@Field(Boolean, { name: "incorrect" })
-	incorrect: boolean;
+	incorrect: boolean = true;
 
 	@Field(Boolean, { name: "sensitive" })
-	sensitive: boolean;
+	sensitive: boolean = false;
 
 	@Field(Boolean, { name: "skipping" })
-	skipping: boolean;
+	skipping: boolean = true;
 
 	@Field(Boolean, { name: "accents" })
-	accents: boolean;
+	accents: boolean = false;
 
 	@Field(Boolean, { name: "tolerant" })
-	tolerant: boolean;
+	tolerant: boolean = true;
 
 	@Field(Boolean, { name: "answers" })
 	answers: boolean = false;
-
-	constructor();
-	constructor(scheme: Scheme, incorrect: boolean, sensitive: boolean, skipping: boolean, accents: boolean, tolerant: boolean, answers: boolean);
-	constructor(scheme?: Scheme, incorrect?: boolean, sensitive?: boolean, skipping?: boolean, accents?: boolean, tolerant?: boolean, answers?: boolean) {
-		if (scheme === undefined || incorrect === undefined || sensitive === undefined || skipping === undefined || accents === undefined || tolerant === undefined || answers === undefined) {
-			super();
-			return;
-		}
-
-		super();
-		this.scheme = scheme;
-		this.incorrect = incorrect;
-		this.sensitive = sensitive;
-		this.skipping = skipping;
-		this.accents = accents;
-		this.tolerant = tolerant;
-		this.answers = answers;
-	}
-
-	static get default(): Settings {
-		return new Settings(Scheme.system, true, false, true, false, true, false);
-	}
 
 	apply(): void {
 		const metaScheme = document.head.getElement(HTMLMetaElement, "meta[name=\"color-scheme\"]");

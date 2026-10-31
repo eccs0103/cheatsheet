@@ -16,11 +16,11 @@ export class SettingsService {
 
 		const key = SettingsService.#key;
 		try {
-			this.#cell = localStorage.openBufferedCell(key, Settings, Settings.default);
+			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings());
 		} catch (reason) {
 			if (!(reason instanceof SyntaxError) && !(reason instanceof TypeError)) throw reason;
 			localStorage.removeItem(key);
-			this.#cell = localStorage.openBufferedCell(key, Settings, Settings.default);
+			this.#cell = localStorage.openBufferedCell(key, Settings, new Settings());
 		}
 	}
 

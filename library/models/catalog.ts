@@ -12,19 +12,7 @@ export interface CatalogScheme {
 
 export class Catalog extends Model {
 	@Field(Array.Of(Summary), { name: "summaries" })
-	summaries: Summary[];
-
-	constructor();
-	constructor(summaries: Summary[]);
-	constructor(summaries?: Summary[]) {
-		if (summaries === undefined) {
-			super();
-			return;
-		}
-
-		super();
-		this.summaries = summaries;
-	}
+	summaries: Summary[] = [];
 
 	get size(): number { return this.summaries.length; }
 

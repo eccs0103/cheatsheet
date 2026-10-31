@@ -20,7 +20,7 @@ export class LibraryService {
 	}
 
 	static async open(): Promise<LibraryService> {
-		const library = new LibraryService(indexedDB.openPortableStore("Cheatsheet", "Library", Entry, "id"), localStorage.openBufferedCell("Cheatsheet\\Catalog", Catalog, new Catalog([])));
+		const library = new LibraryService(indexedDB.openPortableStore("Cheatsheet", "Library", Entry, "id"), localStorage.openBufferedCell("Cheatsheet\\Catalog", Catalog, new Catalog()));
 		await library.#migrate();
 		return library;
 	}
