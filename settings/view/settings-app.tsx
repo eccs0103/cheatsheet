@@ -79,6 +79,7 @@ export function SettingsApp({ settings }: SettingsAppProps): ReactElement {
 						</button>
 					</section>
 				</section>
+				<p className="description">Special thanks to <a href="https://e-learning.ysu.am/" target="_blank" rel="noopener">e-learning.ysu.am</a></p>
 			</main>
 		</>
 	);
