@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { type BufferedCell, type PortableStore } from "adaptive-extender/web";
+import { type BufferedCell, type PortableStore, type URI } from "adaptive-extender/web";
 import { Library } from "../models/library.js";
 import { Entry } from "../models/entry.js";
 import { Sheet } from "../models/sheet.js";
@@ -97,11 +97,11 @@ export class LibraryService {
 
 	// The source address is the entry id, so the same link refreshes its sheet instead of adding a copy; `no-cache` lets the browser revalidate by ETag, so an unchanged sheet is not downloaded again
 	// ponytail: a local edit to a linked sheet is overwritten on the next pull even when the source is unchanged; store the ETag on the entry if that matters
-	async pull(address: Readonly<URL>): Promise<Summary> {
-		const response = await fetch(address, { cache: "no-cache" });
+	async pull(address: Readonly<URI>): Promise<Summary> {
+		const response = await fetch(address.href, { cache: "no-cache" });
 		if (!response.ok) throw new ReferenceError(`Unable to download the sheet: ${response.status} ${response.statusText}`);
 		const sheet = Sheet.import(await response.json(), "sheet");
-		const { href } = address;
+		const { href } = address.toURL();
 		const entry = await this.find(href);
 		if (entry === null) return await this.#insert(new Entry(href, new Date(), sheet));
 		entry.revise(sheet);

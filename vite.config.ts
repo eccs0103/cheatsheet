@@ -1,5 +1,7 @@
 "use strict";
 
+import "adaptive-extender/node";
+import { URI } from "adaptive-extender/node";
 import { defineConfig, type UserConfig } from "vite";
 import { type ViteConfig } from "./environment/configs/vite-config.js";
 import { MPAConfig } from "./environment/configs/mpa-config.js";
@@ -8,18 +10,18 @@ import { ReactVitePlugin } from "./environment/plugins/react-vite-plugin.js";
 import { type VitePlugin } from "./environment/plugins/vite-plugin.js";
 
 export default defineConfig(async (env) => {
-	const root: URL = new URL(import.meta.url);
-	const inputs: URL[] = [
-		new URL("./library/index.html", root),
-		new URL("./search/index.html", root),
-		new URL("./settings/index.html", root),
-		new URL("./editor/index.html", root),
+	const root: URI = new URI(import.meta.url);
+	const inputs: URI[] = [
+		new URI("./library/index.html", root),
+		new URI("./search/index.html", root),
+		new URI("./settings/index.html", root),
+		new URI("./editor/index.html", root),
 	];
-	const rootEntries: URL[] = [
+	const rootEntries: URI[] = [
 	];
-	const pathEntries: URL[] = [
+	const pathEntries: URI[] = [
 	];
-	const output: URL = new URL("./dist/client", root);
+	const output: URI = new URI("./dist/client", root);
 	const plugins: VitePlugin[] = [new CloudflareVitePlugin(), new ReactVitePlugin()];
 	const config: ViteConfig = await MPAConfig.construct(inputs, rootEntries, pathEntries, output, plugins);
 	return config.build();

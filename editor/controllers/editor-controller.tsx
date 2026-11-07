@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { Controller } from "adaptive-extender/web";
+import { Controller, URI } from "adaptive-extender/web";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AnalyticsController } from "../../environment/controllers/analytics-controller.js";
@@ -19,7 +19,7 @@ class EditorController extends Controller {
 		void AnalyticsController.launch();
 		settings.content.apply();
 
-		const id = new URLSearchParams(location.search).get("sheet");
+		const id = new URI(location.href).searchParams.get("sheet");
 		const library = await LibraryService.open();
 		const initial = await EditorController.#sheet(library, id);
 		const divRoot = body.getElement(HTMLDivElement, "div#root");

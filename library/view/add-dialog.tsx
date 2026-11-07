@@ -1,6 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
+import { URI } from "adaptive-extender/web";
 import { type ChangeEvent, type MouseEvent, type ReactElement, type RefObject, type SubmitEvent, useEffect, useRef, useState } from "react";
 import { type LibraryService } from "../services/library-service.js";
 
@@ -50,7 +51,7 @@ export function AddDialog({ library, open, onClose, onChange }: AddDialogProps):
 	const pull = async (event: SubmitEvent<HTMLFormElement>): Promise<void> => {
 		event.preventDefault();
 		try {
-			await library.pull(new URL(url));
+			await library.pull(new URI(url));
 			setUrl(String.empty);
 			onClose();
 		} catch (reason) {

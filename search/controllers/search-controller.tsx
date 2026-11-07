@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { Controller } from "adaptive-extender/web";
+import { Controller, URI } from "adaptive-extender/web";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AnalyticsController } from "../../environment/controllers/analytics-controller.js";
@@ -20,7 +20,7 @@ class SearchController extends Controller {
 		const { content } = settings;
 		content.apply();
 
-		const id = ReferenceError.suppress(new URLSearchParams(location.search).get("sheet"), "No sheet is chosen");
+		const id = ReferenceError.suppress(new URI(location.href).searchParams.get("sheet"), "No sheet is chosen");
 		const library = await LibraryService.open();
 		const { sheet } = ReferenceError.suppress(await library.find(id), "The chosen sheet no longer exists");
 		const { name } = sheet;

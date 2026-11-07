@@ -1,6 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
+import { URI } from "adaptive-extender/web";
 import { type ReactElement } from "react";
 import { type Summary } from "../models/summary.js";
 import { type LibraryService } from "../services/library-service.js";
@@ -32,10 +33,10 @@ export function ActionsBar({ library, selected, onAdd, onChange }: ActionsBarPro
 	};
 
 	const share = async (): Promise<void> => {
-		const url = new URL("../library/", location.href);
+		const uri = new URI("../library/", location.href);
 		try {
 			const shared = await library.files(selected);
-			await navigator.share({ files: shared, text: `Sharing ${shared.length} sheet(s) with you. Add them in ${url}.`, url: url.href });
+			await navigator.share({ files: shared, text: `Sharing ${shared.length} sheet(s) with you. Add them in ${uri}.`, url: uri.href });
 		} catch (reason) {
 			const error = Error.from(reason);
 			if (error.name === "AbortError") return;

@@ -1,7 +1,7 @@
 "use strict";
 
 import "adaptive-extender/web";
-import { Controller } from "adaptive-extender/web";
+import { Controller, URI } from "adaptive-extender/web";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AnalyticsController } from "../../environment/controllers/analytics-controller.js";
@@ -19,10 +19,10 @@ class LibraryController extends Controller {
 		settings.content.apply();
 
 		const library = await LibraryService.open();
-		const source = new URLSearchParams(location.search).get("import");
+		const source = new URI(location.href).searchParams.get("import");
 		if (source !== null) {
 			try {
-				const entry = await library.pull(new URL(source));
+				const entry = await library.pull(new URI(source));
 				location.replace(entry.link);
 				return;
 			} catch (reason) {
