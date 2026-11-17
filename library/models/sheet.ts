@@ -52,10 +52,8 @@ export class Sheet extends Model {
 		this.questions = this.questions.filter(item => item !== question);
 	}
 
-	toFile(): File {
-		const text = JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
-		const { name } = this;
-		return new File([text], name ?? String.empty, { type: "application/json" });
+	toText(): string {
+		return JSON.stringify(Sheet.export(this), null, "\t").replace(Sheet.#compact, "$1 $2 $3 $4");
 	}
 }
 //#endregion

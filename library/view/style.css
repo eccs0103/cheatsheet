@@ -102,7 +102,6 @@ label.entry > a.sheet {
 	& > .sheet-date {
 		grid-area: sheet-date-area;
 		align-self: start;
-		font-size: 0.8em;
 	}
 }
 

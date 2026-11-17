@@ -86,7 +86,7 @@ export class LibraryService {
 		const errors: Error[] = [];
 		for (const file of files) {
 			try {
-				await this.#insert(Entry.of(Sheet.import(JSON.parse(await file.text()), "sheet")));
+				await this.#insert(LibraryService.#entry(Sheet.import(JSON.parse(await file.text()), "sheet")));
 			} catch (reason) {
 				errors.push(new Error(`${file.name}: ${Error.from(reason).message}`, { cause: reason }));
 			}
@@ -96,7 +96,6 @@ export class LibraryService {
 	}
 
 	// The source address is the entry id, so the same link refreshes its sheet instead of adding a copy; `no-cache` lets the browser revalidate by ETag, so an unchanged sheet is not downloaded again
-	// ponytail: a local edit to a linked sheet is overwritten on the next pull even when the source is unchanged; store the ETag on the entry if that matters
 	async pull(address: Readonly<URI>): Promise<Summary> {
 		const response = await fetch(address.href, { cache: "no-cache" });
 		if (!response.ok) throw new ReferenceError(`Unable to download the sheet: ${response.status} ${response.statusText}`);
@@ -109,7 +108,7 @@ export class LibraryService {
 	}
 
 	async insert(sheet: Sheet): Promise<void> {
-		await this.#insert(Entry.of(sheet));
+		await this.#insert(LibraryService.#entry(sheet));
 	}
 
 	async replace(id: string, sheet: Sheet): Promise<void> {
@@ -129,9 +128,13 @@ export class LibraryService {
 		const files: File[] = [];
 		for (const { id } of summaries) {
 			const { sheet } = ReferenceError.suppress(await this.find(id), `Unable to find the sheet '${id}'`);
-			files.push(sheet.toFile());
+			files.push(new File([sheet.toText()], sheet.name ?? String.empty, { type: "application/json" }));
 		}
 		return files;
+	}
+
+	static #entry(sheet: Sheet): Entry {
+		return new Entry(crypto.randomUUID(), new Date(), sheet);
 	}
 
 	static async #guard(operation: Promise<void>): Promise<void> {

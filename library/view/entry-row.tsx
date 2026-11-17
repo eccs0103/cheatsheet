@@ -22,7 +22,7 @@ export function EntryRow({ entry, marked, onMark }: EntryRowProps): ReactElement
 						<span className="icon with-padding small-padding"></span>
 					</span>
 					<span className="sheet-title" data-placeholder="Untitled">{name}</span>
-					<time className="sheet-date" dateTime={date.toISOString()}>{date.toLocaleString()}</time>
+					<time className="sheet-date font-smaller-3" dateTime={date.toISOString()}>{date.toLocaleString()}</time>
 				</a>
 			</label>
 		</li>

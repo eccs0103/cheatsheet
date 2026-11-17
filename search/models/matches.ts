@@ -22,9 +22,7 @@ export class Matches {
 	}
 
 	marks(position: number): readonly (readonly Mark[])[] {
-		const marks = this.#marks.get(position);
-		if (marks === undefined) throw new ReferenceError(`Question ${position} does not match`);
-		return marks;
+		return ReferenceError.suppress(this.#marks.get(position), `Question ${position} does not match`);
 	}
 
 	first(count: number): number[] {

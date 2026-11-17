@@ -44,8 +44,7 @@ export class Query {
 	}
 
 	admits(position: number): boolean {
-		const flags = this.#flags;
-		if (flags === null) throw new ReferenceError("The query is not narrowed yet");
+		const flags = ReferenceError.suppress(this.#flags, "The query is not narrowed yet");
 		return flags[position] === 1;
 	}
 

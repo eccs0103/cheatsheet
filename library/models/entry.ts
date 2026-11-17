@@ -35,10 +35,6 @@ export class Entry extends Model {
 		this.sheet = sheet;
 	}
 
-	static of(sheet: Sheet): Entry {
-		return new Entry(crypto.randomUUID(), new Date(), sheet);
-	}
-
 	revise(sheet: Sheet): void {
 		this.sheet = sheet;
 	}

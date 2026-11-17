@@ -5,6 +5,13 @@
 		"types": [ ]
 	},
 	"include": [
-		"environment/models/**/*.ts"
+		"environment/models/**/*.ts",
+		"library/models/answer.ts",
+		"library/models/catalog.ts",
+		"library/models/entry.ts",
+		"library/models/library.ts",
+		"library/models/question.ts",
+		"library/models/sheet.ts",
+		"library/models/summary.ts"
 	]
 }
